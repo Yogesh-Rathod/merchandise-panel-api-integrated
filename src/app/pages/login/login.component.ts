@@ -15,6 +15,7 @@ export class Login implements OnInit {
   public submitted: boolean = false;
   public isHidden: boolean = true;
   public isError: boolean = false;
+  errorMessage: string = '';
 
   constructor(fb: FormBuilder, public router: Router) {
     this.loginForm = fb.group({
