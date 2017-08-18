@@ -22,7 +22,6 @@
 	}
 }
 
-
 #vendortable_length,
 #producttable_length {
 	display: none;
@@ -66,6 +65,13 @@
 	}
 }
 
+// Break Crumb
+div.content-top {
+
+	ul.al-breadcrumb {
+		padding: 0 !important;
+	}
+}
 
 * {
 	box-sizing: border-box !important;
