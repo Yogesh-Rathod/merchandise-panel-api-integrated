@@ -1,0 +1,18 @@
+.container {
+	padding: 15px;
+
+	.add-product-form {
+		padding: 15px;
+		border: 1px solid rgb(10, 163, 209);
+		border-radius: 5px;
+
+		.mandatory {
+			color: #f00;
+		}
+
+		.ng-invalid.ng-touched {
+			border-color: #f00;
+		}
+
+	}
+}

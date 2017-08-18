@@ -1,0 +1,50 @@
+<div class="container clearfix card fadeIn animated">
+	<h2>Vendors List</h2>
+
+	<div class="vendors-table">
+
+		<table class="table table-hover table-bordered" *ngIf="vendorsList" id="vendortable">
+			<thead>
+				<tr class="clearfix">
+					<th class="number">No.</th>
+					<th class="name">Name</th>
+					<th class="code">Code</th>
+					<th class="action-buttons">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor=" let vendor of vendorsList; let i = index; " class="clearfix">
+					<td class="number">{{ i + 1 }}</td>
+					<td class="name">{{ vendor.first_name }}</td>
+					<td class="code">{{ vendor.last_name }}{{ vendor.id }} </td>
+					<td class="action-buttons">
+						<a class="btn btn-success" title="Show Products For this Vendor" routerLink="{{vendor.id}}/products">View Products</a>
+						<a class="btn btn-danger" title="Delete Vendor" data-toggle="modal" data-target="#deleteModal" (click)="deleteVendorPopUp(vendor)">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<!-- Delete Vendor Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Vendor Delete Confirmation!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this vendor?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteVendor()">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

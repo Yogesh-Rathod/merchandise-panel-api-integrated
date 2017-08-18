@@ -1,0 +1,22 @@
+.container {
+
+	h1 {
+		.btn {
+			color: #fff;
+		}
+	}
+
+	.add-product-form {
+		padding: 15px;
+		border: 1px solid rgb(10, 163, 209);
+
+		.mandatory {
+			color: #f00;
+		}
+
+		.ng-invalid.ng-touched {
+			border-color: #f00;
+		}
+
+	}
+}

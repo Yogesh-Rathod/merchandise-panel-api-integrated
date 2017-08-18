@@ -1,0 +1,245 @@
+
+<div class="row top20 clearfix">
+	<div class="row col-12">
+
+
+		<!-- Add Cat Modal Form -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<button type="button" class="close float-right" data-dismiss="modal" aria-label="Close" (click)="formDismissed()">
+          	<span aria-hidden="true">&times;</span>
+        	</button>
+		      <div class="modal-body clearfix">
+		        <div class="col-12">
+							<h2>Add Category </h2>
+							<form [formGroup]="addCategoriesForm" *ngIf="!bulkUpload">
+								<input type="hidden" formControlName="id" name="id">
+								<div class="form-group row">
+									<label for="example-text-input" class="col-3 col-form-label">
+										Name
+										<span class="mandatory">*</span>
+									</label>
+									<div class="col-9">
+										<input
+											class="form-control"
+											type="text"
+											id="example-text-input"
+											name="name"
+											formControlName="name" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-search-input" class="col-3 col-form-label">Description</label>
+									<div class="col-9">
+										<textarea
+											class="form-control"
+											cols="30"
+											rows="10"
+											name="description"
+											formControlName="description"  >
+										</textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-search-input" class="col-3 col-form-label">Status <span class="mandatory">*</span></label>
+									<div class="col-9">
+										<select
+											class="form-control"
+											name="status"
+											formControlName="status"
+											tabindex="-1"
+											[class.disabled]="editInactiveParent" >
+											<option value="Active">Active</option>
+											<option value="Inactive">Inactive</option>
+										</select>
+										<span *ngIf="editInactiveParent" class="parent-warning">Parent category needs to be activated first!</span>
+									</div>
+								</div>
+
+								<div class="form-group row col-offset-2">
+									<button data-dismiss="modal" class="btn btn-primary" (click)="addCategory(addCategoriesForm.value)" [class.disabled]="!addCategoriesForm.valid"
+									*ngIf="!updateSubNodeSelected && !subNodeSelected ">Add Root Category</button>
+									<button data-dismiss="modal" class="btn btn-success" [class.disabled]="!addCategoriesForm.valid" *ngIf="subNodeSelected && !updateSubNodeSelected" (click)="addChildCategory(addCategoriesForm.value)">Add Child Category</button>
+									<button data-dismiss="modal" class="btn btn-success" *ngIf="updateSubNodeSelected && !subNodeSelected " (click)="updateCategories(addCategoriesForm.value)"  [disabled]="!addCategoriesForm.valid">Update Category</button>
+									<button class="btn btn-warning" (click)="resetForm(addCategoriesForm.value)">Reset</button>
+								</div>
+							</form>
+							<form *ngIf="bulkUpload">
+								<div class="form-group row">
+									<label for="fileupload" class="col-3 col-form-label">
+										Upload File
+										<span class="mandatory">*</span>
+										<div>
+											<span>
+												(.xls, .xml)
+											</span>
+										</div>
+									</label>
+									<div class="col-9">
+										<input
+											class="form-control"
+											type="file"
+											id="fileupload"
+											name="bulkupload"
+											accept=".xls, .xml"
+											#bulkUploadFileInput
+											(change)="fileSelected($event)" >
+										<a href="assets/samples/test-bulk-upload.xls" target="_blank" class="btn-link float-right template-download">Download Template</a>
+									</div>
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success" data-dismiss="modal" [class.disabled]="!bulkUploadFileChosen">
+										Upload File
+									</button>
+								</div>
+							</form>
+						</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Tree View of Categories -->
+		<div class="tree-view col-9" *ngIf="categories">
+			<h2 class="clearfix">Tree of existing categories.
+				<span class="float-right">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)=" subNodeSelected = false; updateSubNodeSelected = false; bulkUpload = false; " >Add Root Category</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="bulkUpload = true;">Bulk Upload</button>
+				</span>
+			</h2>
+
+			<h3 *ngIf="categories.length == 0" class="text-center">
+				There are no categories yet!
+			</h3>
+
+			<ul class="root-tree">
+				<!-- Level 1 -->
+				<li *ngFor="let rootCategory of categories; let i1 = index; " >
+					<span class="cat-box clearfix">
+						<a class="pull-left btn btn-success btn-xs"
+						*ngIf=" rootCategory.children.length != 0"
+						(click)="slideToggleDropDowns( $event, i1)"
+						title="Drop Down">
+							<span class="ion-chevron-down"></span>
+						</a>
+						<span class="cat-text">{{ rootCategory.name }}</span>
+						<a class="pull-right btn btn-danger btn-xs" [class.disabled]="rootCategory.children.length != 0" (click)="deleteNode( rootCategory, i1 )"
+						title="Delete Category">
+							<span class="ion-close-round"></span>
+						</a>
+						<a class="pull-right btn btn-primary btn-xs"
+							data-toggle="modal" data-target="#myModal"
+							(click)="editCategory( rootCategory, i1 )"
+							title="Edit Category">
+							<span class="ion-edit"></span>
+						</a>
+						<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, rootCategory, i1 )" title="Add Sub Category">
+							<span class="ion-plus-round"></span>
+						</a>
+						<span class="pull-right" title="Status {{ rootCategory.status }}">
+
+							<span class="ion-record status active" *ngIf=" rootCategory.status == 'Active' "></span>
+
+							<span class="ion-record status inactive" *ngIf=" rootCategory.status == 'Inactive' "></span>
+
+						</span>
+					</span>
+					<ul *ngIf="!rootCategory.slideDown">
+						<!-- Level 2 -->
+						<li *ngFor="let level2Category of rootCategory.children; let i2 = index; ">
+							<span class="cat-box clearfix">
+								<a class="pull-left btn btn-success btn-xs" *ngIf="level2Category.children.length != 0"
+								(click)="slideToggleDropDowns( $event, i1, i2)"><span class="ion-chevron-down"></span></a>
+								<span class="cat-text">{{ level2Category.name }}</span>
+
+								<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level2Category.children.length != 0" (click)="deleteNode( level2Category, i1, i2)" title="Delete Category"><span class="ion-close-round"></span></a>
+								<a class="pull-right btn btn-primary btn-xs"
+									data-toggle="modal" data-target="#myModal"
+									(click)="editCategory( level2Category, i1, i2, '', '', rootCategory )"
+									title="Edit Category">
+									<span class="ion-edit"></span>
+								</a>
+								<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, level2Category, i1, i2 )" title="Add Sub Category">
+									<span class="ion-plus-round"></span>
+								</a>
+								<span class="pull-right" title="Status {{ level2Category.status }}">
+
+									<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' ">
+										<span class="ion-record status inactive"></span>
+									</span>
+
+									<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' ">
+										<span class="ion-record status active"></span>
+									</span>
+
+								</span>
+							</span>
+
+							<ul *ngIf="!level2Category.slideDown">
+								<!-- Level 3 -->
+								<li *ngFor="let level3Category of level2Category.children; let i3 = index; ">
+									<span class="cat-box clearfix">
+										<a class="pull-left btn btn-success btn-xs"*ngIf="level3Category.children.length != 0 "
+										(click)="slideToggleDropDowns( $event, i1, i2, i3)"><span class="ion-chevron-down" ></span></a>
+										<span class="cat-text">{{ level3Category.name }}</span>
+										<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level3Category.children.length != 0" title="Delete Category"><span class="ion-close-round" (click)="deleteNode( level3Category, i1, i2, i3)"></span></a>
+										<a class="pull-right btn btn-primary btn-xs"
+											data-toggle="modal" data-target="#myModal"
+											(click)="editCategory( level3Category, i1, i2, i3, '', rootCategory, level2Category )"
+											title="Edit Category">
+											<span class="ion-edit"></span>
+										</a>
+										<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, level3Category, i1, i2, i3 )" title="Add Sub Category">
+											<span class="ion-plus-round"></span>
+										</a>
+										<span class="pull-right" title="Status {{ level3Category.status }}">
+
+											<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' || level3Category.status == 'Inactive' ">
+												<span class="ion-record status inactive"></span>
+											</span>
+
+											<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' && level3Category.status == 'Active' ">
+												<span class="ion-record status active"></span>
+											</span>
+
+										</span>
+									</span>
+
+									<ul *ngIf="!level3Category.slideDown">
+										<!-- Level 4 -->
+										<li *ngFor="let level4Category of level3Category.children; let i4 = index; ">
+											<span class="cat-box clearfix">
+												<span class="cat-text">{{ level4Category.name }}</span>
+												<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level4Category.children.length != 0" title="Delete Category"><span class="ion-close-round" (click)="deleteNode( level4Category, i1, i2, i3, i4)"></span></a>
+												<a class="pull-right btn btn-primary btn-xs"
+													data-toggle="modal" data-target="#myModal"
+													(click)="editCategory( level4Category, i1, i2, i3, i4, rootCategory, level3Category, level2Category )" title="Edit Category">
+													<!--  -->
+													<span class="ion-edit"></span>
+												</a>
+												<span class="pull-right" title="Status {{ level4Category.status }}">
+
+													<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' || level3Category.status == 'Inactive' || level4Category.status == 'Inactive' ">
+														<span class="ion-record status inactive"></span>
+													</span>
+
+													<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' && level3Category.status == 'Active' && level4Category.status == 'Active' ">
+														<span class="ion-record status active"></span>
+													</span>
+
+												</span>
+											</span>
+										</li>
+									</ul>
+
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</div>

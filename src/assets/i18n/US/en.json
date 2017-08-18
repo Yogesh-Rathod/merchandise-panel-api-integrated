@@ -1,0 +1,86 @@
+{
+  "login": {
+    "title": "Sign in to LIDSYS XLII",
+    "signup_link": "New to ng2-admin? Sign up!",
+    "email": "Email",
+    "password": "Password",
+    "sign_in": "Sign in",
+    "forgot_password": "Forgot password?"
+  },
+  "general": {
+    "loylty": "Loylty Rewardz Mngt Pvt. Ltd.",
+    "home": "Home",
+    "corporate": "Corporate",
+    "program": "Program",
+    "modalheader":"Transaction Details",
+    "menu": {
+      "program": "Program",
+      "enrollment": "Enrollment",
+      "transaction": "Transaction",
+      "accrual": "Accrual",
+      "redemption": "Redemption",
+      "communication": "Communication",
+      "customerService": "Customer Service",
+      "partnerNetwork": "Partner Network",
+      "admin": "Admin",
+      "offers":"Offers",
+      "management": "Management",
+      "sku": "Customer SKU",
+      "policies": "Policies",
+      "rules": "Rules",
+      "masters": "Masters",
+      "reports": "Reports",
+      "tiers": "Tiers",
+      "promotions": "Promotions",
+      "criteria": "Criteria",
+      "crm": "CRM",
+      "members": "Members",
+      "tickets": "Tickets",
+      "pages": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "external_link": "External Link"
+    },
+    "created_with": "Created with"
+  },
+  "errorData": "Sorry, something went wrong. Please try again later.",
+  "crm": {
+    "members": {
+      "selectProgram": "Select Program",
+      "customerInfo": "Customer Information",
+      "selectCorporate": "Select Corporate",
+      "uniqueIdentification": "Unique Identification Number",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "dob": "Date of Birth",
+      "mobileNo": "Mobile No.",
+      "email": "Email",
+      "address": "Address",
+      "city": "City",
+      "accrual": "Accrual",
+      "state": "State",
+      "redemption": "Redemption",
+      "balance": "Balance",
+      "expired": "Expired",
+      "refund": "Refund",
+      "offers": "Offers",
+      "referalcode": "Referal Code"
+    },
+    "tickets": {
+      "uniqueID": "Unique Customer ID",
+      "severity": "Severity",
+      "status": "Status",
+      "category": "Category",
+      "phoneNo": "Phone Number",
+      "name": "Name",
+      "email": "Email ID",
+      "ticketId": "Ticket ID",
+      "channel": "Channel",
+      "priority": "Priority",
+      "desc": "Ticket Description",
+      "comment": "Comment",
+      "assignee": "Assignee"
+    }
+  }
+  
+}
