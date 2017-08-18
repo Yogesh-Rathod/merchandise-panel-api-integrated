@@ -1,13 +1,12 @@
 <div class="container clearfix card fadeIn animated">
-	<h2>Vendor ID: {{ vendorId }}</h2>
+	<h4 class="card-title">List of products
 
-	<div class="products-table">
-		<h3>List of products
-
-			<a class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">Bulk Product Upload</a>
+			<a class="btn btn-warning float-right" data-toggle="modal" data-target="#myModal">Bulk Product Upload</a>
 
 			<a class="btn btn-primary float-right" [routerLink]="['../addproduct/new']">Add Product</a>
-		</h3>
+		</h4>
+
+	<div class="products-table">
 
 		<table class="table table-hover table-bordered" *ngIf="vendorProducts" id="producttable">
 			<thead>
@@ -57,12 +56,12 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
+			<h3 class="card-title">Upload Products</h3>
 			<button type="button" class="close float-right" data-dismiss="modal" aria-label="Close" (click)="formDismissed()">
 				<span aria-hidden="true">&times;</span>
 			</button>
 			<div class="modal-body clearfix">
 				<form>
-					<h3>Upload Products</h3>
 					<div class="form-group row">
 						<label for="fileupload" class="col-3 col-form-label">
 							Upload File

@@ -1,5 +1,5 @@
 
-<div class="row top20 clearfix">
+<div class="row top20 card clearfix">
 	<div class="row col-12">
 
 
@@ -7,12 +7,13 @@
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
+		    	<h2 class="card-title" *ngIf="!bulkUpload">Add Category </h2>
+		    	<h2 class="card-title" *ngIf="bulkUpload">Categories Bulk Upload </h2>
 		    	<button type="button" class="close float-right" data-dismiss="modal" aria-label="Close" (click)="formDismissed()">
           	<span aria-hidden="true">&times;</span>
         	</button>
 		      <div class="modal-body clearfix">
 		        <div class="col-12">
-							<h2>Add Category </h2>
 							<form [formGroup]="addCategoriesForm" *ngIf="!bulkUpload">
 								<input type="hidden" formControlName="id" name="id">
 								<div class="form-group row">
@@ -101,10 +102,10 @@
 		</div>
 
 		<!-- Tree View of Categories -->
-		<div class="tree-view col-9" *ngIf="categories">
-			<h2 class="clearfix">Tree of existing categories.
+		<div class="tree-view col-12" *ngIf="categories">
+			<h2 class="clearfix card-title">Categories Tree
 				<span class="float-right">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)=" subNodeSelected = false; updateSubNodeSelected = false; bulkUpload = false; " >Add Root Category</button>
+					<button class="btn btn-info" data-toggle="modal" data-target="#myModal" (click)=" subNodeSelected = false; updateSubNodeSelected = false; bulkUpload = false; " >Add Root Category</button>
 					<button class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="bulkUpload = true;">Bulk Upload</button>
 				</span>
 			</h2>

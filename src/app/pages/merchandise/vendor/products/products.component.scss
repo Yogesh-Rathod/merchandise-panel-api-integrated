@@ -1,5 +1,5 @@
 .container {
-	padding: 15px;
+	padding: 0;
 
 	h3 {
 		margin: 15px 0;
@@ -8,7 +8,35 @@
 	.btn {
 		color: #fff;
 		margin-right: 10px;
+		text-transform: initial;
 	}
+}
+
+.modal-content {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+
+	button.close {
+		color: #fff;
+		opacity: 1;
+	}
+}
+
+.products-table {
+	padding: 15px;
+}
+
+.card-title {
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	background: #209e91;
+	color: #fff;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	line-height: 30px;
+	border-bottom: 1px solid #209e91;
 }
 
 #producttable {
