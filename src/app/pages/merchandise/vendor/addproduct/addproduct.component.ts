@@ -140,7 +140,11 @@ export class AddproductComponent implements OnInit {
     };
     this.allProducts.splice(productToBeEdited, 1, productInfo);
     this.merchandiseService.editProduct(this.allProducts);
-    this.backClicked();
+    this.toastr.success('Product Updated successfully!', 'Success!', {toastLife: 2000 } );
+    this.createForm();
+    setTimeout( () => {
+      this.backClicked();
+    }, 1000);
   }
 
   resetForm() {

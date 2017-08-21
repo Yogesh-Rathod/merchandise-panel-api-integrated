@@ -43,7 +43,7 @@
 				<div class="form-group">
 					<button class="btn btn-success" [disabled]="!addProductForm.valid" (click)="addProduct(addProductForm.value)"  *ngIf=" productId === 'new' ">Add product</button>
 					<button class="btn btn-success" [disabled]="!addProductForm.valid" (click)="updateProduct(addProductForm.value)"  *ngIf=" productId !== 'new' ">Update Product</button>
-					<button class="btn btn-info" (click)="resetForm()">Reset</button>
+					<button class="btn btn-info" (click)="resetForm()" *ngIf=" productId === 'new' ">Reset</button>
 					<button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
 				</div>
 			</form>
