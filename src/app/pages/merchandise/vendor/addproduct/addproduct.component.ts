@@ -148,7 +148,17 @@ export class AddproductComponent implements OnInit {
   }
 
   resetForm() {
-    this.createForm();
+    if ( this.productId > 0 ) {
+      this.addProductForm = this.fb.group({
+        id: [this.productInfo.id],
+        name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
+        code: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
+        description: ['', Validators.compose([Validators.required, Validators.maxLength(255)])],
+        category: ['', Validators.required],
+      });
+    } else {
+      this.createForm();
+    }
   }
 
 }
