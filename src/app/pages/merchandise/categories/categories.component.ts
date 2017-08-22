@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import * as _ from 'lodash';
 
@@ -30,8 +31,12 @@ export class CategoriesComponent implements OnInit {
   bulkUploadFileChosen: boolean = false;
 
   constructor(
+    public toastr: ToastsManager,
+    public vcr: ViewContainerRef,
     private fb: FormBuilder,
-    private merchandiseService: MerchandiseService) {}
+    private merchandiseService: MerchandiseService) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.createForm();
@@ -56,6 +61,8 @@ export class CategoriesComponent implements OnInit {
     addCategoryForm.id = Math.floor(1000 + Math.random() * 9000);
     addCategoryForm.children = [];
     this.merchandiseService.addCategory(addCategoryForm);
+    console.log("this.toastr", this.toastr);
+    this.toastr.success('Category added successfully!', 'Success!', { toastLife: 2000 } );
     this.getAllCategories();
     setTimeout( () => {
       this.createForm();
@@ -122,6 +129,8 @@ export class CategoriesComponent implements OnInit {
       this.categories.splice(index, 1, {id: addCategoriesForm.id, name: addCategoriesForm.name, description: addCategoriesForm.description, status: addCategoriesForm.status, children: this.catObject.children });
     }
 
+    this.toastr.success('Category updated successfully!', 'Success!', { toastLife: 2000 } );
+
     if (typeof(Storage) !== 'undefined') {
       localStorage.setItem('categories', JSON.stringify(this.categories) );
     }
@@ -174,6 +183,8 @@ export class CategoriesComponent implements OnInit {
       this.categories[this.selectedIndex1].children.push(addCategoryForm);
     }
 
+    this.toastr.success('Category added successfully!', 'Success!', { toastLife: 2000 } );
+
     if (typeof(Storage) !== 'undefined') {
       localStorage.setItem('categories', JSON.stringify(this.categories) );
     }
@@ -197,6 +208,8 @@ export class CategoriesComponent implements OnInit {
         _.remove(this.categories, category);
       }
     }
+
+    this.toastr.success('Category deleted successfully!', 'Success!', { toastLife: 2000 } );
 
     if (typeof(Storage) !== 'undefined') {
       localStorage.setItem('categories', JSON.stringify(this.categories) );
