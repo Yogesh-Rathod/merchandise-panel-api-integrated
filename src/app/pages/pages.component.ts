@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
 import { PAGES_MENU } from './pages.menu';
-import { CookieService } from 'angular2-cookie/core';
+// import { CookieService } from 'angular2-cookie/core';
 import { AppState } from 'app/app.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class Pages {
 
   constructor(
     private _menuService: BaMenuService,
-    private _cookieService: CookieService,
+    // private _cookieService: CookieService,
     private global: AppState,
   ) {
   }
@@ -27,7 +27,7 @@ export class Pages {
   }
 
   getCookie(key: string) {
-    return this._cookieService.get(key);
+    // return this._cookieService.get(key);
   }
 
 }
