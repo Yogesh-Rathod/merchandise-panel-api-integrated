@@ -121,6 +121,11 @@ export class CategoriesComponent implements OnInit {
       index = _.findIndex(this.categories, {id: addCategoriesForm.id});
       this.categories.splice(index, 1, {id: addCategoriesForm.id, name: addCategoriesForm.name, description: addCategoriesForm.description, status: addCategoriesForm.status, children: this.catObject.children });
     }
+
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('categories', JSON.stringify(this.categories) );
+    }
+
     setTimeout( () => {
       this.formDismissed();
     }, 100);
@@ -192,6 +197,10 @@ export class CategoriesComponent implements OnInit {
         _.remove(this.categories, category);
       }
     }
+
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('categories', JSON.stringify(this.categories) );
+    }
   }
 
   fileSelected(event) {
@@ -201,7 +210,6 @@ export class CategoriesComponent implements OnInit {
     } else {
       this.bulkUploadFileChosen = false;
     }
-
   }
 
 

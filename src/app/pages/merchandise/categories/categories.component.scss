@@ -28,7 +28,14 @@
 		margin: 0;
 	}
 
+	.btn-primary {
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+	}
+
 	.card-title {
+		text-transform: capitalize;
 		border-top-left-radius: 7px;
 		border-top-right-radius: 7px;
 		background: #209e91;
