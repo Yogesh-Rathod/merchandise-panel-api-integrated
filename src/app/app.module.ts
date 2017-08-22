@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
  * Platform and Environment providers/directives/pipes
  */
 import { routing } from './app.routing';
-// import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 // App is our top level component
 import { App } from './app.component';
 import { AppState, InternalStateType } from './app.service';
@@ -34,7 +34,7 @@ const APP_PROVIDERS = [
   CommonService,
   {provide: ToastOptions, useClass: CustomToast},
   AuthGuard,
-  // CookieService,
+  CookieService,
 ];
 
 export type StoreType = {
