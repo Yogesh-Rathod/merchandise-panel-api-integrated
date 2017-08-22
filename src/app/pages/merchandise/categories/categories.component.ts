@@ -207,9 +207,9 @@ export class CategoriesComponent implements OnInit {
       } else {
         _.remove(this.categories, category);
       }
+      this.toastr.success('Category deleted successfully!', 'Success!', { toastLife: 2000 } );
     }
 
-    this.toastr.success('Category deleted successfully!', 'Success!', { toastLife: 2000 } );
 
     if (typeof(Storage) !== 'undefined') {
       localStorage.setItem('categories', JSON.stringify(this.categories) );
