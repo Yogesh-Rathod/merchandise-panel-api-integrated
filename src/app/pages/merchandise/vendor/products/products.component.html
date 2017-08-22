@@ -1,10 +1,13 @@
 <div class="container clearfix card fadeIn animated">
-	<h4 class="card-title">List of products
+	<h4 class="card-title">
+	<span class="btn btn-info ion-chevron-left go-back-btn" [routerLink]="['/merchandise/vendors']"></span>
 
-			<a class="btn btn-warning float-right" data-toggle="modal" data-target="#myModal">Bulk {{ 'merchandise.vendor.product' | translate }} {{ 'merchandise.categories.upload' | translate }}</a>
+		List of products
 
-			<a class="btn btn-primary float-right" [routerLink]="['../addproduct/new']">{{ 'merchandise.vendor.add' | translate }} {{ 'merchandise.vendor.product' | translate }}</a>
-		</h4>
+		<a class="btn btn-warning float-right" data-toggle="modal" data-target="#myModal">Bulk {{ 'merchandise.vendor.product' | translate }} {{ 'merchandise.categories.upload' | translate }}</a>
+
+		<a class="btn btn-primary float-right" [routerLink]="['../addproduct/new']">{{ 'merchandise.vendor.add' | translate }} {{ 'merchandise.vendor.product' | translate }}</a>
+	</h4>
 
 	<div class="products-table">
 

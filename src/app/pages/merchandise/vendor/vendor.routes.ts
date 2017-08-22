@@ -12,6 +12,12 @@ const routes: Routes = [
   {
     path: ':id/products',
     component: ProductsComponent,
+    data: {
+      menu: {
+        title: 'Products',
+        pathMatch: 'partial',
+      }
+    }
   },
   {
     path: ':id/addproduct/:product',

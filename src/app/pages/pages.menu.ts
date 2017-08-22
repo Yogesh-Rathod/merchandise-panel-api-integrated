@@ -12,22 +12,24 @@ const menus = [
       },
     },
     children: [
-    {
-      path: 'categories',
-      data: {
-        menu: {
-          title: 'Categories',
+      {
+        path: 'categories',
+        data: {
+          menu: {
+            title: 'Categories',
+            pathMatch: 'partial',
+          },
         },
       },
-    },
-    {
-      path: 'vendors',
-      data: {
-        menu: {
-          title: 'Vendors',
+      {
+        path: 'vendors',
+        data: {
+          menu: {
+            title: 'Vendors',
+            pathMatch: 'partial',
+          },
         },
       },
-    },
     ],
   },
 ];
