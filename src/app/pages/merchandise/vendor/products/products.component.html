@@ -1,9 +1,9 @@
 <div class="container clearfix card fadeIn animated">
 	<h4 class="card-title">List of products
 
-			<a class="btn btn-warning float-right" data-toggle="modal" data-target="#myModal">Bulk Product Upload</a>
+			<a class="btn btn-warning float-right" data-toggle="modal" data-target="#myModal">Bulk {{ 'merchandise.vendor.product' | translate }} {{ 'merchandise.categories.upload' | translate }}</a>
 
-			<a class="btn btn-primary float-right" [routerLink]="['../addproduct/new']">Add Product</a>
+			<a class="btn btn-primary float-right" [routerLink]="['../addproduct/new']">{{ 'merchandise.vendor.add' | translate }} {{ 'merchandise.vendor.product' | translate }}</a>
 		</h4>
 
 	<div class="products-table">
@@ -11,11 +11,10 @@
 		<table class="table table-hover table-bordered" *ngIf="vendorProducts" id="producttable">
 			<thead>
 				<tr>
-					<th class="number">No.</th>
-					<th class="name">Name</th>
-					<th class="code">Code</th>
-					<!-- <th class="description">Description</th> -->
-					<th>Category</th>
+					<th class="number">{{ 'merchandise.vendor.no' | translate }}.</th>
+					<th class="name">{{ 'merchandise.categories.name' | translate }}</th>
+					<th class="code">{{ 'merchandise.vendor.code' | translate }}</th>
+					<th>{{ 'merchandise.categories.category' | translate }}</th>
 					<th class="action-buttons">Action</th>
 				</tr>
 			</thead>
@@ -24,7 +23,6 @@
 					<td class="number">{{ i + 1 }}</td>
 					<td class="name">{{ product.name }}</td>
 					<td class="code">{{ product.code }}</td>
-					<!-- <td class="description">{{ product.desc }}</td> -->
 					<td class="category">
 						<div *ngIf="product.categories.level1" class="level1">
 							{{ product.categories.level1 }}
@@ -56,7 +54,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<h3 class="card-title">Upload Products</h3>
+			<h3 class="card-title">{{ 'merchandise.categories.upload' | translate }} Products</h3>
 			<button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -86,7 +84,7 @@
 					</div>
 					<div class="form-group">
 						<button class="btn btn-success" data-dismiss="modal" [class.disabled]="!bulkUploadFileChosen">
-							Upload File
+							{{ 'merchandise.categories.upload' | translate }} File
 						</button>
 					</div>
 				</form>

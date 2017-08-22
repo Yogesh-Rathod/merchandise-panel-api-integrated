@@ -7,8 +7,8 @@
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
-		    	<h2 class="card-title" *ngIf="!bulkUpload">Add Category </h2>
-		    	<h2 class="card-title" *ngIf="bulkUpload">Categories Bulk Upload </h2>
+		    	<h2 class="card-title" *ngIf="!bulkUpload">{{ 'merchandise.vendor.add' | translate }} {{ 'merchandise.categories.category' | translate }} </h2>
+		    	<h2 class="card-title" *ngIf="bulkUpload">{{ 'merchandise.categories.categories' | translate }} Bulk Upload </h2>
 		    	<button type="button" class="close float-right" data-dismiss="modal" aria-label="Close" (click)="formDismissed()">
           	<span aria-hidden="true">&times;</span>
         	</button>
@@ -17,8 +17,8 @@
 							<form [formGroup]="addCategoriesForm" *ngIf="!bulkUpload">
 								<input type="hidden" formControlName="id" name="id">
 								<div class="form-group row">
-									<label for="example-text-input" class="col-3 col-form-label">
-										Name
+									<label for="example-text-input" class="col-3 col-form-label" translate>
+										{{ 'merchandise.categories.name' }}
 										<span class="mandatory">*</span>
 									</label>
 									<div class="col-9">
@@ -31,7 +31,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="example-search-input" class="col-3 col-form-label">Description</label>
+									<label for="example-search-input" class="col-3 col-form-label" translate>{{ 'merchandise.categories.description' }}</label>
 									<div class="col-9">
 										<textarea
 											class="form-control"
@@ -43,7 +43,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="example-search-input" class="col-3 col-form-label">Status <span class="mandatory">*</span></label>
+									<label for="example-search-input" class="col-3 col-form-label" translate>{{ 'merchandise.categories.status' }} <span class="mandatory">*</span></label>
 									<div class="col-9">
 										<select
 											class="form-control"
@@ -60,16 +60,16 @@
 
 								<div class="form-group row col-offset-2">
 									<button data-dismiss="modal" class="btn btn-primary" (click)="addCategory(addCategoriesForm.value)" [class.disabled]="!addCategoriesForm.valid"
-									*ngIf="!updateSubNodeSelected && !subNodeSelected ">Add Root Category</button>
-									<button data-dismiss="modal" class="btn btn-success" [class.disabled]="!addCategoriesForm.valid" *ngIf="subNodeSelected && !updateSubNodeSelected" (click)="addChildCategory(addCategoriesForm.value)">Add Child Category</button>
-									<button data-dismiss="modal" class="btn btn-success" *ngIf="updateSubNodeSelected && !subNodeSelected " (click)="updateCategories(addCategoriesForm.value)"  [disabled]="!addCategoriesForm.valid">Update Category</button>
+									*ngIf="!updateSubNodeSelected && !subNodeSelected ">{{ 'merchandise.vendor.add' | translate }} Root {{ 'merchandise.categories.category' | translate }}</button>
+									<button data-dismiss="modal" class="btn btn-success" [class.disabled]="!addCategoriesForm.valid" *ngIf="subNodeSelected && !updateSubNodeSelected" (click)="addChildCategory(addCategoriesForm.value)">{{ 'merchandise.vendor.add' | translate }} Child {{ 'merchandise.categories.category' | translate }}</button>
+									<button data-dismiss="modal" class="btn btn-success" *ngIf="updateSubNodeSelected && !subNodeSelected " (click)="updateCategories(addCategoriesForm.value)"  [disabled]="!addCategoriesForm.valid">Update {{ 'merchandise.categories.category' | translate }}</button>
 									<button class="btn btn-warning" (click)="resetForm(addCategoriesForm.value)">Reset</button>
 								</div>
 							</form>
 							<form *ngIf="bulkUpload">
 								<div class="form-group row">
 									<label for="fileupload" class="col-3 col-form-label">
-										Upload File
+										{{ 'merchandise.categories.upload' | translate }} File
 										<span class="mandatory">*</span>
 										<div>
 											<span>
@@ -91,7 +91,7 @@
 								</div>
 								<div class="form-group">
 									<button class="btn btn-success" data-dismiss="modal" [class.disabled]="!bulkUploadFileChosen">
-										Upload File
+										{{ 'merchandise.categories.upload' | translate }} File
 									</button>
 								</div>
 							</form>
@@ -103,10 +103,10 @@
 
 		<!-- Tree View of Categories -->
 		<div class="tree-view col-12" *ngIf="categories">
-			<h2 class="clearfix card-title">Categories Tree
+			<h2 class="clearfix card-title" translate>Categories Tree
 				<span class="float-right">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)=" subNodeSelected = false; updateSubNodeSelected = false; bulkUpload = false; " >Add Root Category</button>
-					<button class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="bulkUpload = true;">Bulk Categories Upload</button>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)=" subNodeSelected = false; updateSubNodeSelected = false; bulkUpload = false; " >{{ 'merchandise.vendor.add' | translate }} Root {{ 'merchandise.categories.category' | translate }}</button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="bulkUpload = true;">Bulk {{ 'merchandise.categories.categories' | translate }} {{ 'merchandise.categories.upload' | translate }}</button>
 				</span>
 			</h2>
 

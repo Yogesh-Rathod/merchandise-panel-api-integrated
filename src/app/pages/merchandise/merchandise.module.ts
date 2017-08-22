@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MerchandiseComponent } from './merchandise.component';
 import { routing } from './merchandise.routing';
 import { MerchandiseService } from 'app/services';
+import { SharedModule } from 'app/shared';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { MerchandiseService } from 'app/services';
     FormsModule,
     ReactiveFormsModule,
     routing,
+    SharedModule
   ],
   declarations: [
     MerchandiseComponent,

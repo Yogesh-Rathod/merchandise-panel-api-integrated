@@ -81,6 +81,26 @@
       "comment": "Comment",
       "assignee": "Assignee"
     }
+  },
+  "merchandise": {
+    "categories": {
+      "category": "Category",
+      "categories": "Categories",
+      "name": "Name",
+      "description": "Description",
+      "status": "Status",
+      "tree": "Tree",
+      "bulk": "bulk",
+      "upload": "Upload"
+    },
+    "vendor": {
+      "code": "Code",
+      "product": "Product",
+      "add": "Add",
+      "here": "Here",
+      "update": "Update",
+      "no": "No"
+    }
   }
-  
+
 }

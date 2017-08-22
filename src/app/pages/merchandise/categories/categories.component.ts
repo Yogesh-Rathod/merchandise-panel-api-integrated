@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 import { MerchandiseService } from 'app/services';
 
+
 @Component({
   selector: 'app-categories',
   templateUrl: 'categories.component.html',

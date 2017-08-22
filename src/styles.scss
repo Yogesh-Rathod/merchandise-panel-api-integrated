@@ -67,9 +67,19 @@
 
 // Break Crumb
 div.content-top {
+	padding-bottom: 15px !important;
+
+	h1.al-title {
+		text-transform: capitalize;
+		font-size: 20px;
+	}
 
 	ul.al-breadcrumb {
 		padding: 0 !important;
+
+		li.breadcrumb-item {
+			font-size: 16px;
+		}
 	}
 }
 
