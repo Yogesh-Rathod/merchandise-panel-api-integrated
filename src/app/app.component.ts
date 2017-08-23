@@ -29,8 +29,8 @@ export class App {
 
     if ( this._cookieService.get('userLoggedInData') ) {
       const userInfo = JSON.parse( this._cookieService.get('userLoggedInData') );
-      console.log("userInfo", userInfo);
-      if ( userInfo.email !== 'yogesh@loylty.in' && userInfo.password !== 'loylty@123'  ) {
+      // console.log("userInfo", userInfo);
+      if ( userInfo.email !== 'yogeshr' && userInfo.password !== 'loylty'  ) {
         window.location.href = 'http://localhost:4300';
       }
     } else {
