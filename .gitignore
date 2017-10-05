@@ -41,3 +41,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+# Lidsys custom dependencies
+/src/lrshared_modules/*
+src/lrshared_modules
+
+# Sublime Fuse File
+.fuse_hidden*

@@ -15,7 +15,7 @@ export class CommonService {
     }
 
     getCorporates(): Promise<any> {
-        const url = `${environment.api_url}/tms/api/corporate`;
+        const url = `${environment.apiUrl}/tms/api/corporate`;
         return this.http.get(url)
             .toPromise()
             .then(this.handleResponse)
@@ -23,7 +23,7 @@ export class CommonService {
     }
 
     getPrograms(corporateID): Promise<any> {
-        const url = `${environment.api_url}/tms/api/corporate/corporateId/${corporateID}/program`;
+        const url = `${environment.apiUrl}/tms/api/corporate/corporateId/${corporateID}/program`;
         return this.http.get(url)
             .toPromise()
             .then(this.handleResponse)

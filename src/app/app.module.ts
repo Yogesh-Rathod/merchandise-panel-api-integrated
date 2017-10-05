@@ -17,15 +17,11 @@ import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {
-  SharedModule,
-} from './shared';
 import { CommonService } from './services';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CustomToast } from './providers/custome_toast';
 import { ToastOptions } from 'ng2-toastr/src/toast-options';
-import { AuthGuard } from './gaurds';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -33,7 +29,6 @@ const APP_PROVIDERS = [
   GlobalState,
   CommonService,
   {provide: ToastOptions, useClass: CustomToast},
-  AuthGuard,
   CookieService,
 ];
 
@@ -62,7 +57,6 @@ export type StoreType = {
     ToastModule.forRoot(),
     PagesModule,
     routing,
-    SharedModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
