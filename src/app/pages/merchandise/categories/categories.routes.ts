@@ -1,15 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { CategoriesComponent} from './categories.component';
+import { CategoriesComponent } from './categories.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoriesComponent,
-    // children: [
-    //   { path: '', redirectTo: 'points', pathMatch: 'full'},
-    //   { path: 'points', loadChildren: './points/points.module#PointsModule'}
-    // ]
+    component: CategoriesComponent
+  },
+  {
+    path: 'add-category',
+    component: AddCategoryComponent
   },
 ];
 

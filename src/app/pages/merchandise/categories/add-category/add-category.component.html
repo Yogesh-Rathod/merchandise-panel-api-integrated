@@ -1,0 +1,53 @@
+<div class="animated fadeIn card addCategory">
+
+		<div class="card-header clearfix">
+			<h2 class="card-title" >
+				{{ 'merchandise.vendor.add' | translate }}
+				{{ 'merchandise.categories.category' | translate }}
+
+				<span class="goBack float-right" [routerLink]="['../']"><span class="ion-arrow-left-a"></span> back to category list</span>
+			</h2>
+		</div>
+
+		<div class="card-body">
+
+			<form class="col-12" [formGroup]=" addCategoryForm " (ngSubmit)=" addCategory(addCategoryForm.value) ">
+
+				<div class="form-group row">
+					<label for="name" class="col-3 text-right">Name <span class="mandatory">*</span></label>
+					<input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
+				</div>
+
+				<div class="form-group row">
+					<label for="Description" class="col-3 text-right">Description <span class="mandatory">*</span></label>
+					<ckeditor class="form-control col-9" [config]="config" formControlName="description"></ckeditor>
+				</div>
+
+				<div class="form-group row">
+					<label for="Picture" class="col-3 text-right">Picture</label>
+					<input type="file" class="form-control col-9" id="Picture" (change)=" imageUpload($event) ">
+				</div>
+
+				<div class="form-group row">
+					<label for="ParentCategory" class="col-3 text-right">Parent Category <span class="mandatory">*</span></label>
+					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat">
+						<option value="1">1</option>
+					</select>
+				</div>
+
+				<div class="form-group row">
+					<label for="Displayorder" class="col-3 text-right">Display order <span class="mandatory">*</span></label>
+					<input type="number" class="form-control col-9" id="name" placeholder="Displayorder" formControlName="order">
+				</div>
+
+				<div class="form-group row">
+					<label class="col-3 text-right"></label>
+					<input type="submit" class="btn btn-primary" value="Save"  [disabled]=" !addCategoryForm.valid || showLoader " >
+					<span class="btn btn-secondary" [routerLink]="['../']">Cancel</span>
+				</div>
+
+			</form>
+
+		</div>
+
+</div>

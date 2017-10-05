@@ -15,12 +15,13 @@ import { MerchandiseService } from 'app/services';
     routing
   ],
   declarations: [
-    MerchandiseComponent,
+    MerchandiseComponent
   ],
   providers: [
-    MerchandiseService,
+    MerchandiseService
   ],
-  entryComponents: [],
+  entryComponents: [
+  ]
 })
 
 export class MerchandiseModule {}

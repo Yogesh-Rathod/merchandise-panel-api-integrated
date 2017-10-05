@@ -6,12 +6,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 
 import { MerchandiseService } from 'app/services';
-
+import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
 
 @Component({
   selector: 'app-categories',
   templateUrl: 'categories.component.html',
-  styleUrls: ['categories.component.scss'],
+  styleUrls: ['categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
   addCategoryFormShow: boolean = true;
@@ -29,8 +29,6 @@ export class CategoriesComponent implements OnInit {
   editSelectedIndex3: any;
   editSelectedIndex4: any;
   editInactiveParent: boolean = false;
-  bulkUpload: boolean = false;
-  bulkUploadFileChosen: boolean = false;
 
   constructor(
     private modalService: NgbModal,
@@ -159,7 +157,6 @@ export class CategoriesComponent implements OnInit {
   formDismissed() {
     this.updateSubNodeSelected = false;
     this.subNodeSelected = false;
-    this.bulkUpload = false;
     this.editInactiveParent = false;
     this.createForm();
   }
@@ -219,13 +216,8 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  fileSelected(event) {
-    const fileList: FileList = event.target.files;
-    if ( fileList.length > 0) {
-      this.bulkUploadFileChosen = true;
-    } else {
-      this.bulkUploadFileChosen = false;
-    }
+  bulkUpload() {
+    const activeModal = this.modalService.open( BulkUploadComponent, { size: 'sm' } );
   }
 
 

@@ -17,12 +17,12 @@ export const routes: Routes = [
       {
         path: 'user-management',
         loadChildren: 'lrshared_modules/pages/user-management/user-management.module#UserManagementModule'
-      },
-    ],
+      }
+    ]
   },
   {
     path: 'PageNotFound',
-    component: NotFoundComponent,
+    component: NotFoundComponent
   }
 ];
 

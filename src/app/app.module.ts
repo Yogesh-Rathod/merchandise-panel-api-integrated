@@ -50,7 +50,7 @@ import { LrSharedModule } from '../lrshared_modules/lr-shared.module';
   bootstrap: [App],
   declarations: [
     App,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
