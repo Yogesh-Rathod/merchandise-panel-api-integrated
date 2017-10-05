@@ -2,7 +2,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
 import { NotFoundComponent } from '../not-found/not-found.component';
-// import { LoginComponent } from 'app/lrshared_modules/pages/login/login.component';
 
 export const routes: Routes = [
   {
@@ -15,6 +14,10 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'merchandise/categories', pathMatch: 'full' },
       { path: 'merchandise', loadChildren: './merchandise/merchandise.module#MerchandiseModule' },
+      {
+        path: 'user-management',
+        loadChildren: 'lrshared_modules/pages/user-management/user-management.module#UserManagementModule'
+      },
     ],
   },
   {

@@ -6,7 +6,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "max-line-length": [true, 320],
+    "max-line-length": [true, 120],
     "class-name": true,
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],
@@ -19,7 +19,7 @@
     "no-shadowed-variable": true,
     "no-unused-expression": true,
     "one-line": [true, "check-catch", "check-else", "check-open-brace", "check-whitespace"],
-    "quotemark": [true, "single", "avoid-escape"],
+    // "quotemark": [true, "single", "avoid-escape"],
     "semicolon": true,
     "typedef-whitespace": [
       true,
@@ -77,7 +77,7 @@
     ],
     "new-parens": true,
     "no-consecutive-blank-lines": [true, 2],
-    "object-curly-spacing": [false, "always"],
+    "object-curly-spacing": [true, "always"],
     "ter-arrow-spacing": [
       true,
       {
@@ -90,12 +90,12 @@
     "trailing-comma": [
       true,
       {
-        "multiline": "always",
+        "multiline": "never",
         "singleline": "never"
       }
     ],
     "no-conditional-assignment": true,
-    "no-console": [true, "log"],
+    "no-console": [false, "log"],
     "space-in-parens": ["error", "info", "never"],
     "number-literal-format": true,
     "no-invalid-template-strings": true,
@@ -113,8 +113,8 @@
     "no-boolean-literal-compare": true,
     "object-literal-shorthand": true,
 
-    "directive-selector": [true, "attribute", ["nga", "ngd", "ngt"], "camelCase"],
-    "component-selector": [true, "element", ["nga", "ngd", "ngt"], "kebab-case"],
+    "directive-selector": [true, "attribute", ["app", "nga", "ngd", "ngt"], "camelCase"],
+    "component-selector": [true, "element", ["app", "nga", "ngd", "ngt"], "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -124,7 +124,7 @@
     "no-forward-ref": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "pipe-naming": [true, "camelCase", ["nga", "ngd", "ngt"]],
+    "pipe-naming": [false, "camelCase", ["nga", "ngd", "ngt"]],
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "templates-use-public": true,

@@ -33,6 +33,6 @@ export class BaPageTop {
 
     signOut() {
         // this._cookieService.removeAll();
-        window.location.href = 'http://localhost:4300/login';
+        window.location.href = 'http://localhost:4200/#/login';
     }
 }
