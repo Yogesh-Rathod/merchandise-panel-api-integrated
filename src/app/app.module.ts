@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieModule, CookieService } from 'ngx-cookie';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
 import { routing } from './app.routing';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+// import { CookieService } from 'angular2-cookie/services/cookies.service';
 // App is our top level component
 import { App } from './app.component';
 import { AppState, InternalStateType } from './app.service';
@@ -38,6 +40,9 @@ export type StoreType = {
   disposeOldHosts: () => void,
 };
 
+// Shared Modules
+import { LrSharedModule } from '../lrshared_modules/lr-shared.module';
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -59,6 +64,8 @@ export type StoreType = {
     routing,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CookieModule.forRoot(),
+    LrSharedModule,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

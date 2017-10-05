@@ -14,6 +14,7 @@ export const environment = {
   masterApiUrl: '',
   storeApiUrl: '',
   appName: 'CRM',
+  domainName: 'localhost',
   timeOut: 30000,
   crm: {
     itemsPerPage: 10,

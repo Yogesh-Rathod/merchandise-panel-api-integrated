@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import * as _ from 'lodash';
 
@@ -32,6 +33,7 @@ export class CategoriesComponent implements OnInit {
   bulkUploadFileChosen: boolean = false;
 
   constructor(
+    private modalService: NgbModal,
     public toastr: ToastsManager,
     public vcr: ViewContainerRef,
     private fb: FormBuilder,

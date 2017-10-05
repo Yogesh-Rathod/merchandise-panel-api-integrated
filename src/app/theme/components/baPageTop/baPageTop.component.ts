@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 import {GlobalState} from '../../../global.state';
-import {CookieService} from 'angular2-cookie/core';
+// import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'ba-page-top',
@@ -14,7 +14,7 @@ export class BaPageTop {
   public isMenuCollapsed: boolean = false;
 
   constructor(private _state: GlobalState,
-              private _cookieService: CookieService,
+              // private _cookieService: CookieService,
   ) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
@@ -32,7 +32,7 @@ export class BaPageTop {
   }
 
     signOut() {
-        this._cookieService.removeAll();
+        // this._cookieService.removeAll();
         window.location.href = 'http://localhost:4300/login';
     }
 }

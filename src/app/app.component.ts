@@ -6,7 +6,7 @@ import { GlobalState } from './global.state';
 import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/services';
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
-import { CookieService } from 'angular2-cookie/core';
+// import { CookieService } from 'angular2-cookie/core';
 
 /*
  * App Component
@@ -41,7 +41,7 @@ export class App {
 
   isMenuCollapsed: boolean = false;
 
-  constructor(private _cookieService: CookieService,
+  constructor(
               private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
