@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getVendorId();
-    this.getProducts();
+    // this.getProducts();
     this.dataTablesInit();
   }
 
@@ -42,15 +42,15 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  getProducts() {
-    this.vendorProducts = [];
-    this.allVendorProducts = this.merchandiseService.getProducts();
-    _.forEach(this.allVendorProducts, (product) => {
-      if ( parseInt(product.vendorId) === parseInt(this.vendorId) ) {
-        this.vendorProducts.push(product);
-      }
-    });
-  }
+  // getProducts() {
+  //   this.vendorProducts = [];
+  //   this.allVendorProducts = this.merchandiseService.getProducts();
+  //   _.forEach(this.allVendorProducts, (product) => {
+  //     if ( parseInt(product.vendorId) === parseInt(this.vendorId) ) {
+  //       this.vendorProducts.push(product);
+  //     }
+  //   });
+  // }
 
   dataTablesInit() {
     $(document).ready( () => {
@@ -68,13 +68,13 @@ export class ProductsComponent implements OnInit {
     this.productForDeletion = product;
   }
 
-  deleteProduct() {
-    _.remove(this.allVendorProducts, this.productForDeletion);
-    this.merchandiseService.deleteProduct(this.allVendorProducts);
-    this.toastr.success('Item deleted successfully!', 'Success!', {toastLife: 2000} );
-    (<any> $('#producttable')).dataTable().fnDestroy();
-    this.ngOnInit();
-  }
+  // deleteProduct() {
+  //   _.remove(this.allVendorProducts, this.productForDeletion);
+  //   this.merchandiseService.deleteProduct(this.allVendorProducts);
+  //   this.toastr.success('Item deleted successfully!', 'Success!', {toastLife: 2000} );
+  //   (<any> $('#producttable')).dataTable().fnDestroy();
+  //   this.ngOnInit();
+  // }
 
   fileSelected(event) {
     const fileList: FileList = event.target.files;

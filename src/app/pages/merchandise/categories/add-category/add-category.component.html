@@ -5,7 +5,12 @@
 				{{ 'merchandise.vendor.add' | translate }}
 				{{ 'merchandise.categories.category' | translate }}
 
+				<button *ngIf=" categoryId " class="btn btn-danger float-right" (click)="deleteCategory()">
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					 Delete
+				</button>
 				<span class="goBack float-right" [routerLink]="['/merchandise/categories']"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to category list</span>
+
 			</h2>
 		</div>
 

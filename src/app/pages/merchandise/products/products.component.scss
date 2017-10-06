@@ -1,22 +1,14 @@
-.container {
 
-	h1 {
-		.btn {
-			color: #fff;
-		}
-	}
-
-	.add-product-form {
-		padding: 15px;
-		border: 1px solid rgb(10, 163, 209);
-
-		.mandatory {
-			color: #f00;
+.catSearch {
+	.btn {
+		&.btn-primary {
+			background-color: #0275d8 !important;
+			border-color: #0275d8 !important;
+			margin-top: -6px;
 		}
 
-		.ng-invalid.ng-touched {
-			border-color: #f00;
+		& + .btn {
+			margin-right: 10px;
 		}
-
 	}
 }

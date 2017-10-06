@@ -3,22 +3,25 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 import * as _ from 'lodash';
 
-import { MerchandiseService } from 'app/services';
+import { ProductsService } from 'app/services';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+
   addProductForm: FormGroup;
+  products: any;
 
   constructor(
     private fb: FormBuilder,
-    private merchandiseService: MerchandiseService) { }
+    private productsService: ProductsService) { }
 
   ngOnInit() {
     this.createForm();
+    this.getAllProducts();
   }
 
   // For Creating Add Category Form
@@ -30,6 +33,11 @@ export class ProductsComponent implements OnInit {
       category: [null, Validators.required],
       // images: [null, Validators.required],
     });
+  }
+
+  getAllProducts() {
+    this.products = this.productsService.getProducts();
+    console.log("this.products", this.products);
   }
 
   addProduct(addProductForm) {

@@ -23,6 +23,7 @@ export class AddCategoryComponent implements OnInit {
   showLoader: false;
   categories: any;
   categoryId: any;
+  categoryInfo: any;
 
   constructor(
     private fb: FormBuilder,
@@ -89,6 +90,7 @@ export class AddCategoryComponent implements OnInit {
       const categories = this.merchandiseService.getCategories();
       _.forEach(categories, (category) => {
         if (category.id === parseInt(this.categoryId) ) {
+          this.categoryInfo = category;
           // console.log("this.addCategoryForm.controls", this.addCategoryForm.controls);
           this.addCategoryForm.controls['id'].setValue(category.id);
           this.addCategoryForm.controls['description'].setValue(category.description);
@@ -98,6 +100,12 @@ export class AddCategoryComponent implements OnInit {
         }
       });
     }
+  }
+
+  deleteCategory() {
+    _.remove(this.categories, this.categoryInfo );
+    this.merchandiseService.editCategories(this.categories);
+    this.router.navigate(['../']);
   }
 
   resetForm() {
