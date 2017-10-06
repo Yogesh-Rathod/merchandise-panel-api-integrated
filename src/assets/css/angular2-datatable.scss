@@ -1,0 +1,18 @@
+table {
+	mfbootstrappaginator {
+		mfpaginator {
+			.pagination {
+				margin-bottom: 0 !important;
+
+				&.pull-right.float-sm-right {
+					display: none !important;
+				}
+			}
+		}
+	}
+
+	td {
+		padding-top: 3px !important;
+		padding-bottom: 3px !important;
+	}
+}

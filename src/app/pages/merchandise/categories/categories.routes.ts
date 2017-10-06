@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'add-category',
     component: AddCategoryComponent
   },
+  {
+  	path: 'edit-category/:categoryId',
+  	component: AddCategoryComponent
+  }
 ];
 
 export const routing = RouterModule.forChild(routes);

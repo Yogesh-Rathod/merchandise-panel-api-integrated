@@ -1,6 +1,7 @@
 .addCategory {
 
-	.form-group label {
+	.form-group label,
+	input[type="checkbox"] {
 		margin-top: 10px;
 	}
 

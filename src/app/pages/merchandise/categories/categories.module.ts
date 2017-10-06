@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './categories.routes';
+import { DataTableModule } from "angular2-datatable";
 
 import { CKEditorModule } from 'ng2-ckeditor';
 import { CategoriesComponent } from './categories.component';
 import { MerchandiseService } from 'app/services';
 import { AddCategoryComponent } from './add-category/add-category.component';
-// import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
+import { SearchCategoryPipe } from './search-category.pipe';
 
 @NgModule({
   imports: [
@@ -17,12 +18,13 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     AppTranslationModule,
     routing,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    DataTableModule
   ],
   declarations: [
     CategoriesComponent,
     AddCategoryComponent,
-    // BulkUploadComponent
+    SearchCategoryPipe
   ],
   providers: [
     MerchandiseService

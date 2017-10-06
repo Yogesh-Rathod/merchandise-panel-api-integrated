@@ -5,14 +5,14 @@
 				{{ 'merchandise.vendor.add' | translate }}
 				{{ 'merchandise.categories.category' | translate }}
 
-				<span class="goBack float-right" [routerLink]="['../']"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to category list</span>
+				<span class="goBack float-right" [routerLink]="['/merchandise/categories']"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to category list</span>
 			</h2>
 		</div>
 
 		<div class="card-body">
 
 			<form class="col-12" [formGroup]=" addCategoryForm " (ngSubmit)=" addCategory(addCategoryForm.value) ">
-
+				<input type="hidden" formControlName="id">
 				<div class="form-group row">
 					<label for="name" class="col-3 text-right">Name <span class="mandatory">*</span></label>
 					<input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
@@ -29,9 +29,15 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="ParentCategory" class="col-3 text-right">Parent Category <span class="mandatory">*</span></label>
-					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat">
-						<option value="1">1</option>
+					<label for="ParentCategory" class="col-3 text-right">Parent Category</label>
+					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat" *ngIf=" categories ">
+						<option *ngFor="let category of categories " [ngValue]=" category ">
+							<span *ngIf=" category.parent_name !== null && category.parent_name !== '' ">{{ category.parent_name }} >></span>
+							<span>{{ category.name }}</span>
+						</option>
+					</select>
+					<select *ngIf=" !categories " class="form-control col-9">
+						<option value="noCat">There are no categories yet!</option>
 					</select>
 				</div>
 
@@ -41,9 +47,16 @@
 				</div>
 
 				<div class="form-group row">
+					<label for="published" class="col-3 text-right">Published <span class="mandatory">*</span></label>
+					<input type="checkbox" id="published" formControlName="published">
+				</div>
+
+				<div class="form-group row">
 					<label class="col-3 text-right"></label>
-					<input type="submit" class="btn btn-primary" value="Save"  [disabled]=" !addCategoryForm.valid || showLoader " >
-					<span class="btn btn-secondary" [routerLink]="['../']">Cancel</span>
+					<input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save"  [disabled]=" !addCategoryForm.valid || showLoader " >
+					<input *ngIf=" categoryId " type="submit" class="btn btn-primary" value="Update"  [disabled]=" !addCategoryForm.valid || showLoader " >
+					<img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
+					<span class="btn btn-secondary" [routerLink]="['/merchandise/categories']">Cancel</span>
 				</div>
 
 			</form>

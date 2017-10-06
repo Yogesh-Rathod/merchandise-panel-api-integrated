@@ -16,6 +16,7 @@ import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
 export class CategoriesComponent implements OnInit {
 
   categories: any[] = [];
+  searchTerm: any;
 
   constructor(
     private modalService: NgbModal,
@@ -33,6 +34,12 @@ export class CategoriesComponent implements OnInit {
 
   getAllCategories() {
     this.categories = this.merchandiseService.getCategories();
+    console.log("this.categories", this.categories);
+  }
+
+  searchCategory(searchTerm) {
+    console.log("searchTerm", searchTerm);
+    this.searchTerm = searchTerm;
   }
 
   bulkUpload() {
