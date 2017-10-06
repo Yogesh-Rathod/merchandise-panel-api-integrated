@@ -1,8 +1,21 @@
+<div class="row top20 clearfix">
+	<div class="col-12">
 
-<div class="row top20 card clearfix">
-	<div class="row col-12">
+		<div class="catSearch clearfix card-header">
+			<h2 class="card-title ">
+				Manage Categories
+				<button class="btn btn-primary float-right" (click)=" bulkUpload() ">
+					<i class="fa fa-download" aria-hidden="true"></i>
+					Import
+				</button>
+				<button class="btn btn-primary float-right" [routerLink]="['./add-category']">
+					<i class="fa fa-plus-square" aria-hidden="true"></i>
+					Add New
+				</button>
+			</h2>
+		</div>
 
-		<div class="filters card col-12">
+		<div class="filters card col-12 fadeIn animated">
 			<div class="card-body">
 				<form>
 
@@ -23,148 +36,22 @@
 			</div>
 		</div>
 
-		<!-- Tree View of Categories -->
-		<div class="tree-view col-12" *ngIf="categories">
-			<h2 class="clearfix card-title" translate>Categories Tree
-				<span class="float-right">
-					<button class="btn btn-primary" [routerLink]="['./add-category']">
-					<i class="fa fa-plus-square" aria-hidden="true"></i>
-					{{ 'merchandise.vendor.add' | translate }} {{ 'merchandise.categories.category' | translate }}</button>
-					<button class="btn btn-warning" (click)=" bulkUpload() ">
-						<i class="fa fa-download" aria-hidden="true"></i> Bulk {{ 'merchandise.categories.upload' | translate }}</button>
-				</span>
-			</h2>
+		<div class="spacer col-12"></div>
 
-			<h3 *ngIf="categories.length == 0" class="text-center">
-				There are no categories yet!
-			</h3>
-
-			<ul class="root-tree">
-				<!-- Level 1 -->
-				<li *ngFor="let rootCategory of categories; let i1 = index; " >
-					<span class="cat-box clearfix">
-						<a class="pull-left btn btn-success btn-xs"
-						*ngIf=" rootCategory.children.length != 0"
-						(click)="slideToggleDropDowns( $event, i1)"
-						title="Drop Down">
-							<span class="ion-chevron-down"></span>
-						</a>
-						<span class="cat-text">{{ rootCategory.name }}</span>
-						<a class="pull-right btn btn-danger btn-xs" [class.disabled]="rootCategory.children.length != 0" (click)="deleteNode( rootCategory, i1 )"
-						title="Delete Category">
-							<span class="ion-close-round"></span>
-						</a>
-						<a class="pull-right btn btn-primary btn-xs"
-							data-toggle="modal" data-target="#myModal"
-							(click)="editCategory( rootCategory, i1 )"
-							title="Edit Category">
-							<span class="ion-edit"></span>
-						</a>
-						<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, rootCategory, i1 )" title="Add Sub Category">
-							<span class="ion-plus-round"></span>
-						</a>
-						<span class="pull-right" title="Status {{ rootCategory.status }}">
-
-							<span class="ion-record status active" *ngIf=" rootCategory.status == 'Active' "></span>
-
-							<span class="ion-record status inactive" *ngIf=" rootCategory.status == 'Inactive' "></span>
-
-						</span>
-					</span>
-					<ul *ngIf="!rootCategory.slideDown">
-						<!-- Level 2 -->
-						<li *ngFor="let level2Category of rootCategory.children; let i2 = index; ">
-							<span class="cat-box clearfix">
-								<a class="pull-left btn btn-success btn-xs" *ngIf="level2Category.children.length != 0"
-								(click)="slideToggleDropDowns( $event, i1, i2)"><span class="ion-chevron-down"></span></a>
-								<span class="cat-text">{{ level2Category.name }}</span>
-
-								<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level2Category.children.length != 0" (click)="deleteNode( level2Category, i1, i2)" title="Delete Category"><span class="ion-close-round"></span></a>
-								<a class="pull-right btn btn-primary btn-xs"
-									data-toggle="modal" data-target="#myModal"
-									(click)="editCategory( level2Category, i1, i2, '', '', rootCategory )"
-									title="Edit Category">
-									<span class="ion-edit"></span>
-								</a>
-								<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, level2Category, i1, i2 )" title="Add Sub Category">
-									<span class="ion-plus-round"></span>
-								</a>
-								<span class="pull-right" title="Status {{ level2Category.status }}">
-
-									<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' ">
-										<span class="ion-record status inactive"></span>
-									</span>
-
-									<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' ">
-										<span class="ion-record status active"></span>
-									</span>
-
-								</span>
-							</span>
-
-							<ul *ngIf="!level2Category.slideDown">
-								<!-- Level 3 -->
-								<li *ngFor="let level3Category of level2Category.children; let i3 = index; ">
-									<span class="cat-box clearfix">
-										<a class="pull-left btn btn-success btn-xs"*ngIf="level3Category.children.length != 0 "
-										(click)="slideToggleDropDowns( $event, i1, i2, i3)"><span class="ion-chevron-down" ></span></a>
-										<span class="cat-text">{{ level3Category.name }}</span>
-										<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level3Category.children.length != 0" title="Delete Category"><span class="ion-close-round" (click)="deleteNode( level3Category, i1, i2, i3)"></span></a>
-										<a class="pull-right btn btn-primary btn-xs"
-											data-toggle="modal" data-target="#myModal"
-											(click)="editCategory( level3Category, i1, i2, i3, '', rootCategory, level2Category )"
-											title="Edit Category">
-											<span class="ion-edit"></span>
-										</a>
-										<a class="pull-right btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" (click)="addNode($event, level3Category, i1, i2, i3 )" title="Add Sub Category">
-											<span class="ion-plus-round"></span>
-										</a>
-										<span class="pull-right" title="Status {{ level3Category.status }}">
-
-											<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' || level3Category.status == 'Inactive' ">
-												<span class="ion-record status inactive"></span>
-											</span>
-
-											<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' && level3Category.status == 'Active' ">
-												<span class="ion-record status active"></span>
-											</span>
-
-										</span>
-									</span>
-
-									<ul *ngIf="!level3Category.slideDown">
-										<!-- Level 4 -->
-										<li *ngFor="let level4Category of level3Category.children; let i4 = index; ">
-											<span class="cat-box clearfix">
-												<span class="cat-text">{{ level4Category.name }}</span>
-												<a class="pull-right btn btn-danger btn-xs" [class.disabled]="level4Category.children.length != 0" title="Delete Category"><span class="ion-close-round" (click)="deleteNode( level4Category, i1, i2, i3, i4)"></span></a>
-												<a class="pull-right btn btn-primary btn-xs"
-													data-toggle="modal" data-target="#myModal"
-													(click)="editCategory( level4Category, i1, i2, i3, i4, rootCategory, level3Category, level2Category )" title="Edit Category">
-													<!--  -->
-													<span class="ion-edit"></span>
-												</a>
-												<span class="pull-right" title="Status {{ level4Category.status }}">
-
-													<span *ngIf=" rootCategory.status == 'Inactive' || level2Category.status == 'Inactive' || level3Category.status == 'Inactive' || level4Category.status == 'Inactive' ">
-														<span class="ion-record status inactive"></span>
-													</span>
-
-													<span *ngIf=" rootCategory.status == 'Active' && level2Category.status == 'Active' && level3Category.status == 'Active' && level4Category.status == 'Active' ">
-														<span class="ion-record status active"></span>
-													</span>
-
-												</span>
-											</span>
-										</li>
-									</ul>
-
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-			</ul>
+		<div class="filters card col-12">
+			<div class="card-body">
+				<table class="table table-bordered table-responsive">
+					<thead>
+						<tr>
+							<th>No.</th>
+							<th>Name</th>
+							<th>Published</th>
+							<th>Display Order</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
 		</div>
 
 	</div>

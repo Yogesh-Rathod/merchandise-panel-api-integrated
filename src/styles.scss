@@ -10,6 +10,7 @@
 
 .card-title {
 	color: #fff;
+	text-transform: capitalize;
 }
 
 .mandatory {
@@ -28,7 +29,14 @@ ckeditor.form-control {
 	margin: 0 !important;
 }
 
+table {
+	display: table !important;
+}
 
+.text-decoration {
+	text-decoration: underline !important;
+	font-size: 12px;
+}
 
 
 
