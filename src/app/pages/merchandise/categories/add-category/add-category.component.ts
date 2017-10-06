@@ -56,7 +56,7 @@ export class AddCategoryComponent implements OnInit {
       'picture': [''],
       'parentCat': [''],
       'order': ['', Validators.compose([Validators.required])],
-      'published': ['', Validators.compose([Validators.required])]
+      'published': ['']
     });
   }
 
