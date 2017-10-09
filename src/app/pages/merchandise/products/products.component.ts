@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 
 import { ProductsService } from 'app/services'; 
+import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component";
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ export class ProductsComponent implements OnInit {
   products: any;
 
   constructor(
+    private modalService: NgbModal,
     private fb: FormBuilder,
     private productsService: ProductsService) { }
 
@@ -43,6 +45,10 @@ export class ProductsComponent implements OnInit {
   addProduct(addProductForm) {
     console.log("addProductForm", addProductForm);
 
+  }
+
+  bulkUpload() {
+    const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
   }
 
 }

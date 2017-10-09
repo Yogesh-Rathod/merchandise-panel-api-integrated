@@ -9,6 +9,7 @@ import { Pages } from './pages.component';
 
 import { MerchandiseService } from 'app/services';
 import { BulkUploadComponent } from './merchandise/categories/bulk-upload/bulk-upload.component';
+import { ProductsBulkUploadComponent } from './merchandise/products/bulk-upload/bulk-upload.component';
 
 @NgModule({
   imports: [
@@ -19,13 +20,15 @@ import { BulkUploadComponent } from './merchandise/categories/bulk-upload/bulk-u
   ],
   declarations: [
     Pages,
-    BulkUploadComponent
+    BulkUploadComponent,
+    ProductsBulkUploadComponent
   ],
   providers: [
     MerchandiseService,
   ],
   entryComponents: [
-    BulkUploadComponent
+    BulkUploadComponent,
+    ProductsBulkUploadComponent
   ],
 })
 export class PagesModule {
