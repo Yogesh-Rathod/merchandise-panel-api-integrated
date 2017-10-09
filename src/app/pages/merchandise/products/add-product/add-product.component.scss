@@ -27,4 +27,16 @@
 		cursor: pointer;
 	}
 
+	.card-header {
+		cursor: pointer;
+
+		&.collapsed {
+			h3 {
+				.fa:before {
+					content: "\f0fe" !important;
+				}
+			}
+		}
+	}
+
 }

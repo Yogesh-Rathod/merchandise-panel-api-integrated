@@ -20,6 +20,7 @@ export class AddProductComponent implements OnInit {
     height: '200'
   };
   productId: any;
+  showLoader = false;
 
   constructor(
     private fb: FormBuilder,
@@ -41,13 +42,18 @@ export class AddProductComponent implements OnInit {
       'id': [''],
       'name': ['', Validators.compose([Validators.required,
       Validators.minLength(1), Validators.maxLength(100)])],
-      'description': ['', Validators.compose([Validators.required,
+      'shortDescription': ['', Validators.compose([Validators.required,
       Validators.minLength(1), Validators.maxLength(1000)])],
-      'picture': [''],
-      'parentCat': [''],
-      'order': ['', Validators.compose([Validators.required])],
-      'published': ['']
+      'fullDescription': ['', Validators.compose([
+      Validators.minLength(1), Validators.maxLength(5000)])],
+      'sku': ['', Validators.required],
+      'price': ['', Validators.required],
+      'categories': ['']
     });
+  }
+
+  addProduct(addProductForm) {
+    console.log("addProductForm ", addProductForm);
   }
 
   deleteProduct() {}

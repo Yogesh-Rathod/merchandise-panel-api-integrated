@@ -16,15 +16,20 @@
 
   <div class="card-body">
 
-    <form [formGroup]=" addProductForm " (ngSubmit)=" addProduct(addProductForm.value) ">
+    <form [formGroup]=" addProductForm " (ngSubmit)="addProduct(addProductForm.value) " class="row">
       <input type="hidden" formControlName="id">
 
     <div class="col-7 no_left_padding">
       <div class="card fadeIn animated">
-        <div class="card-header">
-          <h3 class="card-title">General information</h3>
+        <div class="card-header" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+          <h3 class="card-title">
+            General information
+            <span class="float-right">
+              <i class="fa fa-minus-square" aria-hidden="true"></i>
+            </span>
+          </h3>
         </div>
-        <div class="card-body">
+        <div class="card-body collapse show" id="collapseExample">
           <div class="form-group row">
             <label for="name" class="col-3 text-right">Name
               <span class="mandatory">*</span>
@@ -35,14 +40,14 @@
           <div class="form-group row">
             <label for="ShortDescription" class="col-3 text-right">Short <br> Description <span class="mandatory">*</span>
             </label>
-            <textarea class="form-control col-9" id="name" placeholder="Short Description" formControlName="name"></textarea>
+            <textarea class="form-control col-9" id="name" placeholder="Short Description" formControlName="shortDescription"></textarea>
           </div>
       
           <div class="form-group row">
             <label for="FullDescription" class="col-3 text-right">Full <br> Description
               <span class="mandatory">*</span>
             </label>
-            <ckeditor class="form-control col-9" [config]="config" formControlName="description"></ckeditor>
+            <ckeditor class="form-control col-9" [config]="config" formControlName="fullDescription"></ckeditor>
           </div>
       
           <div class="form-group row">
@@ -50,28 +55,53 @@
               SKU
               <span class="mandatory">*</span>
             </label>
-            <input type="text" class="form-control col-9" id="name" placeholder="SKU" formControlName="order">
+            <input type="text" class="form-control col-9" id="name" placeholder="SKU" formControlName="sku">
           </div>
       
         </div>
       </div>
 
       <div class="card fadeIn animated">
-        <div class="card-header">
-          <h3 class="card-title">Prices</h3>
+        <div class="card-header" data-toggle="collapse" href="#prices" aria-expanded="true">
+          <h3 class="card-title">
+            Prices
+            <span class="float-right">
+              <i class="fa fa-minus-square" aria-hidden="true"></i>
+            </span>
+          </h3>
         </div>
-        <div class="card-body">
+        <div class="card-body collapse show" id="prices">
           <div class="form-group row">
-            <label for="name" class="col-3 text-right">Name
+            <label for="Price" class="col-3 text-right">Price
               <span class="mandatory">*</span>
             </label>
-            <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
+            <input type="number" class="form-control col-9" id="Price" placeholder="Price" formControlName="price" value="0">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="col-5 no_left_padding no_right_padding">
+       <div class="card fadeIn animated">
+          <div class="card-header" data-toggle="collapse" href="#mappings" aria-expanded="true" aria-controls="mappings">
+            <h3 class="card-title">
+               Mappings
+              <span class="float-right">
+                <i class="fa fa-minus-square" aria-hidden="true"></i>
+              </span>
+            </h3>
+          </div>
+          <div class="card-body collapse show" id="mappings">
+            <div class="form-group row">
+              <label for="Categories" class="col-3 text-right">Categories<span class="mandatory">*</span>
+              </label>
+              <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="categories">
+            </div>
+          </div>
+       </div>
+    </div>
+
+    <div class="form-group row col-12">
       <label class="col-3 text-right"></label>
       <input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
       <input *ngIf=" productId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addProductForm.valid || showLoader ">
