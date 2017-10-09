@@ -3,19 +3,31 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ProductsService {
 
-// Vendor Products
+  // Vendor Products
   private products = [
     {
       id: 12345,
       picture: [
         'assets/images/products/home-office-336373_640.jpg'
       ],
-      name: '$100 Physical Gift Card',
+      name: 'Apple MacBook Air',
       sku: 'PG_CR_100',
-      price: 100,
+      price: 56300,
       stockQuantity: null,
       productType: 'Simple',
       published: true
+    },
+    {
+      id: 12346,
+      picture: [
+        'assets/images/products/laptop-154091_640.png'
+      ],
+      name: 'Dell Inspiron Core',
+      sku: 'Dell_Inspiron_Core_20',
+      price: 27990,
+      stockQuantity: 20,
+      productType: 'Simple',
+      published: false
     }
   ];
 

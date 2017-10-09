@@ -39,7 +39,7 @@ export class AddproductComponent implements OnInit {
     this.getCategories();
     this.createForm();
     if (this.productId > 0) {
-      this.getProductToBeEdited();
+      // this.getProductToBeEdited();
     }
   }
 
@@ -62,23 +62,23 @@ export class AddproductComponent implements OnInit {
     });
   }
 
-  getProductToBeEdited() {
-    this.allProducts = this.merchandiseService.getProducts();
-    _.forEach(this.allProducts, (product) => {
-      if ( product.id === parseInt(this.productId) ) {
-        this.productInfo = product;
-        this.categoriesLevelsSelected = product.categories;
-      }
-    });
+  // getProductToBeEdited() {
+  //   this.allProducts = this.merchandiseService.getProducts();
+  //   _.forEach(this.allProducts, (product) => {
+  //     if ( product.id === parseInt(this.productId) ) {
+  //       this.productInfo = product;
+  //       this.categoriesLevelsSelected = product.categories;
+  //     }
+  //   });
 
-    this.addProductForm = this.fb.group({
-      id: [this.productInfo.id],
-      name: [this.productInfo.name, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
-      code: [this.productInfo.name, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
-      description: [this.productInfo.desc, Validators.compose([Validators.required, Validators.maxLength(255)])],
-      category: [this.productInfo.categories.level4, Validators.required],
-    });
-  }
+  //   this.addProductForm = this.fb.group({
+  //     id: [this.productInfo.id],
+  //     name: [this.productInfo.name, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
+  //     code: [this.productInfo.name, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
+  //     description: [this.productInfo.desc, Validators.compose([Validators.required, Validators.maxLength(255)])],
+  //     category: [this.productInfo.categories.level4, Validators.required],
+  //   });
+  // }
 
   getCategories() {
     this.categories = this.merchandiseService.getCategories();
@@ -102,23 +102,23 @@ export class AddproductComponent implements OnInit {
     this._location.back();
   }
 
-  addProduct(addProductForm) {
-    const productInfo = {
-      id: Math.floor(Math.random() * 90000) + 10000,
-      name: addProductForm.name,
-      code: addProductForm.code,
-      desc: addProductForm.description,
-      vendorId: this.vendorId,
-      categories: this.categoriesLevelsSelected,
-    };
+  // addProduct(addProductForm) {
+  //   const productInfo = {
+  //     id: Math.floor(Math.random() * 90000) + 10000,
+  //     name: addProductForm.name,
+  //     code: addProductForm.code,
+  //     desc: addProductForm.description,
+  //     vendorId: this.vendorId,
+  //     categories: this.categoriesLevelsSelected,
+  //   };
 
-    this.merchandiseService.addProduct(productInfo);
-    this.toastr.success('Product Added successfully!', 'Success!', {toastLife: 2000} );
-    this.createForm();
-    setTimeout( () => {
-      this.backClicked();
-    }, 1000);
-  }
+  //   this.merchandiseService.addProduct(productInfo);
+  //   this.toastr.success('Product Added successfully!', 'Success!', {toastLife: 2000} );
+  //   this.createForm();
+  //   setTimeout( () => {
+  //     this.backClicked();
+  //   }, 1000);
+  // }
 
   categorySelected(addProductForm) {
     _.forEach(this.allCategoriesArray, (allLevels) => {
@@ -128,24 +128,24 @@ export class AddproductComponent implements OnInit {
     });
   }
 
-  updateProduct(addProductForm) {
-    const productToBeEdited = _.findIndex(this.allProducts, { id: addProductForm.id });
-    const productInfo = {
-      id: addProductForm.id,
-      name: addProductForm.name,
-      code: addProductForm.code,
-      desc: addProductForm.description,
-      vendorId: this.vendorId,
-      categories: this.categoriesLevelsSelected,
-    };
-    this.allProducts.splice(productToBeEdited, 1, productInfo);
-    this.merchandiseService.editProduct(this.allProducts);
-    this.toastr.success('Product Updated successfully!', 'Success!', {toastLife: 2000 } );
-    this.createForm();
-    setTimeout( () => {
-      this.backClicked();
-    }, 1000);
-  }
+  // updateProduct(addProductForm) {
+  //   const productToBeEdited = _.findIndex(this.allProducts, { id: addProductForm.id });
+  //   const productInfo = {
+  //     id: addProductForm.id,
+  //     name: addProductForm.name,
+  //     code: addProductForm.code,
+  //     desc: addProductForm.description,
+  //     vendorId: this.vendorId,
+  //     categories: this.categoriesLevelsSelected,
+  //   };
+  //   this.allProducts.splice(productToBeEdited, 1, productInfo);
+  //   this.merchandiseService.editProduct(this.allProducts);
+  //   this.toastr.success('Product Updated successfully!', 'Success!', {toastLife: 2000 } );
+  //   this.createForm();
+  //   setTimeout( () => {
+  //     this.backClicked();
+  //   }, 1000);
+  // }
 
   resetForm() {
     if ( this.productId > 0 ) {

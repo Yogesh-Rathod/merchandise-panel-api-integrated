@@ -15,4 +15,8 @@ table {
 		padding-top: 3px !important;
 		padding-bottom: 3px !important;
 	}
+
+	&.table > tbody > tr > td {
+		padding: 0px 11px;
+	}
 }

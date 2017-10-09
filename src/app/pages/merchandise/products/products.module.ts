@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './products.routes';
+import { DataTableModule } from "angular2-datatable";
 
 import { ProductsComponent} from './products.component';
 import { ProductsService } from 'app/services';
@@ -13,7 +14,8 @@ import { ProductsService } from 'app/services';
     FormsModule,
     AppTranslationModule,
     routing,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTableModule
   ],
   declarations: [
     ProductsComponent

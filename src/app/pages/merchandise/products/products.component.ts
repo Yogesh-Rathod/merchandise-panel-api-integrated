@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 import * as _ from 'lodash';
 
-import { ProductsService } from 'app/services';
+import { ProductsService } from 'app/services'; 
 
 @Component({
   selector: 'app-products',

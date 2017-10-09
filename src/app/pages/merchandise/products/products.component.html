@@ -43,26 +43,54 @@
 				<table class="table table-bordered table-responsive"  [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
 						<tr>
-							<th class="text-left"><strong>Name</strong></th>
-							<th class="text-center"><strong>Published</strong></th>
-							<th><strong>Display Order</strong></th>
-							<th class="text-center"><strong>Action</strong></th>
+							<th class="text-left">
+								<strong>Product Image</strong>
+							</th>
+							<th>
+								<strong>Product name</strong>
+							</th>
+							<th>
+								<strong>SKU</strong>
+							</th>
+							<th>
+								<mfDefaultSorter by="price">
+									<strong>Price </strong>
+								</mfDefaultSorter>
+							</th>
+							<th>
+								<strong>Stock quantity</strong>
+							</th>
+							<th>
+								<strong>Product type</strong>
+							</th>
+							<th>
+								<strong>Published</strong>
+							</th>
+							<th>
+								<strong>Action</strong>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr *ngFor=" let item of mf.data " >
 							<td class="text-left">
-								<span *ngIf=" item.parent_name ">
-									{{ item.parent_name }} >>
-								</span> {{ item.name }}
+								<div class="product-image" *ngIf="item.picture">
+									<img class="img-fluid" src="{{ item.picture[0] }}" alt="Product Image" >
+								</div>
 							</td>
-							<td class="text-center">
-								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
-								<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+							<td>
+								<span>{{ item.name }}</span>
 							</td>
-							<td>{{ item.display_order }}</td>
-							<td class="text-center">
-								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]">
+							<td>{{ item.sku }}</td>
+							<td>{{ item.price | currency: 'INR': true }}</td>
+							<td>{{ item.stockQuantity }}</td>
+							<td>{{ item.productType }}</td>
+							<td>
+									<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
+									<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+							</td>
+							<td>
+								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 									 Edit
 								</button>
