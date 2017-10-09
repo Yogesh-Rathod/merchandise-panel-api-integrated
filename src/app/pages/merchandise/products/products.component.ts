@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
+declare let $: any;
 
-import { ProductsService } from 'app/services'; 
+import { ProductsService, MerchandiseService } from 'app/services';
 import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component";
 
 @Component({
@@ -13,42 +14,66 @@ import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component
 })
 export class ProductsComponent implements OnInit {
 
-  addProductForm: FormGroup;
+  searchProductForm: FormGroup;
+  bigLoader = false;
   products: any;
+  categories: any;
+  stores = ['store 1', 'store 2', 'store 3'];
+  productTypes = [
+    'simple',
+    'grouped (product with variants)'
+  ];
+  manufacturer = ['apple', 'lenovo', 'samsung'];
+  published = ['published', 'unpublished'];
+  vendor = ['vendor 1', 'vendor 2'];
 
   constructor(
     private modalService: NgbModal,
     private fb: FormBuilder,
-    private productsService: ProductsService) { }
+    private productsService: ProductsService,
+    private merchandiseService: MerchandiseService) {
+  }
 
   ngOnInit() {
-    this.createForm();
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    this.searchForm();
     this.getAllProducts();
+    this.getAllCategories();
   }
 
   // For Creating Add Category Form
-  createForm() {
-    this.addProductForm = this.fb.group({
-      id: [],
-      name: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(100)])],
-      description: [null, Validators.compose([Validators.required, Validators.maxLength(255)])],
-      category: [null, Validators.required],
-      // images: [null, Validators.required],
+  searchForm() {
+    this.searchProductForm = this.fb.group({
+      name: [''],
+      store: [''],
+      category: [''],
+      productType: [''],
+      manufacturer: [''],
+      published: [''],
+      vendor: ['']
     });
+  }
+
+  getAllCategories() {
+    this.categories = this.merchandiseService.getCategories();
   }
 
   getAllProducts() {
     this.products = this.productsService.getProducts();
-    console.log("this.products", this.products);
   }
 
-  addProduct(addProductForm) {
-    console.log("addProductForm", addProductForm);
-
+  searchProduct(searchProductForm) {
+    console.log('searchProductForm', searchProductForm);
   }
 
   bulkUpload() {
     const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
+  }
+
+  resetForm() {
+    this.searchForm();
   }
 
 }

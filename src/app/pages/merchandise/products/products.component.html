@@ -8,7 +8,7 @@
 					<i class="fa fa-download" aria-hidden="true"></i>
 					Import
 				</button>
-				<button class="btn btn-primary float-right" [routerLink]="['./add-category']">
+				<button class="btn btn-primary float-right" [routerLink]="['./add-product']">
 					<i class="fa fa-plus-square" aria-hidden="true"></i>
 					Add New
 				</button>
@@ -17,19 +17,105 @@
 
 		<div class="filters card col-12 fadeIn animated">
 			<div class="card-body">
-				<form>
+				<form class="row" [formGroup]="searchProductForm" (ngSubmit)=" searchProduct(searchProductForm.value) ">
 
-					<div class="form-group row">
-						<label for="name" class="col-2 text-right">Product Name <span class="mandatory">*</span></label>
-						<input type="text" #searchText class="form-control col-4" id="name" placeholder="Name">
+					<div class="form-group col-6 row">
+						<label for="name" class="col-4 text-right">
+							Product Name 
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A product name."></i>
+						</label>
+						<input type="text" class="form-control col-8" id="name" placeholder="Name" formControlName="name">
 					</div>
 
-					<div class="form-group row">
-						<label class="col-2"></label>
-						<button type="submit" class="btn btn-primary no_margin" (click)=" searchCategory(searchText.value) ">
+					<div class="form-group col-6 row">
+						<label for="Store" class="col-4 text-right">
+							Store
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific store."></i>
+						</label>                 
+						<select id="Store" class="form-control col-8" formControlName="store">
+							<option value="all">All</option>
+							<option *ngFor="let item of stores" value="{{ item }}">
+								{{ item }}
+							</option>	
+						</select>
+					</div>
+
+					<div class="form-group col-6 row">
+						<label for="Category" class="col-4 text-right">
+							Category
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific category."></i>
+						</label>
+						<select id="Category" class="form-control col-8" formControlName="category">
+							<option value="all">All</option>
+							<option *ngFor="let item of categories" [ngValue]="item">
+								<span *ngIf=" item.parent_name ">
+									{{ item.parent_name }} >>
+								</span> {{ item.name }}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group col-6 row">
+						<label for="Producttype" class="col-4 text-right">
+							Product type
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a product type."></i>
+						</label>
+						<select id="Producttype" class="form-control col-8" formControlName="productType">
+							<option value="all">All</option>
+							<option *ngFor="let item of productTypes" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group col-6 row">
+						<label for="Manufacturer" class="col-4 text-right">
+							Manufacturer
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific manufacturer."></i>
+						</label>
+						<select id="Manufacturer" class="form-control col-8" formControlName="manufacturer">
+							<option value="all">All</option>
+							<option *ngFor="let item of manufacturer" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group col-6 row">
+						<label for="Published" class="col-4 text-right">
+							Published
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a 'Published' property."></i>
+						</label>
+						<select id="Published" class="form-control col-8" formControlName="published">
+							<option value="all">All</option>
+							<option *ngFor="let item of published" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group col-6 row">
+						<label for="Vendor" class="col-4 text-right">
+							Vendor
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific vendor."></i>
+						</label>
+						<select id="Vendor" class="form-control col-8" formControlName="vendor">
+							<option value="all">All</option>
+							<option *ngFor="let item of vendor" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group col-12 searchButton">
+						<button type="submit" class="btn btn-primary">
 							<i class="fa fa-search" aria-hidden="true"></i>
 							 Search
 						</button>
+						<span class="btn btn-primary" (click)="resetForm()">
+							<i class="fa fa-refresh" aria-hidden="true"></i>
+							Reset
+						</span>
 					</div>
 
 				</form>
@@ -39,7 +125,12 @@
 		<div class="spacer col-12"></div>
 
 		<div class="filters card col-12">
-			<div class="card-body" *ngIf=" products && products.length !== 0 ">
+			<div class="card-body pos_relative" *ngIf=" products && products.length !== 0 ">
+
+				<div class="loader-container pos_absolute" *ngIf="bigLoader">
+					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
+				</div>
+				
 				<table class="table table-bordered table-responsive"  [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
 						<tr>
@@ -85,7 +176,7 @@
 							<td>{{ item.price | currency: 'INR': true }}</td>
 							<td>{{ item.stockQuantity }}</td>
 							<td>{{ item.productType }}</td>
-							<td>
+							<td class="text-center">
 									<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
 									<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
 							</td>
@@ -97,7 +188,7 @@
 							</td>
 						</tr>
 					</tbody>
-					<tfoot *ngIf=" categories && categories.length > 10 ">
+					<tfoot *ngIf=" products && products.length > 10 ">
 						<tr>
 							<td colspan="5">
 								<mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
@@ -107,21 +198,40 @@
 				</table>
 			</div>
 
-			<div class="card-body" *ngIf=" categories && categories.length === 0 ">
+			<div class="card-body" *ngIf=" products && products.length === 0 ">
 				<table class="table table-bordered table-responsive">
 					<thead class="black-muted-bg">
 						<tr>
-							<th>No.</th>
-							<th>Name</th>
-							<th>Published</th>
-							<th>Display Order</th>
-							<th>Action</th>
+							<th class="text-left">
+								<strong>Product Image</strong>
+							</th>
+							<th>
+								<strong>Product name</strong>
+							</th>
+							<th>
+								<strong>SKU</strong>
+							</th>
+							<th>
+								<strong>Price </strong>
+							</th>
+							<th>
+								<strong>Stock quantity</strong>
+							</th>
+							<th>
+								<strong>Product type</strong>
+							</th>
+							<th>
+								<strong>Published</strong>
+							</th>
+							<th>
+								<strong>Action</strong>
+							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td colspan="5">
-								<strong>There are no categories!</strong>
+							<td colspan="8">
+								<strong>There are no products!</strong>
 							</td>
 						</tr>
 					</tbody>

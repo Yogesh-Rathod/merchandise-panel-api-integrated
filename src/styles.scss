@@ -30,6 +30,18 @@ ckeditor.form-control {
 	margin: 0 !important;
 }
 
+.pos_relative {
+	position: relative !important;
+}
+
+.pos_absolute {
+	position: absolute !important;
+}
+
+.no_left_padding {
+	padding-left: 0 !important;
+}
+
 table {
 	display: table !important;
 }
@@ -41,6 +53,26 @@ table {
 
 .al-content {
 	padding: 8px 15px 8px 20px;
+}
+
+.content-top {
+	padding-top: 0px !important;
+	padding-bottom: 10px !important;
+}
+
+.loader-container {
+	background: #fff;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	text-align: center;
+
+	img {
+		margin: 10px auto;
+		display: block;
+	}
 }
 
 

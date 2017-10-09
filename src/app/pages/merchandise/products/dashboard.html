@@ -1,0 +1,166 @@
+<div class="charts-container">
+
+  <div class="chart-filters">
+    <form [formGroup]="filtersForm" (ngSubmit)="applyFilters(filtersForm.value)">
+      <div class="form-container row">
+        <div class="col-md-3 col-sm-12">
+          <div>
+            <label for="inlineFormInput" class="smFormGroupInput"><strong>Range</strong></label>
+          </div>
+          <div class="row form-group">
+            <input class="col-2 radioButton" type="radio"  id="range" formControlName="fromToSelected" value="rangeSelected" (click)="radioSelected(filtersForm.value)">
+            <select class="col-10 form-control" formControlName="range"  [class.disabled]=" !rangeRadioSelected ">
+              <option *ngFor="let range of dataRange" value="{{ range.label }}">
+                {{ range.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12" >
+          <div>
+            <label for="inlineFormInput" class="smFormGroupInput"><strong>From</strong></label>
+          </div>
+          <div class="row form-group">
+            <input class="col-2 radioButton" type="radio" id="range1" formControlName="fromToSelected" value="fromToSelected" (click)="radioSelected(filtersForm.value)">
+            <div class="col-10 input-group date no_padding" [class.disabled]=" rangeRadioSelected ">
+              <my-date-picker
+                [options]="myDatePickerOptions" formControlName="fromDate"></my-date-picker>
+              <p class="error" *ngIf=" selectDateError ">
+                <em>
+                  Please select from to date.
+                </em>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12"  [class.disabled]=" rangeRadioSelected ">
+          <div>
+            <label for="inlineFormInput" class="smFormGroupInput"><strong>To</strong></label>
+          </div>
+          <div class="input-group date">
+            <my-date-picker
+              [options]="myDatePickerOptions" formControlName="toDate"></my-date-picker>
+          </div>
+        </div>
+
+        <div class="col-9 row regions-container">
+          <div class="col-md-3 col-sm-12">
+            <div>
+              <label for="inlineFormInput" class="smFormGroupInput regionLabel"><strong>Region</strong></label>
+            </div>
+            <div class="row form-group">
+              <select *ngIf=" regions && regions[0].length > 1 " class="col-10 form-control" formControlName="region"  [class.disabled]=" !rangeRadioSelected " (change)="getStates(filtersForm.value)">
+                <option value="all">All</option>
+                <option *ngFor="let region of regions[0] | unique: 'region' " value="{{ region.region }}">
+                  {{ region.region }}
+                </option>
+              </select>
+              <select *ngIf=" !regions || regions[0].length <= 1 " class="col-10 form-control" formControlName="region"  [class.disabled]=" !rangeRadioSelected " (change)="getStates(filtersForm.value)">
+                <option value="all">All</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12" *ngIf=" showState ">
+            <div>
+              <label for="inlineFormInput" class="smFormGroupInput regionLabel"><strong>State</strong></label>
+            </div>
+            <div class="row form-group">
+              <select *ngIf=" states && states[0].length > 0 " class="col-10 form-control" formControlName="state"  [class.disabled]=" !rangeRadioSelected " (change)="getCities(filtersForm.value)">
+                <option value="all">All</option>
+                <option *ngFor="let state of states[0] | unique: 'state' " value="{{ state.state }}">
+                  {{ state.state }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12" *ngIf=" showCity ">
+            <div>
+              <label for="inlineFormInput" class="smFormGroupInput regionLabel"><strong>City</strong></label>
+            </div>
+            <div class="row form-group">
+              <!-- <span *ngFor="let item of cities[0]">{{ item.city }} {{ cities[0].length }}</span> -->
+              <select *ngIf=" cities && cities[0].length > 0 " class="col-10 form-control" formControlName="city"  [class.disabled]=" !rangeRadioSelected " (change)="getStores(filtersForm.value)">
+                <option value="all">All</option>
+                <option *ngFor="let city of cities[0] | unique: 'city'" value="{{ city.city }}">
+                  {{ city.city }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12" *ngIf=" showStores ">
+            <div>
+              <label for="inlineFormInput" class="smFormGroupInput regionLabel"><strong>Store</strong></label>
+            </div>
+            <div class="row form-group">
+              <select *ngIf=" stores && stores[0].length > 0 " class="col-10 form-control" formControlName="store"  [class.disabled]=" !rangeRadioSelected ">
+                <option value="all">All</option>
+                <option *ngFor="let store of stores[0] | unique" value="{{ store.name }}">
+                  {{ store.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-12 buttons-container">
+          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="button" class="btn btn-primary" (click)="resetForm()">Reset</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+
+  <div class="tabs-section">
+    <!-- Tabs Top UI -->
+    <ul class="nav nav-tabs" role="tablist" *ngIf=" dashboardTabs && dashboardTabs.length > 0">
+      <li *ngFor="let tab of dashboardTabs; let i = index; " class="nav-item">
+        <a class="nav-link" [class.active]=" i === 0" href="#{{ tab.friendlyName }}" role="tab" data-toggle="tab">
+          {{ tab.friendlyName }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content" *ngIf=" dashboardTabs && dashboardTabs.length > 0">
+    <div role="tabpanel"
+         class="tab-pane fade"
+         [class.in]=" i === 0"
+         [class.active]=" i === 0"
+         *ngFor="let tab of dashboardTabs; let i = index;"
+         id="{{tab.friendlyName}}"
+    >
+      <div class="row spends">
+        <div class="col-4"
+             *ngFor="let chart of this.dashboardTabs | chartCategory: tab['friendlyName'];
+                 let i = index;"
+                 [ngSwitch]="dashboardChartsConfig[chart.data]['chartType']"
+        >
+
+          <app-bar class="col-4"
+                   [barChartConfig]="dashboardChartsConfig[chart.data] "
+                   *ngSwitchCase="'COLUMN'"
+          ></app-bar>
+
+          <app-pie class="col-4"
+                   [barChartConfig]="dashboardChartsConfig[chart.data] "
+                   *ngSwitchCase="'PIE'"
+          ></app-pie>
+
+          <app-line class="col-4"
+                   [barChartConfig]="dashboardChartsConfig[chart.data] "
+                   *ngSwitchCase="'LINE'"
+          ></app-line>
+
+          <div class="alert alert-danger" role="alert"
+               *ngSwitchDefault
+          >
+            <strong>Sorry!!!</strong>  No data found.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

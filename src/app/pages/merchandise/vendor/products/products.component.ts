@@ -69,11 +69,11 @@ export class ProductsComponent implements OnInit {
   }
 
   // deleteProduct() {
-  //   _.remove(this.allVendorProducts, this.productForDeletion);
-  //   this.merchandiseService.deleteProduct(this.allVendorProducts);
-  //   this.toastr.success('Item deleted successfully!', 'Success!', {toastLife: 2000} );
-  //   (<any> $('#producttable')).dataTable().fnDestroy();
-  //   this.ngOnInit();
+    // _.remove(this.allVendorProducts, this.productForDeletion);
+    // this.merchandiseService.deleteProduct(this.allVendorProducts);
+    // // this.toastr.success('Item deleted successfully!', 'Success!', {toastLife: 2000} );
+    // (<any> $('#producttable')).dataTable().fnDestroy();
+    // this.ngOnInit();
   // }
 
   fileSelected(event) {

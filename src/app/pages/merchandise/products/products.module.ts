@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './products.routes';
 import { DataTableModule } from "angular2-datatable";
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import { ProductsComponent} from './products.component';
 import { ProductsService } from 'app/services';
+import { AddProductComponent } from "./add-product/add-product.component";
 
 @NgModule({
   imports: [
@@ -15,10 +17,12 @@ import { ProductsService } from 'app/services';
     AppTranslationModule,
     routing,
     ReactiveFormsModule,
-    DataTableModule
+    DataTableModule,
+    CKEditorModule
   ],
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+    AddProductComponent
   ],
   providers: [
     ProductsService
