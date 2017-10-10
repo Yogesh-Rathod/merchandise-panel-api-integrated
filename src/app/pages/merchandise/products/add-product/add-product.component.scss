@@ -38,5 +38,21 @@
 			}
 		}
 	}
+	
+	.tabs-section {
+		margin-left: -23px;
+	}
 
+	.fade.active {
+		opacity: 1;
+	}
+
+	.product-image {
+		width: 140px;
+    margin: auto;
+	}
+
+	#Pictures {
+		flex-direction: column;
+	}
 }

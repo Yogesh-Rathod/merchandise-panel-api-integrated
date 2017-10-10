@@ -2,12 +2,12 @@
 
   <div class="card-header clearfix">
     <h2 class="card-title">
-       Add a new product
+      Add a new product
 
       <button *ngIf=" productId " class="btn btn-danger float-right" (click)="deleteProduct()">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
         Delete
-      </button> 
+      </button>
       <span class="goBack float-right" [routerLink]="['/merchandise/products']">
         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to products list</span>
 
@@ -16,104 +16,236 @@
 
   <div class="card-body">
 
+    <div class="loader-container pos_absolute" *ngIf="bigLoader">
+      <img src="assets/img/ajax-loader.gif" alt="Loader Image">
+    </div>
+
+    <div class="tabs-section">
+      <!-- Tabs Top UI -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#Productinfo" role="tab" data-toggle="tab">Product info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#Pictures" role="tab" data-toggle="tab">Pictures</a>
+        </li>
+      </ul>
+    </div>
+
     <form [formGroup]=" addProductForm " (ngSubmit)="addProduct(addProductForm.value) " class="row">
       <input type="hidden" formControlName="id">
 
-    <div class="col-7 no_left_padding">
-      <div class="card fadeIn animated">
-        <div class="card-header" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-          <h3 class="card-title">
-            General information
-            <span class="float-right">
-              <i class="fa fa-minus-square" aria-hidden="true"></i>
-            </span>
-          </h3>
-        </div>
-        <div class="card-body collapse show" id="collapseExample">
-          <div class="form-group row">
-            <label for="name" class="col-3 text-right">Name
-              <span class="mandatory">*</span>
-            </label>
-            <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
-          </div>
-      
-          <div class="form-group row">
-            <label for="ShortDescription" class="col-3 text-right">Short <br> Description <span class="mandatory">*</span>
-            </label>
-            <textarea class="form-control col-9" id="name" placeholder="Short Description" formControlName="shortDescription"></textarea>
-          </div>
-      
-          <div class="form-group row">
-            <label for="FullDescription" class="col-3 text-right">Full <br> Description
-              <span class="mandatory">*</span>
-            </label>
-            <ckeditor class="form-control col-9" [config]="config" formControlName="fullDescription"></ckeditor>
-          </div>
-      
-          <div class="form-group row">
-            <label for="sku" class="col-3 text-right">
-              SKU
-              <span class="mandatory">*</span>
-            </label>
-            <input type="text" class="form-control col-9" id="name" placeholder="SKU" formControlName="sku">
-          </div>
-      
-        </div>
-      </div>
+      <!-- Tab panes -->
+      <div class="tab-content col-12">
+        <div role="tabpanel" class="tab-pane fade in active" id="Productinfo">
 
-      <div class="card fadeIn animated">
-        <div class="card-header" data-toggle="collapse" href="#prices" aria-expanded="true">
-          <h3 class="card-title">
-            Prices
-            <span class="float-right">
-              <i class="fa fa-minus-square" aria-hidden="true"></i>
-            </span>
-          </h3>
-        </div>
-        <div class="card-body collapse show" id="prices">
-          <div class="form-group row">
-            <label for="Price" class="col-3 text-right">Price
-              <span class="mandatory">*</span>
-            </label>
-            <input type="number" class="form-control col-9" id="Price" placeholder="Price" formControlName="price" value="0">
-          </div>
-        </div>
-      </div>
-    </div>
+          <div class="col-7 no_left_padding">
+            <div class="card fadeIn animated">
+              <div class="card-header" data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+                <h3 class="card-title">
+                  General information
+                  <span class="float-right">
+                    <i class="fa fa-minus-square" aria-hidden="true"></i>
+                  </span>
+                </h3>
+              </div>
+              <div class="card-body collapse show" id="collapseExample">
+                <div class="form-group row">
+                  <label for="name" class="col-3 text-right">Name
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
+                </div>
 
-    <div class="col-5 no_left_padding no_right_padding">
-       <div class="card fadeIn animated">
-          <div class="card-header" data-toggle="collapse" href="#mappings" aria-expanded="true" aria-controls="mappings">
-            <h3 class="card-title">
-               Mappings
-              <span class="float-right">
-                <i class="fa fa-minus-square" aria-hidden="true"></i>
-              </span>
-            </h3>
-          </div>
-          <div class="card-body collapse show" id="mappings">
-            <div class="form-group row">
-              <label for="Categories" class="col-3 text-right">Categories<span class="mandatory">*</span>
-              </label>
-              <angular2-multiselect 
-                id="name"
-                [data]="categories" 
-                formControlName="categories"
-                [settings]="categoriesDropdownSettings">
-              </angular2-multiselect>
+                <div class="form-group row">
+                  <label for="ShortDescription" class="col-3 text-right">Short
+                    <br> Description
+                    <span class="mandatory">*</span>
+                  </label>
+                  <textarea class="form-control col-9" id="name" placeholder="Short Description" formControlName="shortDescription"></textarea>
+                </div>
+
+                <div class="form-group row">
+                  <label for="FullDescription" class="col-3 text-right">Full
+                    <br> Description
+                    <span class="mandatory">*</span>
+                  </label>
+                  <ckeditor class="form-control col-9" [config]="config" formControlName="fullDescription"></ckeditor>
+                </div>
+
+                <div class="form-group row">
+                  <label for="sku" class="col-3 text-right">
+                    SKU
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="name" placeholder="SKU" formControlName="sku">
+                </div>
+
+                <div class="form-group row">
+                  <label for="published" class="col-3 text-right">
+                    published
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="checkbox" class="form-control col-1" id="published" formControlName="published">
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card fadeIn animated">
+              <div class="card-header" data-toggle="collapse" href="#prices" aria-expanded="true">
+                <h3 class="card-title">
+                  Prices
+                  <span class="float-right">
+                    <i class="fa fa-minus-square" aria-hidden="true"></i>
+                  </span>
+                </h3>
+              </div>
+              <div class="card-body collapse show" id="prices">
+                <div class="form-group row">
+                  <label for="Price" class="col-3 text-right">Price
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="number" class="form-control col-9" id="Price" placeholder="Price" formControlName="price" value="0">
+                </div>
+              </div>
             </div>
           </div>
-       </div>
-    </div>
 
-    <div class="form-group row col-12">
-      <label class="col-3 text-right"></label>
-      <input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
-      <input *ngIf=" productId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addProductForm.valid || showLoader ">
-      <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
-      <span class="btn btn-secondary" [routerLink]="['/merchandise/products']">Cancel</span>
-    </div>
-    
+          <div class="col-5 no_left_padding no_right_padding">
+            <div class="card fadeIn animated">
+              <div class="card-header" data-toggle="collapse" href="#mappings" aria-expanded="true" aria-controls="mappings">
+                <h3 class="card-title">
+                  Mappings
+                  <span class="float-right">
+                    <i class="fa fa-minus-square" aria-hidden="true"></i>
+                  </span>
+                </h3>
+              </div>
+              <div class="card-body collapse show" id="mappings">
+                <div class="form-group row">
+                  <label for="Categories" class="col-4 text-right">Categories
+                    <span class="mandatory">*</span>
+                  </label>
+                  <angular2-multiselect id="name" [data]="categories" formControlName="categories" [settings]="categoriesDropdownSettings">
+                  </angular2-multiselect>
+                </div>
+                <div class="form-group row">
+                  <label for="stockQuantity" class="col-4 text-right">Stock Quantity
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-8" id="stockQuantity" placeholder="Stock Quantity" formControlName="stockQuantity">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="Pictures">
+          <div class="card fadeIn animated">
+            <div class="card-body" *ngIf=" productId ">
+              <p>You need to save the product before you can upload pictures for this product page.</p>
+            </div>
+            <div class="card-body" *ngIf=" !productId ">
+              <table class="table table-bordered table-responsive">
+                <thead class="black-muted-bg">
+                  <tr>
+                    <th>Picture</th>
+                    <th>Display order</th>
+                    <th>Alt</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="product-image">
+                        <img class="img-fluid" src="assets/images/products/home-office-336373_640.jpg" alt="Product Image">
+                      </div>
+                    </td>
+                    <td>
+                      1
+                    </td>
+                    <td>
+                      some text
+                    </td>
+                    <td>
+                      some text
+                    </td>
+                    <td>
+                      <button class="btn btn-primary">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Edit
+                      </button>
+                      <button class="btn btn-info">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- <tbody>
+                  <tr>
+                    <td colspan="5">
+                      No Pictures Yet
+                    </td>
+                  </tr>
+                </tbody> -->
+              </table>
+            </div>
+          </div>
+          <div class="card fadeIn animated">
+            <div class="card-header">
+              <h3 class="card-title">
+                Add a new picture
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="picture" class="col-3 text-right">Picture
+                  <span class="mandatory">*</span>
+                </label>
+                <input type="file" class="form-control col-9" id="picture" formControlName="pictureName" accept=".jpg, .png, .jpeg, .gif" (change)="productImageSelected($event)">
+              </div>
+              <div class="form-group row">
+                <label for="picture" class="col-3 text-right">
+                  Alt
+                </label>
+                <input type="text" class="form-control col-9" id="picture" formControlName="pictureAlt" placeholder="Alt">
+              </div>
+              <div class="form-group row">
+                <label for="picture" class="col-3 text-right">
+                  Title
+                </label>
+                <input type="text" class="form-control col-9" id="title" formControlName="pictureTitle" placeholder="Title">
+              </div>
+              <div class="form-group row">
+                <label for="displayorder" class="col-3 text-right">
+                  Display Order
+                </label>
+                <input type="number" class="form-control col-9" id="displayorder" formControlName="pictureDisplayorder" placeholder="Display Order">
+              </div>
+              <div class="form-group row">
+                <label for="displayorder" class="col-3 text-right"></label>
+                <button type="button" class="btn btn-info no_margin" (click)="uploadProductImage(addProductForm.value)">
+                  Upload
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row col-12">
+        <label class="col-3 text-right"></label>
+        <input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
+        <input *ngIf=" productId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addProductForm.valid || showLoader ">
+        <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
+        <span class="btn btn-warning" (click)="resetForm()">Reset</span>
+        <span class="btn btn-secondary" [routerLink]="['/merchandise/products']">Cancel</span>
+      </div>
+
 
     </form>
 

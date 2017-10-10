@@ -166,7 +166,7 @@
 						<tr *ngFor=" let item of mf.data " >
 							<td class="text-left">
 								<div class="product-image" *ngIf="item.picture">
-									<img class="img-fluid" src="{{ item.picture[0] }}" alt="Product Image" >
+									<img class="img-fluid" src="{{ item.picture[0].url ? item.picture[0].url : 'assets/images/products/Placeholder.png' }}" alt="{{ item.picture[0].alt ? item.picture[0].alt : 'Product Image' }}" >
 								</div>
 							</td>
 							<td>

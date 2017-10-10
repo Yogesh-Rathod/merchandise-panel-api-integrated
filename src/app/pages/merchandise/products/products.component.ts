@@ -15,7 +15,7 @@ import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component
 export class ProductsComponent implements OnInit {
 
   searchProductForm: FormGroup;
-  bigLoader = false;
+  bigLoader = true;
   products: any;
   categories: any;
   stores = ['store 1', 'store 2', 'store 3'];
@@ -41,6 +41,7 @@ export class ProductsComponent implements OnInit {
     this.searchForm();
     this.getAllProducts();
     this.getAllCategories();
+    this.bigLoader = false;
   }
 
   // For Creating Add Category Form
