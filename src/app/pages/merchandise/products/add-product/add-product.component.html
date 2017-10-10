@@ -103,10 +103,16 @@
               </div>
               <div class="card-body collapse show" id="prices">
                 <div class="form-group row">
-                  <label for="Price" class="col-3 text-right">Price
+                  <label for="Price" class="col-3 text-right">MRP Price
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="number" class="form-control col-9" id="Price" placeholder="Price" formControlName="price" value="0">
+                  <input type="number" class="form-control col-9" id="Price" placeholder="MRP Price" formControlName="MrpPrice" value="0">
+                </div>
+                <div class="form-group row">
+                  <label for="Price" class="col-3 text-right">Retail Price
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="number" class="form-control col-9" id="Price" placeholder="Retail Price" formControlName="retailPrice" value="0">
                 </div>
               </div>
             </div>
@@ -135,6 +141,12 @@
                     <span class="mandatory">*</span>
                   </label>
                   <input type="text" class="form-control col-8" id="stockQuantity" placeholder="Stock Quantity" formControlName="stockQuantity">
+                </div>
+                <div class="form-group row">
+                  <label for="type" class="col-4 text-right">Type
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-8" id="type" placeholder="Type" formControlName="type">
                 </div>
               </div>
             </div>

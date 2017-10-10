@@ -68,13 +68,15 @@ export class AddProductComponent implements OnInit {
         Validators.minLength(1), Validators.maxLength(5000)])],
       'sku': ['', Validators.required],
       'published': [''],
-      'price': ['', Validators.required],
+      'MrpPrice': ['', Validators.required],
+      'retailPrice': ['', Validators.required],
       'stockQuantity': ['', Validators.required],
       'categories': [[]],
       'pictureName': [''],
       'pictureAlt': [''],
       'pictureTitle': [''],
-      'pictureDisplayorder': ['']
+      'pictureDisplayorder': [''],
+      'type': ['']
     });
   }
 
@@ -90,14 +92,16 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['shortDescription'].setValue(product.shortDescription);
           this.addProductForm.controls['fullDescription'].setValue(product.fullDescription);
           this.addProductForm.controls['sku'].setValue(product.sku);
-          this.addProductForm.controls['published'].setValue(product.published);
-          this.addProductForm.controls['price'].setValue(product.price);
+          this.addProductForm.controls['published'].setValue(product.published); 
+          this.addProductForm.controls['MrpPrice'].setValue(product.MrpPrice);
+          this.addProductForm.controls['retailPrice'].setValue(product.retailPrice);
           this.addProductForm.controls['stockQuantity'].setValue(product.stockQuantity);
           // this.addProductForm.controls['pictureName'].setValue(product.picture[0].url);
           this.addProductForm.controls['pictureAlt'].setValue(product.picture[0].alt);
           this.addProductForm.controls['pictureTitle'].setValue(product.picture[0].title);
           this.addProductForm.controls['pictureDisplayorder'].setValue(product.picture[0].displayOrder);
           this.addProductForm.controls['categories'].setValue(product.categories);
+          this.addProductForm.controls['type'].setValue(product.type);
         }
       });
     }
