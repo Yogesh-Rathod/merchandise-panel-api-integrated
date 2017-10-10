@@ -5,6 +5,7 @@ import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './products.routes';
 import { DataTableModule } from "angular2-datatable";
 import { CKEditorModule } from 'ng2-ckeditor';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 import { ProductsComponent} from './products.component';
 import { ProductsService } from 'app/services';
@@ -18,7 +19,8 @@ import { AddProductComponent } from "./add-product/add-product.component";
     routing,
     ReactiveFormsModule,
     DataTableModule,
-    CKEditorModule
+    CKEditorModule,
+    AngularMultiSelectModule
   ],
   declarations: [
     ProductsComponent,

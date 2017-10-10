@@ -7,7 +7,7 @@
       <button *ngIf=" productId " class="btn btn-danger float-right" (click)="deleteProduct()">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
         Delete
-      </button>
+      </button> 
       <span class="goBack float-right" [routerLink]="['/merchandise/products']">
         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to products list</span>
 
@@ -95,7 +95,12 @@
             <div class="form-group row">
               <label for="Categories" class="col-3 text-right">Categories<span class="mandatory">*</span>
               </label>
-              <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="categories">
+              <angular2-multiselect 
+                id="name"
+                [data]="categories" 
+                formControlName="categories"
+                [settings]="categoriesDropdownSettings">
+              </angular2-multiselect>
             </div>
           </div>
        </div>

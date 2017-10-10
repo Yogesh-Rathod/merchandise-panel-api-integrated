@@ -13,7 +13,7 @@ import { MerchandiseService } from 'app/services';
   styleUrls: ['./add-product.component.scss']
 })
 export class AddProductComponent implements OnInit {
-  
+
   addProductForm: FormGroup;
   public config = {
     uiColor: '#F0F3F4',
@@ -21,6 +21,16 @@ export class AddProductComponent implements OnInit {
   };
   productId: any;
   showLoader = false;
+  categories = [];
+  categoriesDropdownSettings = {
+    singleSelection: false,
+    text: "Select Categories",
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    enableSearchFilter: true,
+    classes: 'col-9'
+  };
+  selectedItems = [];
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +45,7 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.getAllCategories();
   }
 
   createForm() {
@@ -45,10 +56,10 @@ export class AddProductComponent implements OnInit {
       'shortDescription': ['', Validators.compose([Validators.required,
       Validators.minLength(1), Validators.maxLength(1000)])],
       'fullDescription': ['', Validators.compose([
-      Validators.minLength(1), Validators.maxLength(5000)])],
+        Validators.minLength(1), Validators.maxLength(5000)])],
       'sku': ['', Validators.required],
       'price': ['', Validators.required],
-      'categories': ['']
+      'categories': [[]]
     });
   }
 
@@ -56,6 +67,25 @@ export class AddProductComponent implements OnInit {
     console.log("addProductForm ", addProductForm);
   }
 
-  deleteProduct() {}
+  getAllCategories() {
+    this.categories = this.merchandiseService.getCategories();
+    let categoriesArray = [];
+    _.forEach(this.categories, (category) => {
+      if (category.parent_name) {
+        categoriesArray.push({
+          id: `${category.parent_name} >> ${category.name}`,
+          itemName: `${category.parent_name} >> ${category.name}`
+        });
+      } else {
+        categoriesArray.push({
+          id: category.name,
+          itemName: category.name
+        });
+      }
+    });
+    this.categories = categoriesArray;
+  }
+
+  deleteProduct() { }
 
 }
