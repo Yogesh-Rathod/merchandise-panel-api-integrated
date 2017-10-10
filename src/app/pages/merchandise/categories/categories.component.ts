@@ -42,6 +42,11 @@ export class CategoriesComponent implements OnInit {
     this.searchTerm = searchTerm;
   }
 
+  deleteCategory(item) {
+    _.remove(this.categories, item);
+    this.merchandiseService.editCategories(this.categories);
+  }
+
   bulkUpload() {
     const activeModal = this.modalService.open( BulkUploadComponent, { size: 'sm' } );
   }

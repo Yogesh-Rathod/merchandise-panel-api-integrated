@@ -73,6 +73,11 @@ export class ProductsComponent implements OnInit {
     const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
   }
 
+  deleteProduct(item) {
+    _.remove(this.products, item);
+    this.productsService.editProduct(this.products);
+  }
+
   resetForm() {
     this.searchForm();
   }

@@ -125,7 +125,7 @@
 		<div class="spacer col-12"></div>
 
 		<div class="filters card col-12">
-			<div class="card-body pos_relative" *ngIf=" products && products.length !== 0 ">
+			<div class="card-body pos_relative no_left_padding no_right_padding" *ngIf=" products && products.length !== 0 ">
 
 				<div class="loader-container pos_absolute" *ngIf="bigLoader">
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
@@ -157,7 +157,7 @@
 							<th>
 								<strong>Published</strong>
 							</th>
-							<th>
+							<th class="action">
 								<strong>Action</strong>
 							</th>
 						</tr>
@@ -180,10 +180,12 @@
 									<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
 									<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
 							</td>
-							<td>
-								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]">
+							<td class="action">
+								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
-									 Edit
+								</button>
+								<button class="btn btn-danger" (click)="deleteProduct(item)" title="Delete">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
 							</td>
 						</tr>

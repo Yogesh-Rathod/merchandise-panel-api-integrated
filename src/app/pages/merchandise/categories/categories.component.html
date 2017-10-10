@@ -64,9 +64,11 @@
 							</td>
 							<td>{{ item.display_order }}</td>
 							<td class="text-center">
-								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]">
+								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
-									 Edit
+								</button>
+								<button class="btn btn-danger" (click)="deleteCategory(item)" title="Delete">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
 							</td>
 						</tr>
