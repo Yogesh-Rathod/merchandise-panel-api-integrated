@@ -19,7 +19,7 @@ export class ProductsService {
       shortDescription: 'some short description',
       fullDescription: 'Full Description',
       sku: 'PG_CR_100',
-      price: 56300,
+      price: 156300,
       stockQuantity: null,
       productType: 'Simple',
       published: true,
