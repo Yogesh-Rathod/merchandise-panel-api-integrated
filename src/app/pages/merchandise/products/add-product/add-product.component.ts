@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import './ckeditor.loader';
 import 'ckeditor';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
 import { MerchandiseService, ProductsService } from 'app/services';
@@ -38,6 +39,7 @@ export class AddProductComponent implements OnInit {
   productImageName;
 
   constructor(
+    public toastr: ToastsManager,
     private _location: Location,
     private fb: FormBuilder,
     private productsService: ProductsService,
@@ -71,7 +73,7 @@ export class AddProductComponent implements OnInit {
       'MrpPrice': ['', Validators.required],
       'retailPrice': ['', Validators.required],
       'stockQuantity': ['', Validators.required],
-      'categories': [[]],
+      'categories': [[], Validators.required],
       'pictureName': [''],
       'pictureAlt': [''],
       'pictureTitle': [''],
@@ -139,7 +141,7 @@ export class AddProductComponent implements OnInit {
       this.productsService.addProduct(productInfo);
     }
 
-    // console.log("productInfo ", productInfo);
+    this.toastr.success('Sucessfully Done!', 'Sucess!');
     this._location.back();
   }
 

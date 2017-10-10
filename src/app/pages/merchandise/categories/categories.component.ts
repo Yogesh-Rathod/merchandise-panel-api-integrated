@@ -21,10 +21,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     public toastr: ToastsManager,
-    public vcr: ViewContainerRef,
     private fb: FormBuilder,
     private merchandiseService: MerchandiseService) {
-    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -45,6 +43,7 @@ export class CategoriesComponent implements OnInit {
   deleteCategory(item) {
     _.remove(this.categories, item);
     this.merchandiseService.editCategories(this.categories);
+    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
   }
 
   bulkUpload() {

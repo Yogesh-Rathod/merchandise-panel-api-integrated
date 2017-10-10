@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import './ckeditor.loader';
 import 'ckeditor';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
 import { MerchandiseService } from 'app/services';
@@ -28,6 +28,7 @@ export class AddCategoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private merchandiseService: MerchandiseService,
+    private toastr: ToastsManager,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -77,6 +78,7 @@ export class AddCategoryComponent implements OnInit {
     } else {
       this.merchandiseService.addCategory(categoryInfo);
     }
+    this.toastr.success('Sucessfully Done!', 'Sucess!');
     this.router.navigate(['../']);
   }
 
@@ -104,6 +106,7 @@ export class AddCategoryComponent implements OnInit {
   deleteCategory() {
     _.remove(this.categories, this.categoryInfo );
     this.merchandiseService.editCategories(this.categories);
+    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
     this.router.navigate(['../']);
   }
 

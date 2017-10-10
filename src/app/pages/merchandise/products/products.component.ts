@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 declare let $: any;
@@ -28,6 +29,7 @@ export class ProductsComponent implements OnInit {
   vendor = ['vendor 1', 'vendor 2'];
 
   constructor(
+    public toastr: ToastsManager,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private productsService: ProductsService,
@@ -76,6 +78,7 @@ export class ProductsComponent implements OnInit {
   deleteProduct(item) {
     _.remove(this.products, item);
     this.productsService.editProduct(this.products);
+    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
   }
 
   resetForm() {

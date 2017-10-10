@@ -22,6 +22,10 @@
 	border-color:  #e03838 !important;
 }
 
+angular2-multiselect.ng-dirty.ng-invalid {
+	border: 1px solid #e03838 !important;
+}
+
 ckeditor.form-control {
 	padding: 0 !important;
 }
