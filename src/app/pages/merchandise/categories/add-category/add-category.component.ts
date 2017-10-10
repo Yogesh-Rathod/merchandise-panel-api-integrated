@@ -91,7 +91,6 @@ export class AddCategoryComponent implements OnInit {
       _.forEach(categories, (category) => {
         if (category.id === parseInt(this.categoryId) ) {
           this.categoryInfo = category;
-          // console.log("this.addCategoryForm.controls", this.addCategoryForm.controls);
           this.addCategoryForm.controls['id'].setValue(category.id);
           this.addCategoryForm.controls['description'].setValue(category.description);
           this.addCategoryForm.controls['name'].setValue(category.name);

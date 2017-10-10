@@ -143,10 +143,10 @@
 
         <div role="tabpanel" class="tab-pane fade" id="Pictures">
           <div class="card fadeIn animated">
-            <div class="card-body" *ngIf=" productId ">
-              <p>You need to save the product before you can upload pictures for this product page.</p>
-            </div>
             <div class="card-body" *ngIf=" !productId ">
+              <p>You need to save the product before you can upload pictures for this product.</p>
+            </div>
+            <div class="card-body" *ngIf=" productId ">
               <table class="table table-bordered table-responsive">
                 <thead class="black-muted-bg">
                   <tr>
@@ -157,21 +157,21 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+                <tbody *ngIf="productInfo.picture.length > 0 ">
+                  <tr *ngFor="let item of productInfo.picture">
                     <td>
                       <div class="product-image">
-                        <img class="img-fluid" src="assets/images/products/home-office-336373_640.jpg" alt="Product Image">
+                        <img class="img-fluid" src="{{ item.url ? item.url : 'assets/images/products/Placeholder.png' }}" alt="Product Image">
                       </div>
                     </td>
                     <td>
-                      1
+                      {{ item.displayOrder }}
                     </td>
                     <td>
-                      some text
+                       {{ item.alt }}
                     </td>
                     <td>
-                      some text
+                       {{ item.title }}
                     </td>
                     <td>
                       <button class="btn btn-primary">
@@ -185,17 +185,17 @@
                     </td>
                   </tr>
                 </tbody>
-                <!-- <tbody>
+                <tbody *ngIf="productInfo.picture.length < 1">
                   <tr>
                     <td colspan="5">
                       No Pictures Yet
                     </td>
                   </tr>
-                </tbody> -->
+                </tbody>
               </table>
             </div>
           </div>
-          <div class="card fadeIn animated">
+          <div class="card fadeIn animated" *ngIf=" productId ">
             <div class="card-header">
               <h3 class="card-title">
                 Add a new picture
@@ -239,7 +239,7 @@
 
       <div class="form-group row col-12">
         <label class="col-3 text-right"></label>
-        <input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
+        <input *ngIf=" !productId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
         <input *ngIf=" productId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addProductForm.valid || showLoader ">
         <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
         <span class="btn btn-warning" (click)="resetForm()">Reset</span>

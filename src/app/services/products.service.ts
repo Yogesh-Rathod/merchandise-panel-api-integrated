@@ -16,8 +16,8 @@ export class ProductsService {
         }
       ],
       name: 'Apple MacBook Air',
-      shortDescription: '',
-      fullDescription: '',
+      shortDescription: 'some short description',
+      fullDescription: 'Full Description',
       sku: 'PG_CR_100',
       price: 56300,
       stockQuantity: null,
@@ -36,6 +36,8 @@ export class ProductsService {
         }
       ],
       name: 'Dell Inspiron Core',
+      shortDescription: '',
+      fullDescription: '',
       sku: 'Dell_Inspiron_Core_20',
       price: 27990,
       stockQuantity: 20,
@@ -55,11 +57,6 @@ export class ProductsService {
   }
 
   editProduct(products) {
-    this.products = products;
-    return this.products;
-  }
-
-  deleteProduct(products) {
     this.products = products;
     return this.products;
   }

@@ -21,6 +21,8 @@ export class AddProductComponent implements OnInit {
     height: '200'
   };
   productId: any;
+  products: any;
+  productInfo: any;
   showLoader = false;
   categories = [];
   categoriesDropdownSettings = {
@@ -51,6 +53,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.getAllCategories();
+    this.getProductInfoForEdit();
     this.bigLoader = false;
   }
 
@@ -75,19 +78,44 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  getProductInfoForEdit() {
+    if (this.productId) {
+      this.products = this.productsService.getProducts();
+      _.forEach(this.products, (product) => {
+        if (product.id === parseInt(this.productId)) {
+          this.productInfo = product;
+          console.log("this.productInfo ", this.productInfo);
+          this.addProductForm.controls['id'].setValue(product.id);
+          this.addProductForm.controls['name'].setValue(product.name);
+          this.addProductForm.controls['shortDescription'].setValue(product.shortDescription);
+          this.addProductForm.controls['fullDescription'].setValue(product.fullDescription);
+          this.addProductForm.controls['sku'].setValue(product.sku);
+          this.addProductForm.controls['published'].setValue(product.published);
+          this.addProductForm.controls['price'].setValue(product.price);
+          this.addProductForm.controls['stockQuantity'].setValue(product.stockQuantity);
+          // this.addProductForm.controls['pictureName'].setValue(product.picture[0].url);
+          this.addProductForm.controls['pictureAlt'].setValue(product.picture[0].alt);
+          this.addProductForm.controls['pictureTitle'].setValue(product.picture[0].title);
+          this.addProductForm.controls['pictureDisplayorder'].setValue(product.picture[0].displayOrder);
+          this.addProductForm.controls['categories'].setValue(product.categories);
+        }
+      });
+    }
+  }
+
   addProduct(addProductForm) {
     console.log("addProductForm ", addProductForm);
     let productInfo = {
       id: Math.floor(Math.random() * 90000) + 10000,
       picture: [
         {
-          url: this.productImageName,
-          alt: addProductForm.pictureAlt,
-          title: addProductForm.pictureTitle,
-          displayOrder: addProductForm.pictureDisplayorder
+          url: this.productImageName ? this.productImageName : undefined,
+          alt: addProductForm.pictureAlt ? addProductForm.pictureAlt : undefined,
+          title: addProductForm.pictureTitle ? addProductForm.pictureTitle : undefined,
+          displayOrder: addProductForm.pictureDisplayorder ? addProductForm.pictureDisplayorder : undefined
         }
       ],
-      name: addProductForm.name,
+      name: addProductForm.name ? addProductForm.name : undefined,
       shortDescription: addProductForm.shortDescription,
       fullDescription: addProductForm.fullDescription,
       sku: addProductForm.sku,
@@ -97,10 +125,17 @@ export class AddProductComponent implements OnInit {
       published: addProductForm.published,
       categories: addProductForm.categories
     };
-    this.productsService.addProduct(productInfo);
-    // const products = this.productsService.getProducts();
-    // console.log("products ", products);
-    // this.router.navigate(['../']);
+
+    if (addProductForm.id) {
+      productInfo['id'] = addProductForm.id;
+      const index = _.findIndex(this.products, { id: productInfo['id'] });
+      this.products.splice(index, 1, productInfo);
+      this.productsService.editProduct(this.products);
+    } else {
+      this.productsService.addProduct(productInfo);
+    }
+
+    // console.log("productInfo ", productInfo);
     this._location.back();
   }
 
@@ -123,7 +158,11 @@ export class AddProductComponent implements OnInit {
     this.categories = categoriesArray;
   }
 
-  deleteProduct() { }
+  deleteProduct() {
+    _.remove(this.products, this.productInfo);
+    this.productsService.editProduct(this.products);
+    this._location.back();
+  }
 
   uploadProductImage(addProductForm) {
     console.log("addProductForm ", addProductForm);
