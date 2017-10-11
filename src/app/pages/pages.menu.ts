@@ -38,6 +38,15 @@ const menus = [
             pathMatch: 'partial'
           }
         }
+      },
+      {
+        path: 'orders',
+        data: {
+          menu: {
+            title: 'Orders',
+            pathMatch: 'partial'
+          }
+        }
       }
     ]
   },
