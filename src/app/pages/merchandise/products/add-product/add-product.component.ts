@@ -35,7 +35,6 @@ export class AddProductComponent implements OnInit {
     enableSearchFilter: true,
     classes: 'col-8 no_padding'
   };
-  selectedItems = [];
   bigLoader = true;
   productImageName;
 

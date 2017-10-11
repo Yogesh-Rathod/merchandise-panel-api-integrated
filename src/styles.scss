@@ -126,4 +126,10 @@ table {
 	box-shadow: none !important;
 }
 
+.animated {
+	animation-fill-mode: none;
+}
 
+.page-top {
+	z-index: 9999 !important;
+}

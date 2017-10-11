@@ -1,0 +1,57 @@
+.catSearch {
+	.btn {
+		&.btn-primary {
+			background-color: #0275d8 !important;
+			border-color: #0275d8 !important;
+			margin-top: -6px;
+		}
+
+		& + .btn {
+			margin-right: 10px;
+		}
+	}	
+}
+
+.form-group {
+
+	select {
+		text-transform: capitalize;
+	}
+
+	label {
+	margin-top: 10px;
+
+		.fa {
+			color: #209e91;
+		}
+	}
+
+	.btn {
+		& + .btn {
+			margin-left: 15px;
+		}
+	}
+}
+
+.product-image {
+	width: 100px;
+}
+
+.searchButton {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0;
+}
+
+table {
+	tr {
+		th,
+		td {
+			word-break: break-word;
+		}
+
+		.createDate {
+			width: 110px;
+		}
+	}
+}
