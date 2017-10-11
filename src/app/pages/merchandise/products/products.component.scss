@@ -47,3 +47,12 @@
 .action {
 	width: 150px;
 }
+
+table {
+	tr {
+		th,
+		td {
+			word-break: break-word;
+		}
+	}
+}

@@ -20,7 +20,8 @@ export class AddCategoryComponent implements OnInit {
     height: '200'
   };
   addCategoryForm: FormGroup;
-  showLoader = false; 
+  showLoader = false;
+  deleteLoader = false; 
   categories: any;
   categoryId: any;
   categoryInfo: any;
@@ -106,9 +107,11 @@ export class AddCategoryComponent implements OnInit {
   }
 
   deleteCategory() {
+    this.deleteLoader = true;
     _.remove(this.categories, this.categoryInfo );
     this.merchandiseService.editCategories(this.categories);
     this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+    this.deleteLoader = false;
     this.router.navigate(['../']);
   }
 

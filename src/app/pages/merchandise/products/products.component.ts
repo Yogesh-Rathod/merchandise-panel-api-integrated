@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
 
   searchProductForm: FormGroup;
   bigLoader = true;
+  deleteLoader: Number;
   products: any;
   categories: any;
   stores = ['store 1', 'store 2', 'store 3'];
@@ -75,9 +76,11 @@ export class ProductsComponent implements OnInit {
     const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
   }
 
-  deleteProduct(item) {
+  deleteProduct(item, index) {
+    this.deleteLoader = index;
     _.remove(this.products, item);
     this.productsService.editProduct(this.products);
+    this.deleteLoader = NaN;
     this.toastr.success('Sucessfully Deleted!', 'Sucess!');
   }
 

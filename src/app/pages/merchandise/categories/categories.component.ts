@@ -18,6 +18,7 @@ export class CategoriesComponent implements OnInit {
   categories: any[] = [];
   searchTerm: any;
   showLoader = false;
+  deleteLoader: Number;
 
   constructor(
     private modalService: NgbModal,
@@ -41,10 +42,11 @@ export class CategoriesComponent implements OnInit {
     this.searchTerm = searchTerm;
   }
 
-  deleteCategory(item) {
-    // this.showLoader = true;
+  deleteCategory(item, index) {
+    this.deleteLoader = index;
     _.remove(this.categories, item);
     this.merchandiseService.editCategories(this.categories);
+    this.deleteLoader = NaN;
     this.toastr.success('Sucessfully Deleted!', 'Sucess!');
   }
 

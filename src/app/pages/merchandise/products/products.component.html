@@ -163,7 +163,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor=" let item of mf.data " >
+						<tr *ngFor=" let item of mf.data; let i = index; " >
 							<td class="text-left">
 								<div class="product-image" *ngIf="item.picture">
 									<img class="img-fluid" src="{{ item.picture[0].url ? item.picture[0].url : 'assets/images/products/Placeholder.png' }}" alt="{{ item.picture[0].alt ? item.picture[0].alt : 'Product Image' }}" >
@@ -184,9 +184,10 @@
 								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<button class="btn btn-danger" (click)="deleteProduct(item)" title="Delete">
+								<button class="btn btn-danger" (click)="deleteProduct(item, i)" title="Delete" [disabled]="deleteLoader == i">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
+								<img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
 							</td>
 						</tr>
 					</tbody>

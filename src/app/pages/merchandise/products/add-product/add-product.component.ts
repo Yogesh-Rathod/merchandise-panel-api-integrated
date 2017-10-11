@@ -25,6 +25,7 @@ export class AddProductComponent implements OnInit {
   products: any;
   productInfo: any;
   showLoader = false;
+  deleteLoader = false;
   categories = [];
   categoriesDropdownSettings = {
     singleSelection: false,
@@ -167,8 +168,10 @@ export class AddProductComponent implements OnInit {
   }
 
   deleteProduct() {
+    this.deleteLoader = true;
     _.remove(this.products, this.productInfo);
     this.productsService.editProduct(this.products);
+    this.deleteLoader = false;
     this._location.back();
   }
 

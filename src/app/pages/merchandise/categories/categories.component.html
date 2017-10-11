@@ -51,7 +51,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor=" let item of mf.data | searchfilter: 'parent_name,name' : searchTerm; " >
+						<tr *ngFor=" let item of mf.data | searchfilter: 'parent_name,name' : searchTerm; let i = index " >
 							<!-- <td>{{ i + 1 }}</td> -->
 							<td class="text-left">
 								<span *ngIf=" item.parent_name ">
@@ -67,10 +67,10 @@
 								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<button class="btn btn-danger" (click)="deleteCategory(item)" title="Delete">
+								<button class="btn btn-danger" (click)="deleteCategory(item, i)" title="Delete" [disabled]="deleteLoader == i">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
-								<!-- <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35"> -->
+								<img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
 							</td>
 						</tr>
 					</tbody>
