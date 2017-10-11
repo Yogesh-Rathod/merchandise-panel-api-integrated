@@ -40,6 +40,18 @@ const menus = [
         }
       }
     ]
+  },
+  {
+    path: 'user-management',
+    data: {
+      menu: {
+        title: 'User Management',
+        icon: 'ion-person-stalker',
+        selected: false,
+        expanded: false,
+        order: 1
+      }
+    }
   }
 ];
 
