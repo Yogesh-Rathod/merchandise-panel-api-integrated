@@ -80,6 +80,15 @@
       "desc": "Ticket Description",
       "comment": "Comment",
       "assignee": "Assignee"
+    },
+    "userMangement": {
+      "name": "Name",
+      "username": "Username",
+      "email": "Email",
+      "status": "Status",
+      "mobile": "Mobile",
+      "action": "Action",
+      "role": "Role"
     }
   },
   "merchandise": {
