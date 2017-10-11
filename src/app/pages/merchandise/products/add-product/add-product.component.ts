@@ -110,6 +110,7 @@ export class AddProductComponent implements OnInit {
   }
 
   addProduct(addProductForm) {
+    this.showLoader = true;
     console.log("addProductForm ", addProductForm);
     let productInfo = {
       id: Math.floor(Math.random() * 90000) + 10000,
@@ -142,6 +143,7 @@ export class AddProductComponent implements OnInit {
     }
 
     this.toastr.success('Sucessfully Done!', 'Sucess!');
+    this.showLoader = false;
     this._location.back();
   }
 

@@ -20,7 +20,7 @@ export class AddCategoryComponent implements OnInit {
     height: '200'
   };
   addCategoryForm: FormGroup;
-  showLoader: false;
+  showLoader = false; 
   categories: any;
   categoryId: any;
   categoryInfo: any;
@@ -63,6 +63,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addCategory(addCategoryFormValues) {
+    this.showLoader = true;
     const categoryInfo = {
       name: addCategoryFormValues.name,
       parent_name: addCategoryFormValues.parentCat.name,
@@ -78,8 +79,9 @@ export class AddCategoryComponent implements OnInit {
     } else {
       this.merchandiseService.addCategory(categoryInfo);
     }
-    this.toastr.success('Sucessfully Done!', 'Sucess!');
-    this.router.navigate(['../']);
+    this.showLoader = false;
+    // this.toastr.success('Sucessfully Done!', 'Sucess!');
+    // this.router.navigate(['../']);
   }
 
   imageUpload(event) {
