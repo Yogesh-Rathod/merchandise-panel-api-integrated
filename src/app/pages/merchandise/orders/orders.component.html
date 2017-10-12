@@ -80,6 +80,15 @@
             </select>
           </div>
 
+          <div class="form-group col-6 row orderNoField">
+            <label for="orderNo" class="col-4 text-right no_margin">
+               Go directly <br> to order #
+              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Go directly to order #"></i>
+            </label>
+            <input type="text" class="form-control col-6" id="Order #" placeholder="order #" #orderHash>
+            <span class="go-button" (click)="searchByOrderHash(orderHash.value)">Go</span>
+          </div>
+
           <div class="form-group col-12 searchButton">
             <button type="submit" class="btn btn-primary">
               <i class="fa fa-search" aria-hidden="true"></i>
@@ -107,7 +116,7 @@
         <table class="table table-bordered table-responsive" [mfData]="orders" #mf="mfDataTable" [mfRowsOnPage]="10">
           <thead class="black-muted-bg">
             <tr>
-              <th class="text-left">
+              <th class="text-left orderno">
                 <strong>Order #</strong>
               </th>
               <th>
@@ -122,7 +131,7 @@
               <th class="Customer">
                 <strong>Customer</strong>
               </th>
-              <th>
+              <th class="store">
                 <strong>Store</strong>
               </th>
               <th class="createDate">
@@ -131,7 +140,7 @@
               <th>
                 <strong>Order total</strong>
               </th>
-              <th class="action">
+              <th class="action text-center">
                 <strong>Action</strong>
               </th>
             </tr>
@@ -141,12 +150,17 @@
               <td class="text-left">
                 {{ item.no }}
               </td>
-              <td>
-                <span>{{ item.orderStatus }}</span>
+              <td class="order-status">
+                <span
+                  [class.processing]="item.orderStatus.toLowerCase() == 'processing'"
+                  [class.pending]="item.orderStatus.toLowerCase() == 'pending'"
+                  [class.complete]="item.orderStatus.toLowerCase() == 'complete'">
+                  {{ item.orderStatus }}
+                </span>
               </td>
               <td>{{ item.paymentStatus }}</td>
               <td>{{ item.shippingStatus }}</td>
-              <td>
+              <td class="customer">
                 {{ item.customerInfo.name }}
                  ({{ item.customerInfo.email }})
               </td>
@@ -158,7 +172,7 @@
                 {{ item.orderTotal | currency: 'INR': true }}
               </td>
               <td class="action">
-                <button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">
+                <button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="View Details">
                   <i class="fa fa-eye" aria-hidden="true"></i>
                    View
                 </button>

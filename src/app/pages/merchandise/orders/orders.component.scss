@@ -12,6 +12,21 @@
 	}	
 }
 
+.orderNoField {
+	.go-button {
+		vertical-align: middle;
+		background: #00acd6;
+		color: #fff;
+		padding: 10px;
+		cursor: pointer;
+	}
+
+	.form-control {
+		border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+	}
+}
+
 .form-group {
 
 	select {
@@ -45,9 +60,43 @@
 
 table {
 	tr {
-		th,
+
+		th {
+			white-space: normal;
+			padding: 10px 8px;
+			vertical-align: middle;
+			
+			&.customer { width: 150px; }
+			&.orderno { width: 65px; }
+			&.store { width: 70px; } 
+		}
+
 		td {
-			word-break: break-word;
+			line-height: 25px;
+
+			&.customer {
+				word-break: break-word;
+			}
+
+			&.order-status {
+				span {
+					padding: .2em .6em .3em;
+					border-radius: .25em;
+
+					&.complete {
+						background-color: #00a65a;
+						color: #fff;
+					}
+					&.pending {
+						background-color: #f39c12;
+						color: #fff;
+					}
+					&.processing {
+						background-color: #00c0ef;
+						color: #fff;
+					}
+				}
+			}
 		}
 
 		.createDate {

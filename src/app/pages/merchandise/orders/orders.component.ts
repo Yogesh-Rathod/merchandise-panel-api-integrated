@@ -100,6 +100,11 @@ export class OrdersComponent implements OnInit {
     console.log('searchProductForm', searchProductForm);
   }
 
+  searchByOrderHash(orderHash) {
+    console.log("orderHash ", orderHash);
+
+  }
+
   resetForm() {
     this.searchForm();
   }
