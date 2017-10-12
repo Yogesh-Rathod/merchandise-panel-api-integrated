@@ -1,0 +1,164 @@
+<div class="card" *ngIf="orderInfo">
+  <div class="card-body">
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order status
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Order status"></i>
+      </div>
+      <div class="col-9">
+        <span class="bold" *ngIf="orderInfo.orderStatus">{{ orderInfo.orderStatus }}</span>
+        <button class="btn btn-danger">Cancel Order</button>
+        <button class="btn btn-info">Change Status</button>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order #
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The unique number of this order."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.no">
+          {{ orderInfo.no }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order GUID
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Internal reference for order."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.guid">
+          {{ orderInfo.guid }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Store
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A store name in which this order was placed."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.store">
+          {{ orderInfo.store }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="card" *ngIf="orderInfo">
+  <div class="card-body">
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Customer
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The customer who placed this order."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.customerInfo.name">
+          {{ orderInfo.customerInfo.name }}
+        </span>
+        <span *ngIf="orderInfo.customerInfo.email">
+          ({{ orderInfo.customerInfo.email }})
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Customer IP address
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Customer IP address from where order has been placed."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.customerInfo.ipAddress">
+          {{ orderInfo.customerInfo.ipAddress }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order subtotal
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The subtotal of this order."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.subtotal">
+          {{ orderInfo.subtotal | currency: 'INR': true }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order shipping
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The total shipping cost for this order."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.shipping">
+          {{ orderInfo.shipping | currency: 'INR': true }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Order total
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The total cost of this order (includes discounts, shipping and tax)."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.orderTotal">
+          {{ orderInfo.orderTotal | currency: 'INR': true }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Payment method
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The payment method used for this transaction. You can manage Payment Methods from Configuration : Payment : Payment Methods."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.paymentMethod">
+          {{ orderInfo.paymentMethod }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="card" *ngIf="orderInfo">
+  <div class="card-body">
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Payment status
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The status of the payment."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.paymentStatus">
+          {{ orderInfo.paymentStatus }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Created on
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="The date/time the order was placed/created."></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="orderInfo.createdOn">
+          {{ orderInfo.createdOn | date: 'medium' }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

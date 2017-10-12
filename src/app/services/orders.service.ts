@@ -10,14 +10,18 @@ export class OrdersService {
       orderStatus: 'Processing',
       paymentStatus: 'Refunded',
       shippingStatus: 'Delivered',
+      guid: 'db8db6cd-894d-4423-9c09-a948c728a2bc',
       customerInfo: {
         name: 'Victoria Terces',
-        email: 'victoria_victoria@nopCommerce.com'
+        email: 'victoria_victoria@nopCommerce.com',
+        ipAddress: '127.0.0.1'
       },
       store: 'store 1',
+      subtotal: 11000,
+      shipping: 500,
       createdOn: 1507725627158,
       orderTotal: 12000,
-      paymentMethod: 'Check / Money Order' 
+      paymentMethod: 'Check / Money Order',
     },
     {
       id: 12334,

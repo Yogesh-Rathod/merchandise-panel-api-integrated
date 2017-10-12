@@ -1,237 +1,235 @@
 <div class="row top20 clearfix fadeIn animated">
-  <div class="col-12">
+	<div class="col-12">
 
-    <div class="catSearch clearfix card-header">
-      <h2 class="card-title ">
-        Manage Orders
-      </h2>
-    </div>
+		<div class="catSearch clearfix card-header">
+			<h2 class="card-title ">
+				Manage Orders
+			</h2>
+		</div>
 
-    <div class="filters card col-12 fadeIn animated">
-      <div class="card-body">
-        <form class="row" [formGroup]="searchProductForm" (ngSubmit)=" searchProduct(searchProductForm.value) ">
+		<div class="filters card col-12 fadeIn animated">
+			<div class="card-body">
+				<form class="row" [formGroup]="searchProductForm" (ngSubmit)=" searchProduct(searchProductForm.value) ">
 
-          <div class="form-group col-6 row">
-            <label for="name" class="col-4 text-right">
-              Product Name
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A product name."></i>
-            </label>
-            <input type="text" class="form-control col-8" id="name" placeholder="Name" formControlName="name">
-          </div>
+					<div class="form-group col-6 row">
+						<label for="name" class="col-4 text-right">
+							Product Name
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A product name."></i>
+						</label>
+						<input type="text" class="form-control col-8" id="name" placeholder="Name" formControlName="name">
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="Store" class="col-4 text-right">
-              Store
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific store."></i>
-            </label>
-            <select id="Store" class="form-control col-8" formControlName="store">
-              <option value="all">All</option>
-              <option *ngFor="let item of stores" value="{{ item }}">
-                {{ item }}
-              </option>
-            </select>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="Store" class="col-4 text-right">
+							Store
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific store."></i>
+						</label>
+						<select id="Store" class="form-control col-8" formControlName="store">
+							<option value="all">All</option>
+							<option *ngFor="let item of stores" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="startDate" class="col-4 text-right">
-              Start Date
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select Start Date for search."></i>
-            </label>
-            <my-date-picker id="startDate" class="col-8 no_padding" name="startDate" [options]="myDatePickerOptions" formControlName="startDate">
-            </my-date-picker>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="startDate" class="col-4 text-right">
+							Start Date
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select Start Date for search."></i>
+						</label>
+						<my-date-picker id="startDate" class="col-8 no_padding" name="startDate" [options]="myDatePickerOptions" formControlName="startDate">
+						</my-date-picker>
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="endDate" class="col-4 text-right">
-              End Date
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select End Date for search."></i>
-            </label>
-            <my-date-picker id="endDate" class="col-8 no_padding" name="endDate" [options]="myDatePickerOptions" formControlName="endDate">
-            </my-date-picker>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="endDate" class="col-4 text-right">
+							End Date
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select End Date for search."></i>
+						</label>
+						<my-date-picker id="endDate" class="col-8 no_padding" name="endDate" [options]="myDatePickerOptions" formControlName="endDate">
+						</my-date-picker>
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="orderStatus" class="col-4 text-right">
-              Order status
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Order status."></i>
-            </label>
-            <angular2-multiselect id="orderStatus" [data]="orderStatus" formControlName="orderStatus" [settings]="orderStatusDropdownSettings">
-            </angular2-multiselect>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="orderStatus" class="col-4 text-right">
+							Order status
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Order status."></i>
+						</label>
+						<angular2-multiselect id="orderStatus" [data]="orderStatus" formControlName="orderStatus" [settings]="orderStatusDropdownSettings">
+						</angular2-multiselect>
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="shippingStatus" class="col-4 text-right">
-              Shipping status
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Shipping status."></i>
-            </label>
-            <angular2-multiselect id="shippingStatus" [data]="shippingStatus" formControlName="shippingStatus" [settings]="orderStatusDropdownSettings">
-            </angular2-multiselect>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="shippingStatus" class="col-4 text-right">
+							Shipping status
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Shipping status."></i>
+						</label>
+						<angular2-multiselect id="shippingStatus" [data]="shippingStatus" formControlName="shippingStatus" [settings]="orderStatusDropdownSettings">
+						</angular2-multiselect>
+					</div>
 
-          <div class="form-group col-6 row">
-            <label for="paymentMethod" class="col-4 text-right">
-              Payment method
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific Payment method."></i>
-            </label>
-            <select id="paymentMethod" class="form-control col-8" formControlName="paymentMethod">
-              <option *ngFor="let item of paymentMethod" value="{{ item }}">
-                {{ item }}
-              </option>
-            </select>
-          </div>
+					<div class="form-group col-6 row">
+						<label for="paymentMethod" class="col-4 text-right">
+							Payment method
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific Payment method."></i>
+						</label>
+						<select id="paymentMethod" class="form-control col-8" formControlName="paymentMethod">
+							<option *ngFor="let item of paymentMethod" value="{{ item }}">
+								{{ item }}
+							</option>
+						</select>
+					</div>
 
-          <div class="form-group col-6 row orderNoField">
-            <label for="orderNo" class="col-4 text-right no_margin">
-               Go directly <br> to order #
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Go directly to order #"></i>
-            </label>
-            <input type="text" class="form-control col-6" id="Order #" placeholder="order #" #orderHash>
-            <span class="go-button" (click)="searchByOrderHash(orderHash.value)">Go</span>
-          </div>
+					<div class="form-group col-6 row orderNoField">
+						<label for="orderNo" class="col-4 text-right no_margin">
+							Go directly
+							<br> to order #
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Go directly to order #"></i>
+						</label>
+						<input type="text" class="form-control col-6" id="Order #" placeholder="order #" #orderHash>
+						<span class="go-button" (click)="searchByOrderHash(orderHash.value)">Go</span>
+					</div>
 
-          <div class="form-group col-12 searchButton">
-            <button type="submit" class="btn btn-primary">
-              <i class="fa fa-search" aria-hidden="true"></i>
-              Search
-            </button>
-            <span class="btn btn-primary" (click)="resetForm()">
-              <i class="fa fa-refresh" aria-hidden="true"></i>
-              Reset
-            </span>
-          </div>
+					<div class="form-group col-12 searchButton">
+						<button type="submit" class="btn btn-primary">
+							<i class="fa fa-search" aria-hidden="true"></i>
+							Search
+						</button>
+						<span class="btn btn-primary" (click)="resetForm()">
+							<i class="fa fa-refresh" aria-hidden="true"></i>
+							Reset
+						</span>
+					</div>
 
-        </form>
-      </div>
-    </div>
+				</form>
+			</div>
+		</div>
 
-    <div class="spacer col-12"></div>
+		<div class="spacer col-12"></div>
 
-    <div class="filters card col-12">
-      <div class="card-body pos_relative no_left_padding no_right_padding" *ngIf=" orders && orders.length !== 0 ">
+		<div class="filters card col-12">
+			<div class="card-body pos_relative no_left_padding no_right_padding" *ngIf=" orders && orders.length !== 0 ">
 
-        <div class="loader-container pos_absolute" *ngIf="bigLoader">
-          <img src="assets/img/ajax-loader.gif" alt="Loader Image">
-        </div>
+				<div class="loader-container pos_absolute" *ngIf="bigLoader">
+					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
+				</div>
 
-        <table class="table table-bordered table-responsive" [mfData]="orders" #mf="mfDataTable" [mfRowsOnPage]="10">
-          <thead class="black-muted-bg">
-            <tr>
-              <th class="text-left orderno">
-                <strong>Order #</strong>
-              </th>
-              <th>
-                <strong>Order status</strong>
-              </th>
-              <th>
-                <strong>Payment status</strong>
-              </th>
-              <th>
-                <strong>Shipping status</strong>
-              </th>
-              <th class="Customer">
-                <strong>Customer</strong>
-              </th>
-              <th class="store">
-                <strong>Store</strong>
-              </th>
-              <th class="createDate">
-                <strong>Created on</strong>
-              </th>
-              <th>
-                <strong>Order total</strong>
-              </th>
-              <th class="action text-center">
-                <strong>Action</strong>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor=" let item of mf.data; let i = index; ">
-              <td class="text-left">
-                {{ item.no }}
-              </td>
-              <td class="order-status">
-                <span
-                  [class.processing]="item.orderStatus.toLowerCase() == 'processing'"
-                  [class.pending]="item.orderStatus.toLowerCase() == 'pending'"
-                  [class.complete]="item.orderStatus.toLowerCase() == 'complete'">
-                  {{ item.orderStatus }}
-                </span>
-              </td>
-              <td>{{ item.paymentStatus }}</td>
-              <td>{{ item.shippingStatus }}</td>
-              <td class="customer">
-                {{ item.customerInfo.name }}
-                 ({{ item.customerInfo.email }})
-              </td>
-              <td>{{ item.store }}</td>
-              <td>
-                {{ item.createdOn | date: 'shortDate' }}
-              </td>
-              <td>
-                {{ item.orderTotal | currency: 'INR': true }}
-              </td>
-              <td class="action">
-                <button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="View Details">
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                   View
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot *ngIf=" orders && orders.length > 10 ">
-            <tr>
-              <td colspan="5">
-                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+				<table class="table table-bordered table-responsive" [mfData]="orders" #mf="mfDataTable" [mfRowsOnPage]="10">
+					<thead class="black-muted-bg">
+						<tr>
+							<th class="text-left orderno">
+								<strong>Order #</strong>
+							</th>
+							<th>
+								<strong>Order status</strong>
+							</th>
+							<th>
+								<strong>Payment status</strong>
+							</th>
+							<th>
+								<strong>Shipping status</strong>
+							</th>
+							<th class="Customer">
+								<strong>Customer</strong>
+							</th>
+							<th class="store">
+								<strong>Store</strong>
+							</th>
+							<th class="createDate">
+								<strong>Created on</strong>
+							</th>
+							<th>
+								<strong>Order total</strong>
+							</th>
+							<th class="action text-center">
+								<strong>Action</strong>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor=" let item of mf.data; let i = index; ">
+							<td class="text-left">
+								{{ item.no }}
+							</td>
+							<td class="order-status">
+								<span [class.processing]="item.orderStatus.toLowerCase() == 'processing'" [class.pending]="item.orderStatus.toLowerCase() == 'pending'"
+								 [class.complete]="item.orderStatus.toLowerCase() == 'complete'">
+									{{ item.orderStatus }}
+								</span>
+							</td>
+							<td>{{ item.paymentStatus }}</td>
+							<td>{{ item.shippingStatus }}</td>
+							<td class="customer">
+								{{ item.customerInfo.name }} ({{ item.customerInfo.email }})
+							</td>
+							<td>{{ item.store }}</td>
+							<td>
+								{{ item.createdOn | date: 'shortDate' }}
+							</td>
+							<td>
+								{{ item.orderTotal | currency: 'INR': true }}
+							</td>
+							<td class="action">
+								<button class="btn btn-secondary" [routerLink]="['./order-details/', item.id]" title="View Details">
+									<i class="fa fa-eye" aria-hidden="true"></i>
+									View
+								</button>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot *ngIf=" orders && orders.length > 10 ">
+						<tr>
+							<td colspan="5">
+								<mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
 
-      <div class="card-body" *ngIf=" orders && orders.length === 0 ">
-        <table class="table table-bordered table-responsive">
-          <thead class="black-muted-bg">
-            <tr>
-              <th class="text-left">
-                <strong>Order #</strong>
-              </th>
-              <th>
-                <strong>Order status</strong>
-              </th>
-              <th>
-                <strong>Payment status</strong>
-              </th>
-              <th>
-                <strong>Shipping status</strong>
-              </th>
-              <th class="Customer">
-                <strong>Customer</strong>
-              </th>
-              <th>
-                <strong>Store</strong>
-              </th>
-              <th>
-                <strong>Created on</strong>
-              </th>
-              <th>
-                <strong>Order total</strong>
-              </th>
-              <th class="action">
-                <strong>Action</strong>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="9">
-                <strong>There are no products!</strong>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+			<div class="card-body" *ngIf=" orders && orders.length === 0 ">
+				<table class="table table-bordered table-responsive">
+					<thead class="black-muted-bg">
+						<tr>
+							<th class="text-left">
+								<strong>Order #</strong>
+							</th>
+							<th>
+								<strong>Order status</strong>
+							</th>
+							<th>
+								<strong>Payment status</strong>
+							</th>
+							<th>
+								<strong>Shipping status</strong>
+							</th>
+							<th class="Customer">
+								<strong>Customer</strong>
+							</th>
+							<th>
+								<strong>Store</strong>
+							</th>
+							<th>
+								<strong>Created on</strong>
+							</th>
+							<th>
+								<strong>Order total</strong>
+							</th>
+							<th class="action">
+								<strong>Action</strong>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="9">
+								<strong>There are no products!</strong>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-  </div>
+	</div>
 </div>

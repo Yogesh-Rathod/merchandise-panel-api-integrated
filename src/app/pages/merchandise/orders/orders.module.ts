@@ -11,6 +11,11 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 
 import { OrdersComponent } from "./orders.component";
 import { ProductsService, OrdersService } from 'app/services';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { BasicInfoComponent } from './order-details/basic-info/basic-info.component';
+import { BillingInfoComponent } from './order-details/billing-info/billing-info.component';
+import { ShippingInfoComponent } from './order-details/shipping-info/shipping-info.component';
+import { ProductsComponent } from './order-details/products/products.component';
 
 @NgModule({
   imports: [
@@ -25,7 +30,12 @@ import { ProductsService, OrdersService } from 'app/services';
     AngularMultiSelectModule
   ],
   declarations: [
-    OrdersComponent
+    OrdersComponent,
+    OrderDetailsComponent,
+    BasicInfoComponent,
+    BillingInfoComponent,
+    ShippingInfoComponent,
+    ProductsComponent
   ],
   providers: [
     MerchandiseService,

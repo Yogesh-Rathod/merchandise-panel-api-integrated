@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { OrdersComponent } from './orders.component';
-// import { AddCategoryComponent } from './add-category/add-category.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -9,8 +9,8 @@ const routes: Routes = [
     component: OrdersComponent
   },
   {
-    path: 'add-order',
-    // component: AddCategoryComponent
+    path: 'order-details/:orderId',
+    component: OrderDetailsComponent
   }
 ];
 

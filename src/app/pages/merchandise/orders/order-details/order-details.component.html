@@ -1,0 +1,53 @@
+<div class="animated fadeIn card orderDetails">
+
+  <div class="card-header clearfix">
+    <h2 class="card-title">
+       Edit order details - 
+       <span *ngIf="orderInfo.no">{{ orderInfo.no }}</span>
+
+      <span class="goBack float-right" [routerLink]="['/merchandise/orders']">
+        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to orders list</span>
+    </h2>
+  </div>
+  
+  <div class="card-body">
+
+    <div class="loader-container pos_absolute" *ngIf="bigLoader">
+      <img src="assets/img/ajax-loader.gif" alt="Loader Image">
+    </div>
+
+    <div class="tabs-section">
+      <!-- Tabs Top UI -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#info" role="tab" data-toggle="tab">Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#billingInfo" role="tab" data-toggle="tab">Billing Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#shippingInfo" role="tab" data-toggle="tab">Shipping Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#products" role="tab" data-toggle="tab">Products</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-content col-12 no_left_padding no_right_padding">
+      <div role="tabpanel" class="tab-pane fade in active" id="info">
+        <app-basic-info class="col-12" [orderInfo]="orderInfo"></app-basic-info>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="billingInfo">
+        <app-billing-info></app-billing-info>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="shippingInfo">
+        <app-shipping-info></app-shipping-info>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="products">
+        <app-products></app-products>
+      </div>
+    </div>
+
+  </div>
+</div>
