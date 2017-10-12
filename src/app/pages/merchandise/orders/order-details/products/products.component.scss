@@ -1,0 +1,28 @@
+.card {
+  border: 1px solid rgba(0,0,0,.125);
+  box-shadow: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+table {
+  thead {
+    th {
+      font-weight: bold;
+    }
+  }
+
+  tr {
+
+    .productName {
+      color: #4db1a7;
+    }
+
+    .product-image {
+      width: 115px;
+      margin: auto;
+    }
+  }
+}
