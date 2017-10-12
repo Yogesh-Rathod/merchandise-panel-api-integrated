@@ -39,7 +39,7 @@
 		<div class="spacer col-12"></div>
 
 		<div class="filters card col-12">
-			<div class="card-body" *ngIf=" categories && categories.length !== 0 ">
+			<div class="card-body">
 				<table class="table table-bordered table-responsive"  [mfData]="categories" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
 						<tr>
@@ -50,7 +50,7 @@
 							<th class="text-center"><strong>Action</strong></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody *ngIf=" categories && categories.length > 0 ">
 						<tr *ngFor=" let item of mf.data | searchfilter: 'parent_name,name' : searchTerm; let i = index " >
 							<!-- <td>{{ i + 1 }}</td> -->
 							<td class="text-left">
@@ -74,6 +74,15 @@
 							</td>
 						</tr>
 					</tbody>
+
+					<tbody *ngIf=" categories && categories.length === 0 ">
+						<tr>
+							<td colspan="5">
+								<strong>There are no categories!</strong>
+							</td>
+						</tr>
+					</tbody>
+
 					<tfoot *ngIf=" categories && categories.length > 10 ">
 						<tr>
 							<td colspan="5">
@@ -84,26 +93,6 @@
 				</table>
 			</div>
 
-			<div class="card-body" *ngIf=" categories && categories.length === 0 ">
-				<table class="table table-bordered table-responsive">
-					<thead class="black-muted-bg">
-						<tr>
-							<th>No.</th>
-							<th>Name</th>
-							<th>Published</th>
-							<th>Display Order</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="5">
-								<strong>There are no categories!</strong>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 		</div>
 
 	</div>

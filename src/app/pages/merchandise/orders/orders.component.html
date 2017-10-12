@@ -108,7 +108,7 @@
 		<div class="spacer col-12"></div>
 
 		<div class="filters card col-12">
-			<div class="card-body pos_relative no_left_padding no_right_padding" *ngIf=" orders && orders.length !== 0 ">
+			<div class="card-body pos_relative no_left_padding no_right_padding">
 
 				<div class="loader-container pos_absolute" *ngIf="bigLoader">
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
@@ -146,7 +146,7 @@
 							</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody *ngIf=" orders && orders.length > 0 ">
 						<tr *ngFor=" let item of mf.data; let i = index; ">
 							<td class="text-left">
 								{{ item.no }}
@@ -177,6 +177,15 @@
 							</td>
 						</tr>
 					</tbody>
+
+					<tbody *ngIf=" orders && orders.length === 0 ">
+						<tr>
+							<td colspan="9">
+								<strong>There are no orders!</strong>
+							</td>
+						</tr>
+					</tbody>
+
 					<tfoot *ngIf=" orders && orders.length > 10 ">
 						<tr>
 							<td colspan="5">
@@ -187,48 +196,6 @@
 				</table>
 			</div>
 
-			<div class="card-body" *ngIf=" orders && orders.length === 0 ">
-				<table class="table table-bordered table-responsive">
-					<thead class="black-muted-bg">
-						<tr>
-							<th class="text-left">
-								<strong>Order #</strong>
-							</th>
-							<th>
-								<strong>Order status</strong>
-							</th>
-							<th>
-								<strong>Payment status</strong>
-							</th>
-							<th>
-								<strong>Shipping status</strong>
-							</th>
-							<th class="Customer">
-								<strong>Customer</strong>
-							</th>
-							<th>
-								<strong>Store</strong>
-							</th>
-							<th>
-								<strong>Created on</strong>
-							</th>
-							<th>
-								<strong>Order total</strong>
-							</th>
-							<th class="action">
-								<strong>Action</strong>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="9">
-								<strong>There are no products!</strong>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 		</div>
 
 	</div>
