@@ -39,13 +39,13 @@
         <app-basic-info class="col-12" [orderInfo]="orderInfo"></app-basic-info>
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="billingInfo">
-        <app-billing-info></app-billing-info>
+        <app-billing-info class="col-12" [orderInfo]="orderInfo"></app-billing-info>
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="shippingInfo">
         <app-shipping-info></app-shipping-info>
       </div>
       <div role="tabpanel" class="tab-pane fade in" id="products">
-        <app-products></app-products>
+        <app-products class="col-12" [orderInfo]="orderInfo"></app-products>
       </div>
     </div>
 

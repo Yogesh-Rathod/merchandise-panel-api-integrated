@@ -1,3 +1,106 @@
-<p>
-  billing-info works!
-</p>
+<div class="card" *ngIf="orderInfo">
+  <div class="card-body">
+
+    <div class="info-record row">
+      <div class="col-4 text-right bold">
+        <label>Billing address</label>
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Billing address info."></i>
+      </div>
+      <div class="col-8">
+        <table class="table table-bordered" style="max-width: 400px;">
+          <tbody>
+            <tr>
+              <td>
+                Full name
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.name">{{ orderInfo.customerInfo.name }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Email
+              </td>
+              <td>
+                 <span *ngIf="orderInfo.customerInfo.email">{{ orderInfo.customerInfo.email }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Phone
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.phone">{{ orderInfo.customerInfo.phone }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Fax
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.fax">{{ orderInfo.customerInfo.fax }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Company
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.company">{{ orderInfo.customerInfo.company }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Address 1
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.address1">{{ orderInfo.customerInfo.address1 }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Address 2
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.address2">{{ orderInfo.customerInfo.address2 }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                City
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.city">{{ orderInfo.customerInfo.city }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                State / province
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.stateProvince">{{ orderInfo.customerInfo.stateProvince }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Zip / postal code
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.zip">{{ orderInfo.customerInfo.zip }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Country
+              </td>
+              <td>
+                <span *ngIf="orderInfo.customerInfo.country">{{ orderInfo.customerInfo.country }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

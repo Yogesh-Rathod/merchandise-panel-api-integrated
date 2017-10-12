@@ -81,8 +81,8 @@ export class AddCategoryComponent implements OnInit {
       this.merchandiseService.addCategory(categoryInfo);
     }
     this.showLoader = false;
-    // this.toastr.success('Sucessfully Done!', 'Sucess!');
-    // this.router.navigate(['../']);
+    this.toastr.success('Sucessfully Done!', 'Sucess!');
+    this.router.navigate(['../']);
   }
 
   imageUpload(event) {

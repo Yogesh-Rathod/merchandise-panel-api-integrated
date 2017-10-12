@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+declare let $: any;
 
 @Component({
   selector: 'app-billing-info',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillingInfoComponent implements OnInit {
 
+  @Input() orderInfo: any;
+
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    console.log("this.orderInfo ", this.orderInfo);
   }
 
 }
