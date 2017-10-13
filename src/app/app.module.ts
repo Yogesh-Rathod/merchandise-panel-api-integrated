@@ -24,6 +24,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CustomToast } from './providers/custome_toast';
 import { ToastOptions } from 'ng2-toastr/src/toast-options';
+import { AuthGuard } from 'app/guards/auth-guard.service';
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -32,6 +34,7 @@ const APP_PROVIDERS = [
   CommonService,
   {provide: ToastOptions, useClass: CustomToast},
   CookieService,
+  AuthGuard
 ];
 
 export type StoreType = {
@@ -50,7 +53,8 @@ import { LrSharedModule } from '../lrshared_modules/lr-shared.module';
   bootstrap: [App],
   declarations: [
     App,
-    NotFoundComponent
+    NotFoundComponent,
+    // AuthGuard
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -66,9 +70,11 @@ import { LrSharedModule } from '../lrshared_modules/lr-shared.module';
     BrowserAnimationsModule,
     CookieModule.forRoot(),
     LrSharedModule,
+    
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,
+    
   ],
 })
 
