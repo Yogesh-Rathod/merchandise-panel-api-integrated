@@ -2,14 +2,14 @@
 
   <div class="card-header clearfix">
     <h2 class="card-title">
-       Edit order details - 
-       <span *ngIf="orderInfo">{{ orderInfo.no }}</span>
+       Edit order details
+       <span *ngIf="orderInfo"> - {{ orderInfo.no }}</span>
 
-      <button class="btn btn-danger float-right">
+      <button class="btn btn-danger float-right" *ngIf="orderInfo">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
         Delete
       </button>
-      <button class="btn btn-warning float-right">
+      <button class="btn btn-warning float-right" *ngIf="orderInfo">
         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
         Invoice (PDF)
       </button>
