@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 declare let $: any;
@@ -67,7 +68,9 @@ export class OrdersComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productsService: ProductsService,
-    private ordersService: OrdersService) {
+    private ordersService: OrdersService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -101,8 +104,7 @@ export class OrdersComponent implements OnInit {
   }
 
   searchByOrderHash(orderHash) {
-    console.log("orderHash ", orderHash);
-
+    this.router.navigate( ['order-details', orderHash], { relativeTo: this.route });
   }
 
   resetForm() {

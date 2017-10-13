@@ -35,6 +35,7 @@ export class OrderDetailsComponent implements OnInit {
       _.forEach(this.orders, (order) => {
         if (order.id === parseInt(this.orderId)) {
           this.orderInfo = order;
+          console.log("this.orderInfo ", this.orderInfo);
         }
       });
     }

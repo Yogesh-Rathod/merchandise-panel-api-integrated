@@ -3,7 +3,7 @@
   <div class="card-header clearfix">
     <h2 class="card-title">
        Edit order details - 
-       <span *ngIf="orderInfo.no">{{ orderInfo.no }}</span>
+       <span *ngIf="orderInfo">{{ orderInfo.no }}</span>
 
       <button class="btn btn-danger float-right">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -19,7 +19,7 @@
     </h2>
   </div>
   
-  <div class="card-body">
+  <div class="card-body" *ngIf="orderInfo">
 
     <div class="loader-container pos_absolute" *ngIf="bigLoader">
       <img src="assets/img/ajax-loader.gif" alt="Loader Image">
@@ -58,5 +58,9 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="card-body" *ngIf="!orderInfo">
+    We could not found any order info for this order hash!!!
   </div>
 </div>
