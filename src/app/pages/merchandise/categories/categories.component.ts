@@ -34,11 +34,11 @@ export class CategoriesComponent implements OnInit {
 
   getAllCategories() {
     this.categories = this.merchandiseService.getCategories();
-    console.log("this.categories", this.categories);
+    // console.log("this.categories", this.categories);
   }
 
   searchCategory(searchTerm) {
-    console.log("searchTerm", searchTerm);
+    // console.log("searchTerm", searchTerm);
     this.searchTerm = searchTerm;
   }
 

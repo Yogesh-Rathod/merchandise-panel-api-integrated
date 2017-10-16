@@ -8,30 +8,24 @@ export const routes: Routes = [
   {
     path: 'login',
     canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
     loadChildren: 'lrshared_modules/pages/login/login.module#LoginModule'
   },
   {
     path: '',
     component: Pages,
+    canActivateChild: [AuthGuard], 
     children: [
       { 
         path: '', 
-        canActivate: [AuthGuard], 
-        canActivateChild: [AuthGuard], 
         redirectTo: 'merchandise/categories', 
         pathMatch: 'full' 
       },
       { 
         path: 'merchandise', 
-        canActivate: [AuthGuard], 
-        canActivateChild: [AuthGuard], 
         loadChildren: './merchandise/merchandise.module#MerchandiseModule' 
       },
       {
         path: 'user-management',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         loadChildren: 'lrshared_modules/pages/user-management/user-management.module#UserManagementModule'
       }
     ]
