@@ -21,15 +21,15 @@ const menus = [
           }
         }
       },
-      {
-        path: 'vendors',
-        data: {
-          menu: {
-            title: 'Vendors',
-            pathMatch: 'partial'
-          }
-        }
-      },
+      // {
+      //   path: 'vendors',
+      //   data: {
+      //     menu: {
+      //       title: 'Vendors',
+      //       pathMatch: 'partial'
+      //     }
+      //   }
+      // },
       {
         path: 'products',
         data: {
