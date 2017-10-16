@@ -27,7 +27,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivateChild() {
     let userInfo = this._cookieService.get('CRM.userData');
     if (!userInfo) {
-      console.log("this.toastr ", this.toastr);
       if (!this.isToasterPresent) {
         this.toastr.error('Something went wrong! You need to Login!', 'Error!');
         this.isToasterPresent = true;
