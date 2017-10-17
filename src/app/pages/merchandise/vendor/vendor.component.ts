@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
-import * as $ from 'jquery';
 import * as _ from 'lodash';
-import 'datatables.net';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { MerchandiseService } from 'app/services';
+import { VendorsService } from 'app/services';
 
 @Component({
   selector: 'app-vendor',
@@ -14,50 +12,36 @@ import { MerchandiseService } from 'app/services';
   styleUrls: [`./vendor.component.scss`],
 })
 export class VendorComponent implements OnInit {
+
   vendorsList: any;
-  vendorInDeleteMode: any;
-  jquery: JQueryStatic;
+  searchTerm: any;
 
   constructor(
     public toastr: ToastsManager,
-    public vcr: ViewContainerRef,
     private route: ActivatedRoute,
     private router: Router,
-    private merchandiseService: MerchandiseService) {
-    this.toastr.setRootViewContainerRef(vcr);
+    private vendorsService: VendorsService) {
   }
 
   ngOnInit() {
     this.getAllVendors();
-    this.dataTablesInit();
   }
 
   getAllVendors() {
-    this.vendorsList = this.merchandiseService.getVendors();
+    this.vendorsList = this.vendorsService.getVendors();
+    console.log("this.vendorsList ", this.vendorsList);
   }
 
-  dataTablesInit() {
-    $(document).ready( () => {
-      (<any> $('#vendortable')).DataTable({
-        'lengthMenu': [[10, 20, 30, -1], [10, 20, 30, 'All']],
-        'autoWidth': false,
-        'language': {
-          'emptyTable': 'There are no vendors!',
-        },
-      });
-    });
+  searchVendor(searchText) {
+    this.searchTerm = searchText;
   }
 
-  deleteVendorPopUp(vendor) {
-    this.vendorInDeleteMode = vendor;
-  }
+  bulkUpload() {}
 
   deleteVendor() {
-    _.remove(this.vendorsList, this.vendorInDeleteMode);
-    this.merchandiseService.deleteVendor(this.vendorsList);
-    this.toastr.success('Item deleted successfully!', 'Success!', {toastLife: 2000} );
-    (<any> $('#vendortable')).dataTable().fnDestroy();
-    this.ngOnInit();
+    // _.remove(this.vendorsList, this.vendorInDeleteMode);
+    this.vendorsService.editVendor(this.vendorsList);
+    this.toastr.success('Vendor deleted successfully!', 'Success!');
   }
 
 }

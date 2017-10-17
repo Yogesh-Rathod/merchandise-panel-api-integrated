@@ -1,50 +1,105 @@
-<div class="container clearfix card fadeIn animated">
-	<h2 class="card-title">Vendors List</h2>
+<div class="row top20 clearfix fadeIn animated">
+	<div class="col-12">
 
-	<div class="vendors-table">
+		<div class="catSearch clearfix card-header">
+			<h2 class="card-title ">
+				Manage Vendors
+				<button class="btn btn-primary float-right" (click)=" bulkUpload() ">
+					<i class="fa fa-download" aria-hidden="true"></i>
+					Import
+				</button>
+				<button class="btn btn-primary float-right" [routerLink]="['./add-vendor']">
+					<i class="fa fa-plus-square" aria-hidden="true"></i>
+					Add New
+				</button>
+			</h2>
+		</div>
 
-		<table class="table table-hover table-bordered" *ngIf="vendorsList" id="vendortable">
-			<thead>
-				<tr class="clearfix">
-					<th class="number">{{ 'merchandise.vendor.no' | translate }}.</th>
-					<th class="name">{{ 'merchandise.categories.name' | translate }}</th>
-					<th class="code">{{ 'merchandise.vendor.code' | translate }}</th>
-					<th class="action-buttons">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor=" let vendor of vendorsList; let i = index; " class="clearfix">
-					<td class="number">{{ i + 1 }}</td>
-					<td class="name">{{ vendor.first_name }}</td>
-					<td class="code">{{ vendor.last_name }}{{ vendor.id }} </td>
-					<td class="action-buttons">
-						<a class="btn btn-success" title="Show Products For this Vendor" routerLink="{{vendor.id}}/products">View Products</a>
-						<a class="btn btn-danger" title="Delete Vendor" data-toggle="modal" data-target="#deleteModal" (click)="deleteVendorPopUp(vendor)">Delete</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="filters card col-12 fadeIn animated">
+			<div class="card-body">
+				<form>
+
+					<div class="form-group row">
+						<label for="name" class="col-2 text-right">Vendor Name
+							<span class="mandatory">*</span>
+						</label>
+						<input type="text" #searchText class="form-control col-4" id="name" placeholder="Name">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-2"></label>
+						<button type="submit" class="btn btn-primary no_margin" (click)=" searchVendor(searchText.value) ">
+							<i class="fa fa-search" aria-hidden="true"></i>
+							Search
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+		<div class="spacer col-12"></div>
+
+		<div class="filters card col-12">
+			<div class="card-body">
+				<table class="table table-bordered table-responsive" [mfData]="vendorsList" #mf="mfDataTable" [mfRowsOnPage]="10">
+					<thead class="black-muted-bg">
+						<tr>
+							<th class="text-left">
+								<strong>Name</strong>
+							</th>
+							<th>
+								<strong>Email</strong>
+							</th>
+							<th class="text-center">
+								<strong>Active</strong>
+							</th>
+							<th class="text-center">
+								<strong>Action</strong>
+							</th>
+						</tr>
+					</thead>
+					<tbody *ngIf=" vendorsList && vendorsList.length > 0 ">
+						<tr *ngFor=" let item of mf.data | searchfilter: 'first_name,last_name' : searchTerm">
+							<td class="text-left">
+								{{ item.first_name }} {{ item.last_name }}
+							</td>
+							<td>{{ item.email }}</td>
+							<td class="text-center">
+								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
+								<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+							</td>
+							<td class="text-center">
+								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item.id]" title="Edit">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button>
+								<!-- <button class="btn btn-danger" (click)="deleteCategory(item, i)" title="Delete" [disabled]="deleteLoader == i">
+									<i class="fa fa-trash-o" aria-hidden="true"></i>
+								</button> -->
+								<!-- <img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35"> -->
+							</td>
+						</tr>
+					</tbody>
+
+					<tbody *ngIf=" vendorsList && vendorsList.length === 0 ">
+						<tr>
+							<td colspan="5">
+								<strong>There are no categories!</strong>
+							</td>
+						</tr>
+					</tbody>
+
+					<tfoot *ngIf=" vendorsList && vendorsList.length > 10 ">
+						<tr>
+							<td colspan="5">
+								<mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+		</div>
+
 	</div>
-</div>
-
-
-<!-- Delete Vendor Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Vendor Delete Confirmation!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete this vendor?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteVendor()">Yes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-      </div>
-    </div>
-  </div>
 </div>

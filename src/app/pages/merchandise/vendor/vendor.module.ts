@@ -1,3 +1,4 @@
+import { DataTableModule } from 'angular2-datatable';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -5,9 +6,9 @@ import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './vendor.routes';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+import { SearchVendorPipe } from './search-vendor.pipe';
 import { VendorComponent} from './vendor.component';
-import { ProductsComponent } from './products/products.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
+import { VendorsService } from 'app/services';
 
 @NgModule({
   imports: [
@@ -17,13 +18,14 @@ import { AddproductComponent } from './addproduct/addproduct.component';
     routing,
     ReactiveFormsModule,
     ToastModule.forRoot(),
+    DataTableModule
   ],
   declarations: [
     VendorComponent,
-    ProductsComponent,
-    AddproductComponent,
+    SearchVendorPipe
   ],
   providers: [
+    VendorsService
   ],
 })
 export class VendorModule {}
