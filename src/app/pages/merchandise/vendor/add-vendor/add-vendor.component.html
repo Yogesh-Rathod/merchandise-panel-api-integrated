@@ -1,0 +1,80 @@
+<!-- <div class="animated fadeIn card addCategory">
+
+  <div class="card-header clearfix">
+    <h2 class="card-title">
+      Add Vendor
+
+      <img *ngIf=" deleteLoader " class="float-right deleteLoader" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35"
+        height="35">
+
+      <button *ngIf=" vendorId " class="btn btn-danger float-right" (click)="deleteVendor()" [disabled]="deleteLoader">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        Delete
+      </button>
+      <span class="goBack float-right" [routerLink]="['/merchandise/vendors']">
+        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back to vendors list</span>
+
+    </h2>
+  </div>
+
+  <div class="card-body">
+
+    <form class="col-12" [formGroup]=" addCategoryForm " (ngSubmit)=" addCategory(addCategoryForm.value) ">
+      <input type="hidden" formControlName="id">
+      <div class="form-group row">
+        <label for="name" class="col-3 text-right">Name
+          <span class="mandatory">*</span>
+        </label>
+        <input type="text" class="form-control col-9" id="name" placeholder="Name" formControlName="name">
+      </div>
+
+      <div class="form-group row">
+        <label for="Description" class="col-3 text-right">Description
+          <span class="mandatory">*</span>
+        </label>
+        <ckeditor class="form-control col-9" [config]="config" formControlName="description"></ckeditor>
+      </div>
+
+      <div class="form-group row">
+        <label for="Picture" class="col-3 text-right">Picture</label>
+        <input type="file" class="form-control col-9" id="Picture" (change)=" imageUpload($event) ">
+      </div>
+
+      <div class="form-group row">
+        <label for="ParentCategory" class="col-3 text-right">Parent Category</label>
+        <select id="ParentCategory" class="form-control col-9" formControlName="parentCat" *ngIf=" categories ">
+          <option *ngFor="let category of categories " [ngValue]=" category ">
+            <span *ngIf=" category.parent_name !== null && category.parent_name !== '' ">{{ category.parent_name }} >></span>
+            <span>{{ category.name }}</span>
+          </option>
+        </select>
+        <select *ngIf=" !categories " class="form-control col-9">
+          <option value="noCat">There are no categories yet!</option>
+        </select>
+      </div>
+
+      <div class="form-group row">
+        <label for="Displayorder" class="col-3 text-right">Display order
+          <span class="mandatory">*</span>
+        </label>
+        <input type="number" class="form-control col-9" id="name" placeholder="Displayorder" formControlName="order">
+      </div>
+
+      <div class="form-group row">
+        <label for="published" class="col-3 text-right">Published</label>
+        <input type="checkbox" id="published" formControlName="published">
+      </div>
+
+      <div class="form-group row">
+        <label class="col-3 text-right"></label>
+        <input *ngIf=" !categoryId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addCategoryForm.valid || showLoader ">
+        <input *ngIf=" categoryId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addCategoryForm.valid || showLoader ">
+        <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
+        <span class="btn btn-secondary" [routerLink]="['/merchandise/categories']">Cancel</span>
+      </div>
+
+    </form>
+
+  </div>
+
+</div> -->

@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VendorsService } from 'app/services';
+import { VendorsBulkUploadComponent } from './bulk-upload/bulk-upload.component';
 
 @Component({
   selector: 'app-vendor',
@@ -15,8 +16,11 @@ export class VendorComponent implements OnInit {
 
   vendorsList: any;
   searchTerm: any;
+  bigLoader = false;
+  deleteLoader: Number;
 
   constructor(
+    private modalService: NgbModal,
     public toastr: ToastsManager,
     private route: ActivatedRoute,
     private router: Router,
@@ -36,12 +40,16 @@ export class VendorComponent implements OnInit {
     this.searchTerm = searchText;
   }
 
-  bulkUpload() {}
+  bulkUpload() {
+    const activeModal = this.modalService.open(VendorsBulkUploadComponent, { size: 'sm' });
+  }
 
-  deleteVendor() {
-    // _.remove(this.vendorsList, this.vendorInDeleteMode);
+  deleteVendor(item, index) {
+    this.deleteLoader = index;
+    _.remove(this.vendorsList, item);
     this.vendorsService.editVendor(this.vendorsList);
-    this.toastr.success('Vendor deleted successfully!', 'Success!');
+    this.deleteLoader = NaN;
+    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
   }
 
 }

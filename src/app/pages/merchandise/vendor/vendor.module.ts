@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './vendor.routes';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { SearchVendorPipe } from './search-vendor.pipe';
 import { VendorComponent} from './vendor.component';
 import { VendorsService } from 'app/services';
+import { AddVendorComponent } from './add-vendor/add-vendor.component';
 
 @NgModule({
   imports: [
@@ -17,12 +17,12 @@ import { VendorsService } from 'app/services';
     AppTranslationModule,
     routing,
     ReactiveFormsModule,
-    ToastModule.forRoot(),
     DataTableModule
   ],
   declarations: [
     VendorComponent,
-    SearchVendorPipe
+    SearchVendorPipe,
+    AddVendorComponent
   ],
   providers: [
     VendorsService

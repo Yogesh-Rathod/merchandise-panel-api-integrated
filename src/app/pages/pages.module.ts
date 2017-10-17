@@ -10,6 +10,7 @@ import { Pages } from './pages.component';
 import { MerchandiseService } from 'app/services';
 import { BulkUploadComponent } from './merchandise/categories/bulk-upload/bulk-upload.component';
 import { ProductsBulkUploadComponent } from './merchandise/products/bulk-upload/bulk-upload.component';
+import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bulk-upload.component';
 
 @NgModule({
   imports: [
@@ -21,14 +22,16 @@ import { ProductsBulkUploadComponent } from './merchandise/products/bulk-upload/
   declarations: [
     Pages,
     BulkUploadComponent,
-    ProductsBulkUploadComponent
+    ProductsBulkUploadComponent,
+    VendorsBulkUploadComponent
   ],
   providers: [
     MerchandiseService,
   ],
   entryComponents: [
     BulkUploadComponent,
-    ProductsBulkUploadComponent
+    ProductsBulkUploadComponent,
+    VendorsBulkUploadComponent
   ],
 })
 export class PagesModule {

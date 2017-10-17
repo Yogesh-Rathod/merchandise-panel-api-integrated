@@ -6,17 +6,14 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [AuthGuard],
     component: CategoriesComponent
   },
   {
     path: 'add-category',
-    // canActivate: [AuthGuard],
     component: AddCategoryComponent
   },
   {
     path: 'edit-category/:categoryId',
-    // canActivate: [AuthGuard],
   	component: AddCategoryComponent
   }
 ];
