@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppTranslationModule } from '../../../app.translation.module';
 import { routing } from './vendor.routes';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import { SearchVendorPipe } from './search-vendor.pipe';
 import { VendorComponent} from './vendor.component';
@@ -17,7 +18,8 @@ import { AddVendorComponent } from './add-vendor/add-vendor.component';
     AppTranslationModule,
     routing,
     ReactiveFormsModule,
-    DataTableModule
+    DataTableModule,
+    CKEditorModule
   ],
   declarations: [
     VendorComponent,

@@ -13,7 +13,7 @@ const routes: Routes = [
     component: AddVendorComponent
   },
   {
-    path: 'edit-vendor/:categoryId',
+    path: 'edit-vendor/:vendorId',
     component: AddVendorComponent
   }
 ];

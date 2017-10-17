@@ -526,6 +526,11 @@ export class VendorsService {
     return this.vendors;
   }
 
+  addVendor(vendor) {
+    this.vendors.push(vendor);
+    return this.vendors;
+  }
+
   editVendor(vendors) {
     this.vendors = vendors;
     return this.vendors;
