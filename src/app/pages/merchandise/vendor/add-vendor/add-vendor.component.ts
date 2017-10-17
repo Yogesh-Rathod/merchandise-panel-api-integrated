@@ -105,7 +105,6 @@ export class AddVendorComponent implements OnInit {
 
   getVendorInfoForEdit() {
     if (this.vendorId) {
-      console.log("this.vendorId ", this.vendorId);
       const vendors = this.vendorsService.getVendors();
       _.forEach(vendors, (vendor) => {
         if (vendor.id === parseInt(this.vendorId)) {
@@ -121,6 +120,13 @@ export class AddVendorComponent implements OnInit {
     }
   }
 
-  deleteVendor() { }
+  deleteVendor() {
+    this.deleteLoader = true;
+    _.remove(this.vendors, this.vendorInfo);
+    this.vendorsService.editVendor(this.vendors);
+    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+    this.deleteLoader = false;
+    this._location.back();
+  }
 
 }

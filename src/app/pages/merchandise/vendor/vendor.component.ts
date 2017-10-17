@@ -33,7 +33,6 @@ export class VendorComponent implements OnInit {
 
   getAllVendors() {
     this.vendorsList = this.vendorsService.getVendors();
-    console.log("this.vendorsList ", this.vendorsList);
   }
 
   searchVendor(searchText) {
