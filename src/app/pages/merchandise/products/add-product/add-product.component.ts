@@ -27,6 +27,7 @@ export class AddProductComponent implements OnInit {
   showLoader = false;
   deleteLoader = false;
   categories = [];
+  vendors = ['vendor 1', 'vendor 2'];
   categoriesDropdownSettings = {
     singleSelection: false,
     text: "Select Categories",
@@ -71,9 +72,11 @@ export class AddProductComponent implements OnInit {
       'sku': ['', Validators.required],
       'published': [''],
       'MrpPrice': ['', Validators.required],
+      'oldPrice': [''],
       'retailPrice': ['', Validators.required],
       'stockQuantity': ['', Validators.required],
       'categories': [[], Validators.required],
+      'vendor': [''],
       'pictureName': [''],
       'pictureAlt': [''],
       'pictureTitle': [''],
@@ -96,6 +99,7 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['sku'].setValue(product.sku);
           this.addProductForm.controls['published'].setValue(product.published); 
           this.addProductForm.controls['MrpPrice'].setValue(product.MrpPrice);
+          this.addProductForm.controls['oldPrice'].setValue(product.MrpPrice);
           this.addProductForm.controls['retailPrice'].setValue(product.retailPrice);
           this.addProductForm.controls['stockQuantity'].setValue(product.stockQuantity);
           // this.addProductForm.controls['pictureName'].setValue(product.picture[0].url);

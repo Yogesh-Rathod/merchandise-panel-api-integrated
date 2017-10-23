@@ -111,6 +111,12 @@
                   </label>
                   <input type="number" class="form-control col-9" id="Price" placeholder="MRP Price" formControlName="MrpPrice" value="0">
                 </div>
+                <div class="form-group row" *ngIf=" productId ">
+                  <label for="oldPrice" class="col-3 text-right">Old MRP Price
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="number" class="form-control col-9" id="oldPrice" placeholder="Old MRP Price" formControlName="oldPrice" value="0">
+                </div>
                 <div class="form-group row">
                   <label for="Price" class="col-3 text-right">Retail Price
                     <span class="mandatory">*</span>
@@ -125,7 +131,7 @@
             <div class="card fadeIn animated">
               <div class="card-header" data-toggle="collapse" href="#mappings" aria-expanded="true" aria-controls="mappings">
                 <h3 class="card-title">
-                  Other
+                  Mappings
                   <span class="float-right">
                     <i class="fa fa-minus-square" aria-hidden="true"></i>
                   </span>
@@ -138,6 +144,15 @@
                   </label>
                   <angular2-multiselect id="name" [data]="categories" formControlName="categories" [settings]="categoriesDropdownSettings">
                   </angular2-multiselect>
+                </div>
+                <div class="form-group row">
+                  <label for="vendor" class="col-4 text-right">
+                    Vendor
+                    <span class="mandatory">*</span>
+                  </label>
+                  <select id="vendor" formControlName="vendor" class="form-control col-8">
+                    <option *ngFor="let item of vendors" value="{{ item }}">{{ item }}</option>
+                  </select>
                 </div>
                 <div class="form-group row">
                   <label for="stockQuantity" class="col-4 text-right">Stock Quantity
