@@ -272,7 +272,7 @@
         <input *ngIf=" !productId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addProductForm.valid || showLoader ">
         <input *ngIf=" productId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addProductForm.valid || showLoader ">
         <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
-        <span class="btn btn-warning" (click)="resetForm()">Reset</span>
+        <span class="btn btn-warning" *ngIf=" !productId " (click)="resetForm()">Reset</span>
         <span class="btn btn-secondary" [routerLink]="['/merchandise/products']">Cancel</span>
       </div>
 
