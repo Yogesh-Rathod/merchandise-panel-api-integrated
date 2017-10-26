@@ -23,7 +23,7 @@ export class ProductsService {
       retailPrice: 155300,
       stockQuantity: null,
       productType: 'Simple',
-      published: true,
+      status: true,
       categories: ''
     },
     {
@@ -44,7 +44,7 @@ export class ProductsService {
       retailPrice: 26990,
       stockQuantity: 20,
       productType: 'Simple',
-      published: false,
+      status: false,
       categories: ''
     }
   ];

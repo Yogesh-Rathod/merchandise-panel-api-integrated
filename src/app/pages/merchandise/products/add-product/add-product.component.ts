@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
+import { RegEx } from 'app/pages/regular-expressions';
 import { MerchandiseService, ProductsService } from 'app/services';
 
 @Component({
@@ -36,6 +37,8 @@ export class AddProductComponent implements OnInit {
     enableSearchFilter: true,
     classes: 'col-8 no_padding'
   };
+  currencyOptions = ['₹ (INR)', '$ (US)'];
+  statusOptions = ['Active', 'Inactive', 'Banned', 'Out of stock'];
   bigLoader = true;
   productImageName;
 
@@ -70,10 +73,14 @@ export class AddProductComponent implements OnInit {
       'fullDescription': ['', Validators.compose([
         Validators.minLength(1), Validators.maxLength(5000)])],
       'sku': ['', Validators.required],
-      'published': [''],
+      'status': ['', Validators.required],
+      'netPrice': ['', Validators.required],
+      'netShipping': ['', Validators.required],
       'MrpPrice': ['', Validators.required],
       'oldPrice': [''],
       'retailPrice': ['', Validators.required],
+      'retailShipping': ['', Validators.required],
+      'rpi': ['', Validators.required],
       'stockQuantity': ['', Validators.required],
       'categories': [[], Validators.required],
       'vendor': [''],
@@ -83,6 +90,12 @@ export class AddProductComponent implements OnInit {
       'pictureDisplayorder': [''],
       'type': ['']
     });
+  }
+
+  validatenumber(e) {
+    if (!RegEx.Numbers.test(`${e.key}`) && `${e.key}`.length === 1) {
+      e.preventDefault();
+    }
   }
 
   getProductInfoForEdit() {
@@ -97,7 +110,7 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['shortDescription'].setValue(product.shortDescription);
           this.addProductForm.controls['fullDescription'].setValue(product.fullDescription);
           this.addProductForm.controls['sku'].setValue(product.sku);
-          this.addProductForm.controls['published'].setValue(product.published); 
+          this.addProductForm.controls['status'].setValue(product.status); 
           this.addProductForm.controls['MrpPrice'].setValue(product.MrpPrice);
           this.addProductForm.controls['oldPrice'].setValue(product.MrpPrice);
           this.addProductForm.controls['retailPrice'].setValue(product.retailPrice);
@@ -137,7 +150,7 @@ export class AddProductComponent implements OnInit {
       retailPrice: addProductForm.retailPrice,
       stockQuantity: addProductForm.stockQuantity,
       productType: 'Simple',
-      published: addProductForm.published,
+      status: addProductForm.status,
       categories: addProductForm.categories
     };
 

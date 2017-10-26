@@ -85,11 +85,13 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="published" class="col-3 text-right">
-                    published
+                  <label for="status" class="col-3 text-right">
+                    status
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="checkbox" class="form-control col-1" id="published" formControlName="published">
+                  <select id="status" formControlName="status" class="form-control col-9">
+                    <option *ngFor="let item of statusOptions" value="{{ item }}">{{ item }}</option>
+                  </select>
                 </div>
 
               </div>
@@ -98,30 +100,66 @@
             <div class="card fadeIn animated">
               <div class="card-header" data-toggle="collapse" href="#prices" aria-expanded="true">
                 <h3 class="card-title">
-                  Prices
+                  Pricing
                   <span class="float-right">
                     <i class="fa fa-minus-square" aria-hidden="true"></i>
                   </span>
                 </h3>
               </div>
               <div class="card-body collapse show" id="prices">
+
+                <div class="form-group row">
+                  <label for="currency" class="col-3 text-right">
+                    Choose Currency
+                  </label>
+                  <select id="currency" class="form-control col-9">
+                    <option *ngFor="let item of currencyOptions" value="{{ item }}">{{ item }}</option>
+                  </select>
+                </div>
+                <hr>
+                <div class="form-group row">
+                  <label for="netPrice" class="col-3 text-right">Net Price
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="netPrice" placeholder="Net Price" formControlName="netPrice" (keydown)='validatenumber($event)'>
+                </div>
+                <div class="form-group row">
+                  <label for="netShipping" class="col-3 text-right">Shipping netShipping
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="netShipping" placeholder="Shipping Price" formControlName="netShipping" (keydown)='validatenumber($event)'>
+                </div>
                 <div class="form-group row">
                   <label for="Price" class="col-3 text-right">MRP Price
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="number" class="form-control col-9" id="Price" placeholder="MRP Price" formControlName="MrpPrice" value="0">
+                  <input type="text" class="form-control col-9" id="Price" placeholder="MRP Price" formControlName="MrpPrice" (keydown)='validatenumber($event)'>
                 </div>
+                <hr>
+                
                 <div class="form-group row" *ngIf=" productId ">
                   <label for="oldPrice" class="col-3 text-right">Old MRP Price
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="number" class="form-control col-9" id="oldPrice" placeholder="Old MRP Price" formControlName="oldPrice" value="0">
+                  <input type="text" class="form-control col-9" id="oldPrice" placeholder="Old MRP Price" formControlName="oldPrice" (keydown)='validatenumber($event)'>
                 </div>
                 <div class="form-group row">
                   <label for="Price" class="col-3 text-right">Retail Price
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="number" class="form-control col-9" id="Price" placeholder="Retail Price" formControlName="retailPrice" value="0">
+                  <input type="text" class="form-control col-9" id="Price" placeholder="Retail Price" formControlName="retailPrice" (keydown)='validatenumber($event)'>
+                </div>
+                <div class="form-group row">
+                  <label for="retailShipping" class="col-3 text-right">Retail Shipping
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="retailShipping" placeholder="Retail Shipping" formControlName="retailShipping" (keydown)='validatenumber($event)'>
+                </div>
+                <div class="form-group row">
+                  <label for="rpi" class="col-3 text-right">RPI
+                    <span class="mandatory">*</span>
+                  </label>
+                  <input type="text" class="form-control col-9" id="rpi" placeholder="RPI" formControlName="rpi" (keydown)='validatenumber($event)'>
                 </div>
               </div>
             </div>
@@ -158,7 +196,7 @@
                   <label for="stockQuantity" class="col-4 text-right">Stock Quantity
                     <span class="mandatory">*</span>
                   </label>
-                  <input type="text" class="form-control col-8" id="stockQuantity" placeholder="Stock Quantity" formControlName="stockQuantity">
+                  <input type="text" class="form-control col-8" id="stockQuantity" placeholder="Stock Quantity" formControlName="stockQuantity" (keydown)='validatenumber($event)'>
                 </div>
                 <div class="form-group row">
                   <label for="type" class="col-4 text-right">Type
