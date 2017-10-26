@@ -9,15 +9,21 @@
 	</div>
 
 	<div class="card-body">
+		<p *ngIf="showUploadError" class="error">
+			<em>
+				There was error while uploading!!
+			</em>
+		</p>
 
 		<form>
 			<div class="form-group">
 				<label for="ExcelFile" class="text-right">Excel File</label>
-				<input type="file" class="form-control" id="ExcelFile" (change)=" excelUploaded($event) " accept=".xlsx, .xls">
+				<input type="file" class="form-control" id="ExcelFile" ng2FileSelect [uploader]="uploader" accept=".xlsx, .xls">
 				<a target="_blank" href="assets/samples/test-bulk-upload.xls" class="text-decoration btn-link float-right">Download Template</a>
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Upload" [disabled]=" submitDisabled ">
+				<button class="btn btn-primary" [disabled]=" submitDisabled " (click)="uploadFile($event)">Upload</button>
+				<img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
 			</div>
 		</form>
 

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pages.routing';
 import { NgaModule } from '../theme/nga.module';
 import { AppTranslationModule } from '../app.translation.module';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { Pages } from './pages.component';
 
@@ -23,7 +24,8 @@ import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bul
     Pages,
     BulkUploadComponent,
     ProductsBulkUploadComponent,
-    VendorsBulkUploadComponent
+    VendorsBulkUploadComponent,
+    FileSelectDirective
   ],
   providers: [
     MerchandiseService,
