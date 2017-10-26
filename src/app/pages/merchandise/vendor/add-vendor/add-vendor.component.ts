@@ -93,7 +93,12 @@ export class AddVendorComponent implements OnInit {
           Validators.pattern(RegEx.phoneNumber)
         ])
       ],
-      "website": [],
+      "website": [
+        '',
+        Validators.compose([
+          Validators.pattern(RegEx.websiteUrl)
+        ])
+      ],
       "address": [
         '',
         Validators.compose([
