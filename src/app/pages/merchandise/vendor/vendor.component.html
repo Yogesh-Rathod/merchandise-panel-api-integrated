@@ -58,7 +58,7 @@
 								<strong>Email</strong>
 							</th>
 							<th class="text-center">
-								<strong>Active</strong>
+								<strong>Status</strong>
 							</th>
 							<th class="text-center">
 								<strong>Action</strong>
@@ -72,8 +72,8 @@
 							</td>
 							<td>{{ item.email }}</td>
 							<td class="text-center"	>
-								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
-								<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+								<i *ngIf=" item.status " class="fa fa-check" aria-hidden="true"></i>
+								<i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
 							</td>
 							<td class="text-center">
 								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item.id]" title="Edit">
