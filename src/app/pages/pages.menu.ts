@@ -39,16 +39,29 @@ const menus = [
           }
         }
       },
-      {
-        path: 'orders',
-        data: {
-          menu: {
-            title: 'Orders',
-            pathMatch: 'partial'
-          }
-        }
-      }
+      //===== If Orders Should be Seperate option in Menu
+      // {
+      //   path: 'orders',
+      //   data: {
+      //     menu: {
+      //       title: 'Orders',
+      //       pathMatch: 'partial'
+      //     }
+      //   }
+      // }
     ]
+  },
+  {
+    path: 'orders',
+    data: {
+      menu: {
+        title: 'Order Management',
+        icon: 'ion-briefcase',
+        selected: false,
+        expanded: false,
+        order: 1
+      }
+    }
   },
   {
     path: 'user-management',
