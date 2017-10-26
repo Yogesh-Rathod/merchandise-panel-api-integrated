@@ -6,8 +6,10 @@ import 'ckeditor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
+declare let $: any;
 
 import { VendorsService } from 'app/services';
+import { RegEx } from './../../../regular-expressions';
 
 @Component({
   selector: 'app-add-vendor',
@@ -41,6 +43,9 @@ export class AddVendorComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     this.createForm();
     this.getAllVendors();
     this.getVendorInfoForEdit();
@@ -65,27 +70,78 @@ export class AddVendorComponent implements OnInit {
           Validators.maxLength(100)
         ])
       ],
-      'description': [
+      "suffix": [
         '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(1000)
+          Validators.minLength(2),
+          Validators.maxLength(100)
         ])
       ],
+      "company": [''],
       'email': [
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+          Validators.pattern(RegEx.Email)
         ])
       ],
-      'published': ['']
+      "phone": [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(RegEx.phoneNumber)
+        ])
+      ],
+      "website": [],
+      "address": [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ],
+      "city": [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ],
+      "state": [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ],
+      "country": [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ],
+      "zip": [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(RegEx.zipCode)
+        ])
+      ],
+      'status': [
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ]
     });
   }
 
   getAllVendors() {
     this.vendors = this.vendorsService.getVendors();
+  }
+
+  validatenumber(e) {
+    if (!RegEx.Numbers.test(`${e.key}`) && `${e.key}`.length === 1) {
+      e.preventDefault();
+    }
   }
 
   addVendor(addVendorForm) {
@@ -110,11 +166,19 @@ export class AddVendorComponent implements OnInit {
         if (vendor.id === parseInt(this.vendorId)) {
           this.vendorInfo = vendor;
           this.addVendorForm.controls['id'].setValue(vendor.id);
-          this.addVendorForm.controls['description'].setValue(vendor.description);
           this.addVendorForm.controls['first_name'].setValue(vendor.first_name);
           this.addVendorForm.controls['last_name'].setValue(vendor.last_name);
+          this.addVendorForm.controls['suffix'].setValue(vendor.suffix);
+          this.addVendorForm.controls['company'].setValue(vendor.company);
           this.addVendorForm.controls['email'].setValue(vendor.email);
-          this.addVendorForm.controls['published'].setValue(vendor.published);
+          this.addVendorForm.controls['phone'].setValue(vendor.phone);
+          this.addVendorForm.controls['website'].setValue(vendor.website);
+          this.addVendorForm.controls['address'].setValue(vendor.address);
+          this.addVendorForm.controls['city'].setValue(vendor.city);
+          this.addVendorForm.controls['state'].setValue(vendor.state);
+          this.addVendorForm.controls['country'].setValue(vendor.country);
+          this.addVendorForm.controls['zip'].setValue(vendor.zip);
+          this.addVendorForm.controls['status'].setValue(vendor.status);
         }
       });
     }

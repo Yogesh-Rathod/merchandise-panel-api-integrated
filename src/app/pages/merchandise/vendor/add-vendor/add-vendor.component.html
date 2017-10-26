@@ -17,39 +17,125 @@
     </h2>
   </div>
 
-  <div class="card-body">
+  <div class="card-body row">
 
-    <form class="col-12" [formGroup]=" addVendorForm " (ngSubmit)=" addVendor(addVendorForm.value) ">
+    <form class="col-12 row" [formGroup]=" addVendorForm " (ngSubmit)=" addVendor(addVendorForm.value) ">
       <input type="hidden" formControlName="id">
-      <div class="form-group row">
-        <label for="name" class="col-3 text-right">Name
-          <span class="mandatory">*</span>
-        </label>
-        <input type="text" class="form-control col-4" id="name" placeholder="First Name" formControlName="first_name">
-        <input type="text" class="form-control col-4 last_name" id="name" placeholder="Last Name" formControlName="last_name">
+
+      
+      <div class="col-6 row">
+        <div class="form-group col-6">
+          <label for="firstName">
+            First Name:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors First Name"></i>
+          </label>
+          <input type="text" class="form-control" id="firstName" formControlName="first_name">
+        </div>
+        <div class="form-group col-6">
+          <label for="lastName">
+            Last Name:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors Last Name"></i>
+          </label>
+          <input type="text" class="form-control" id="lastName" formControlName="last_name">
+        </div>
+
+        <div class="form-group col-6">
+          <label for="Suffix">
+            Suffix:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Suffix for the vendor."></i>
+          </label>
+          <input type="text" class="form-control" id="Suffix" formControlName="suffix">
+        </div>
+        <div class="form-group col-6">
+          <label for="Company">
+            Company:
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Company name the vendor."></i>
+          </label>
+          <input type="text" class="form-control" id="Company" formControlName="company">
+        </div>
+        <div class="form-group col-6">
+          <label for="Email">
+            Email:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor email address."></i>
+          </label>
+          <input type="text" class="form-control" id="Email" formControlName="email">
+        </div>
+        <div class="form-group col-6">
+          <label for="Phone">
+            Phone Number:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Phone Number."></i>
+          </label>
+          <input type="text" class="form-control" id="Phone" formControlName="phone" (keydown)='validatenumber($event)'>
+        </div>
+        <div class="form-group col-6">
+          <label for="Website">
+            Website:
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Website."></i>
+          </label>
+          <input formControlName="website" type="text" class="form-control" id="Website">
+        </div>
+
       </div>
 
-      <div class="form-group row">
-        <label for="Description" class="col-3 text-right">Description
-          <span class="mandatory">*</span>
-        </label>
-        <ckeditor class="form-control col-9" [config]="config" formControlName="description"></ckeditor>
+      <div class="col-6 row">
+        <div class="form-group col-12">
+          <label for="Address">Address:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Address."></i>
+          </label>
+          <textarea formControlName="address" id="Address" cols="10" rows="10" class="form-control"></textarea>
+        </div>
+        <div class="form-group col-6">
+          <label for="city">City:
+            <span class="mandatory">*</span>
+          </label>
+          <select formControlName="city" id="city" class="form-control">
+            <option value="mumbai">Mumbai</option>
+            <option value="Thane">Thane</option>
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="State">State:
+            <span class="mandatory">*</span>
+          </label>
+          <select formControlName="state" id="State" class="form-control">
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Delhi">Delhi</option>
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="Country">Country:
+            <span class="mandatory">*</span>
+          </label>
+          <select formControlName="country" id="Country" class="form-control">
+            <option value="India">India</option>
+            <option value="Pakistan">Pakistan</option>
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="Zip">Zip Code:
+            <span class="mandatory">*</span>
+          </label>
+          <input formControlName="zip" id="Zip" class="form-control" type="text" (keydown)='validatenumber($event)'>
+        </div>
+        <div class="form-group col-6">
+          <label for="Status">Status:
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Status."></i>
+            <input formControlName="status" id="Status" type="checkbox">
+          </label>
+          <input type="text" class="hidden form-control">
+        </div>
+        <div class="block"></div>
       </div>
 
-      <div class="form-group row">
-        <label for="email" class="col-3 text-right">Email
-          <span class="mandatory">*</span>
-        </label>
-        <input type="email" class="form-control col-9" id="email" placeholder="Email" formControlName="email">
-      </div>
-
-      <div class="form-group row">
-        <label for="published" class="col-3 text-right">Published</label>
-        <input type="checkbox" id="published" formControlName="published">
-      </div>
-
-      <div class="form-group row">
-        <label class="col-3 text-right"></label>
+      <div class="form-group row col-12">
+        <label class="col-2 text-right"></label>
         <input *ngIf=" !vendorId " type="submit" class="btn btn-primary" value="Save" [disabled]=" !addVendorForm.valid || showLoader ">
         <input *ngIf=" vendorId " type="submit" class="btn btn-primary" value="Update" [disabled]=" !addVendorForm.valid || showLoader ">
         <img *ngIf=" showLoader " src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">

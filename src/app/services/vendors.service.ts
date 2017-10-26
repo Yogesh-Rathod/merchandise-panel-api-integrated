@@ -12,7 +12,7 @@ export class VendorsService {
       'first_name': 'Verla',
       'last_name': 'Spong',
       'email': 'test@test.com',
-      'published': true
+      'status': true
     },
     {
       'id': 2,
@@ -25,7 +25,7 @@ export class VendorsService {
       'first_name': 'Vernice',
       'last_name': 'Cicconettii',
       'email': 'Vernice.Cicconettii@gmail.com',
-      'published': true
+      'status': true
     },
     {
       'id': 4,
@@ -38,7 +38,7 @@ export class VendorsService {
       'first_name': 'Wallis',
       'last_name': 'Stemp',
       'email': 'Wallis.Stemp@gmail.com',
-      'published': true
+      'status': true
     },
     {
       'id': 6,
@@ -51,7 +51,7 @@ export class VendorsService {
       'first_name': 'Hubey',
       'last_name': 'Manie',
       'email': 'Hubey.Manie@gmail.com',
-      'published': true
+      'status': true
     },
     {
       'id': 8,
@@ -62,7 +62,7 @@ export class VendorsService {
       'id': 9,
       'first_name': 'Pasquale',
       'last_name': 'Warner',
-      'published': true
+      'status': true
     },
     {
       'id': 10,
@@ -73,7 +73,7 @@ export class VendorsService {
       'id': 11,
       'first_name': 'Harv',
       'last_name': 'Rapsey',
-      'published': true
+      'status': true
     },
     {
       'id': 12,
