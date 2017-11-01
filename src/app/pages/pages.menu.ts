@@ -64,6 +64,18 @@ const menus = [
     }
   },
   {
+    path: 'catalog-management',
+    data: {
+      menu: {
+        title: 'Catalog Management',
+        icon: 'ion-document',
+        selected: false,
+        expanded: false,
+        order: 1
+      }
+    }
+  },
+  {
     path: 'user-management',
     data: {
       menu: {

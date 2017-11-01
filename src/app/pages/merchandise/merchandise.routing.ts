@@ -23,10 +23,6 @@ const routes: Routes = [
       {
         path: 'vendors',
         loadChildren: './vendor/vendor.module#VendorModule'
-      },
-      {
-        path: 'orders',
-        loadChildren: './orders/orders.module#OrdersModule'
       }
     ],
   },

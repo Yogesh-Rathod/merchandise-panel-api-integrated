@@ -28,6 +28,9 @@ export class ProductsComponent implements OnInit {
   manufacturer = ['apple', 'lenovo', 'samsung'];
   published = ['published', 'unpublished'];
   vendor = ['vendor 1', 'vendor 2'];
+  showSelectedDelete = false;
+  checkBoxValue: any;
+  selectAllCheckbox = false;
 
   constructor(
     public toastr: ToastsManager,
@@ -74,6 +77,45 @@ export class ProductsComponent implements OnInit {
 
   bulkUpload() {
     const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
+  }
+
+  selectAll(e) {
+    if (e.target.checked) {
+      this.selectAllCheckbox = true;
+      _.forEach(this.products, (item) => {
+        item.isChecked = true;
+      });
+      this.showSelectedDelete = true;
+    } else {
+      this.selectAllCheckbox = false;
+      _.forEach(this.products, (item) => {
+        item.isChecked = false;
+      });
+      this.showSelectedDelete = false;
+    }
+  }
+
+  checkBoxSelected(e, item) {
+    this.selectAllCheckbox = false;
+    if (e.target.checked) {
+      item.isChecked = true;
+    } else {
+      item.isChecked = false;
+    }
+
+    let isCheckedArray = [];
+    
+    _.forEach(this.products, (item) => {
+      if (item.isChecked) {
+        this.showSelectedDelete = true;
+        isCheckedArray.push(item);
+      }
+    });
+
+    if (isCheckedArray.length === 0) {
+      this.showSelectedDelete = false;
+    }
+
   }
 
   deleteProduct(item, index) {
