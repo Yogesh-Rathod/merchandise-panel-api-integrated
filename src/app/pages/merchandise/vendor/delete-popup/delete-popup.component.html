@@ -1,0 +1,18 @@
+<div class="animated fadeIn card addCategory">
+  <div class="card-header clearfix">
+    <h2 class="card-title">Delete Confirmation</h2>
+    <button type="button" class="close" (click)=" closeModal() " aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="card-body">
+    <p>
+      <b>
+        Are you sure you want to delete this vendor.
+      </b>
+    </p>
+    <button class="btn btn-danger" (click)="deleteitem()">Delete</button>
+    <button class="btn btn-info" (click)="closeModal()">Close</button>
+  </div> 
+</div>

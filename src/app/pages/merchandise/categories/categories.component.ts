@@ -7,6 +7,7 @@ declare let $: any;
 
 import { MerchandiseService } from 'app/services';
 import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
+import { CategoryDeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-categories',
@@ -46,11 +47,18 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategory(item, index) {
-    this.deleteLoader = index;
-    _.remove(this.categories, item);
-    this.merchandiseService.editCategories(this.categories);
-    this.deleteLoader = NaN;
-    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+
+    const activeModal = this.modalService.open(CategoryDeletePopupComponent, { size: 'sm' });
+
+    activeModal.result.then((status) => {
+      if (status) {
+        this.deleteLoader = index;
+        _.remove(this.categories, item);
+        this.merchandiseService.editCategories(this.categories);
+        this.deleteLoader = NaN;
+        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+      }
+    });
   }
 
   bulkUpload() {

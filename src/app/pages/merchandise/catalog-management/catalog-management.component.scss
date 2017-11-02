@@ -42,3 +42,29 @@
 .fa[data-toggle="tooltip"] {
 	color: #209e91;
 }
+
+// Modal PopUp
+.modal-dialog {
+	.modal-content {
+		.modal-header {
+			color: #ffffff;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+			background: #209e91 !important;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+			height: 44px;
+			font-size: 16px;
+			padding: 14px 22px;
+		}
+
+		.close {
+			color: #000;
+			opacity: 1;
+		}
+		
+		.modal-body {
+			font-size: 16px;
+		}
+	}
+}

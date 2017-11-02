@@ -8,10 +8,10 @@
           <i class="fa fa-download" aria-hidden="true"></i>
           Import
         </button>
-        <button class="btn btn-primary float-right" [routerLink]="['./add-category']">
+        <!-- <button class="btn btn-primary float-right" [routerLink]="['./add-category']">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
           Add New
-        </button>
+        </button> -->
       </h2>
     </div>
 
@@ -54,7 +54,7 @@
                 <strong>Published</strong>
               </th>
               <th>
-                <strong>Display Order</strong>
+                <strong>Created Date</strong>
               </th>
               <th class="text-center">
                 <strong>Action</strong>
@@ -64,20 +64,18 @@
           <tbody *ngIf=" banks && banks.length > 0 ">
             <tr *ngFor=" let item of mf.data | searchfilter: 'name' : searchTerm; let i = index ">
               <td class="text-left">
-                <span *ngIf=" item.parent_name ">
-                  {{ item.parent_name }} >>
-                </span> {{ item.name }}
+                {{ item.name }}
               </td>
               <td class="text-center">
-                <i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
-                <i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+                <i *ngIf=" item.status " class="fa fa-check" aria-hidden="true"></i>
+                <i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
               </td>
-              <td>{{ item.display_order }}</td>
+              <td>{{ item.createdOn }}</td>
               <td class="text-center">
                 <button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                 </button>
-                <button class="btn btn-danger" (click)="deleteCategory(item, i)" title="Delete" [disabled]="deleteLoader == i">
+                <button class="btn btn-danger" (click)="bankToBeDeleted(item, i)" title="Delete"  data-toggle="modal" data-target="#deleteModal" [disabled]="deleteLoader == i">
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
                 <img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
@@ -107,3 +105,29 @@
 
   </div>
 </div>
+
+
+<!-- Delete PopUp -->
+<!-- Modal -->
+
+<!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Delete Confirmation
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this bank??
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="deleteBank()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VendorsService } from 'app/services';
 import { VendorsBulkUploadComponent } from './bulk-upload/bulk-upload.component';
+import { VendorDeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-vendor',
@@ -85,11 +86,17 @@ export class VendorComponent implements OnInit {
   }
 
   deleteVendor(item, index) {
-    this.deleteLoader = index;
-    _.remove(this.vendorsList, item);
-    this.vendorsService.editVendor(this.vendorsList);
-    this.deleteLoader = NaN;
-    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+    const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' }); 
+
+    activeModal.result.then( (status) => {
+      if (status) {
+        this.deleteLoader = index;
+        _.remove(this.vendorsList, item);
+        this.vendorsService.editVendor(this.vendorsList);
+        this.deleteLoader = NaN;
+        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+      }
+    });
   }
 
 }

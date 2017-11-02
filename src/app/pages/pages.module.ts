@@ -13,6 +13,9 @@ import { BulkUploadComponent } from './merchandise/categories/bulk-upload/bulk-u
 import { ProductsBulkUploadComponent } from './merchandise/products/bulk-upload/bulk-upload.component';
 import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bulk-upload.component';
 import { CatalogBulkUploadComponent } from './merchandise/catalog-management/bulk-upload/bulk-upload.component';
+import { VendorDeletePopupComponent } from './merchandise/vendor/delete-popup/delete-popup.component';
+import { CategoryDeletePopupComponent } from './merchandise/categories/delete-popup/delete-popup.component';
+import { ProductsDeletePopupComponent } from './merchandise/products/delete-popup/delete-popup.component';
 
 @NgModule({
   imports: [
@@ -27,7 +30,10 @@ import { CatalogBulkUploadComponent } from './merchandise/catalog-management/bul
     ProductsBulkUploadComponent,
     VendorsBulkUploadComponent,
     CatalogBulkUploadComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    VendorDeletePopupComponent,
+    CategoryDeletePopupComponent,
+    ProductsDeletePopupComponent
   ],
   providers: [
     MerchandiseService,
@@ -36,7 +42,10 @@ import { CatalogBulkUploadComponent } from './merchandise/catalog-management/bul
     BulkUploadComponent,
     ProductsBulkUploadComponent,
     VendorsBulkUploadComponent,
-    CatalogBulkUploadComponent
+    CatalogBulkUploadComponent,
+    VendorDeletePopupComponent,
+    CategoryDeletePopupComponent,
+    ProductsDeletePopupComponent
   ],
 })
 export class PagesModule {

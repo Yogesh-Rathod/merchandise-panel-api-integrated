@@ -7,6 +7,7 @@ declare let $: any;
 
 import { ProductsService, MerchandiseService } from 'app/services';
 import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component";
+import { ProductsDeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-products',
@@ -118,11 +119,18 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(item, index) {
-    this.deleteLoader = index;
-    _.remove(this.products, item);
-    this.productsService.editProduct(this.products);
-    this.deleteLoader = NaN;
-    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+    const activeModal = this.modalService.open(ProductsDeletePopupComponent, { size: 'sm' });
+
+    activeModal.result.then((status) => {
+      if (status) {
+        this.deleteLoader = index;
+        _.remove(this.products, item);
+        this.productsService.editProduct(this.products);
+        this.deleteLoader = NaN;
+        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+      }
+    });
+    
   }
 
   resetForm() {
