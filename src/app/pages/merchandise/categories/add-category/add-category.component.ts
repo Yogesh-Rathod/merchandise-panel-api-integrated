@@ -64,13 +64,15 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addCategory(addCategoryFormValues) {
+    console.log("addCategoryFormValues ", addCategoryFormValues);
     this.showLoader = true;
     const categoryInfo = {
       name: addCategoryFormValues.name,
       parent_name: addCategoryFormValues.parentCat.name,
       published: addCategoryFormValues.published,
       display_order: addCategoryFormValues.order,
-      description: addCategoryFormValues.description
+      description: addCategoryFormValues.description,
+      breadCrumb: `${addCategoryFormValues.parentCat.breadCrumb} >> ${addCategoryFormValues.name}`
     };
     if (addCategoryFormValues.id) {
       categoryInfo['id'] = addCategoryFormValues.id;

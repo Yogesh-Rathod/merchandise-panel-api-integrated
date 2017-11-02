@@ -39,8 +39,9 @@
 					<label for="ParentCategory" class="col-3 text-right">Parent Category</label>
 					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat" *ngIf=" categories ">
 						<option *ngFor="let category of categories " [ngValue]=" category ">
-							<span *ngIf=" category.parent_name !== null && category.parent_name !== '' ">{{ category.parent_name }} >></span>
-							<span>{{ category.name }}</span>
+							{{ category.breadCrumb }}
+							<!-- <span *ngIf=" category.parent_name !== null && category.parent_name !== '' ">{{ category.parent_name }} >></span>
+							<span>{{ category.name }}</span> -->
 						</option>
 					</select>
 					<select *ngIf=" !categories " class="form-control col-9">

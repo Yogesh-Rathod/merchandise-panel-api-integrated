@@ -58,9 +58,10 @@
 						<tr *ngFor=" let item of mf.data | searchfilter: 'parent_name,name' : searchTerm; let i = index " >
 							<!-- <td>{{ i + 1 }}</td> -->
 							<td class="text-left">
-								<span *ngIf=" item.parent_name ">
+								{{ item.breadCrumb }}
+								<!-- <span *ngIf=" item.parent_name ">
 									{{ item.parent_name }} >>
-								</span> {{ item.name }}
+								</span> {{ item.name }} -->
 							</td>
 							<td class="text-center">
 								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>

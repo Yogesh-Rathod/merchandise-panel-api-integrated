@@ -10,6 +10,7 @@ export class MerchandiseService {
       parent_name: null,
       published: true,
       display_order: 1,
+      breadCrumb: 'Computers',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -18,6 +19,7 @@ export class MerchandiseService {
       parent_name: 'Computers',
       published: false,
       display_order: 1,
+      breadCrumb: 'Computers >> Desktops',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -26,6 +28,7 @@ export class MerchandiseService {
       parent_name: 'Computers',
       published: true,
       display_order: 2,
+      breadCrumb: 'Computers >> Software',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -34,6 +37,7 @@ export class MerchandiseService {
       parent_name: null,
       published: true,
       display_order: 1,
+      breadCrumb: 'Electronics',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -42,6 +46,7 @@ export class MerchandiseService {
       parent_name: 'Electronics',
       published: false,
       display_order: 1,
+      breadCrumb: 'Electronics >> Cell phones',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -50,6 +55,7 @@ export class MerchandiseService {
       parent_name: 'Electronics',
       published: true,
       display_order: 2,
+      breadCrumb: 'Electronics >> Others',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -58,6 +64,7 @@ export class MerchandiseService {
       parent_name: null,
       published: false,
       display_order: 1,
+      breadCrumb: 'Apparel',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -66,6 +73,7 @@ export class MerchandiseService {
       parent_name: 'Apparel',
       published: true,
       display_order: 1,
+      breadCrumb: 'Apparel >> Clothing',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
     {
@@ -74,118 +82,9 @@ export class MerchandiseService {
       parent_name: 'Apparel',
       published: false,
       display_order: 2,
+      breadCrumb: 'Apparel >> Accessories',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     }
-
-    // {
-    //   id: 1,
-    //   name: 'Electronics',
-    //   description: 'description 1',
-    //   status: 'Active',
-    //   children: [
-    //   {
-    //     id: 2,
-    //     name: 'TV',
-    //     description: 'description 1',
-    //     status: 'Active',
-    //     children: [
-    //     {
-    //       id: 6,
-    //       name: 'ONIDA',
-    //       description: 'description 1',
-    //       status: 'Active',
-    //       children: [
-    //       {
-    //         id: 15,
-    //         name: 'ONIDA Black',
-    //         description: 'description 1',
-    //         status: 'Inactive',
-    //         children: [],
-    //       },
-    //       ],
-    //     },
-    //     ],
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'Mobiles',
-    //     description: 'description 1',
-    //     status: 'Inactive',
-    //     children: [
-    //     {
-    //       id: 7,
-    //       name: 'MI',
-    //       description: 'description 1',
-    //       status: 'Active',
-    //       children: [
-    //       {
-    //         id: 16,
-    //         name: 'Redmi Series',
-    //         description: 'description 1',
-    //         status: 'Active',
-    //         children: [],
-    //       },
-    //       ],
-    //     },
-    //     ],
-    //   },
-    //   ],
-    // },
-    // {
-    //   id: 5,
-    //   name: 'Furniture',
-    //   description: 'description 1',
-    //   status: 'Inactive',
-    //   children: [
-    //   {
-    //     id: 8,
-    //     name: 'Home Decor',
-    //     description: 'description 1',
-    //     status: 'Active',
-    //     children: [
-    //     {
-    //       id: 9,
-    //       name: 'Paintings',
-    //       description: 'description 1',
-    //       status: 'Inactive',
-    //       children: [
-    //       {
-    //         id: 9,
-    //         name: 'Monalisa',
-    //         description: 'description 1',
-    //         status: 'Active',
-    //         children: [
-    //         ],
-    //       },
-    //       ],
-    //     },
-    //     ],
-    //   },
-    //   {
-    //     id: 10,
-    //     name: 'Kitchen & Dining',
-    //     description: 'description 1',
-    //     status: 'Active',
-    //     children: [
-    //     {
-    //       id: 19,
-    //       name: 'Dining Table',
-    //       description: 'description 1',
-    //       status: 'Inactive',
-    //       children: [
-    //       {
-    //         id: 20,
-    //         name: 'Wooden Table',
-    //         description: 'description 1',
-    //         status: 'Active',
-    //         children: [],
-    //       },
-    //       ],
-    //     },
-    //     ],
-    //   },
-    //   ],
-    // },
   ];
 
   constructor() {}
