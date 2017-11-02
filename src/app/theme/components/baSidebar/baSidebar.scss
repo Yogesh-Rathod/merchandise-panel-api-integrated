@@ -178,8 +178,17 @@ $angle-right: '\f101';
   }
 
   .menu-collapsed {
+    a.al-sidebar-list-link {
+      i {
+        width: 16px;
+      }
+    }
+    
     .slimScrollBar, .slimScrollRail {
       display: none !important;
     }
+
   }
 }
+
+
