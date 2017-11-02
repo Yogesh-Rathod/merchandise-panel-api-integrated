@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import './ckeditor.loader';
 import 'ckeditor';
+import { IMyDpOptions } from 'mydatepicker';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
@@ -41,6 +42,11 @@ export class AddProductComponent implements OnInit {
   statusOptions = ['Active', 'Inactive', 'Banned', 'Out of stock'];
   bigLoader = true;
   productImageName;
+  public myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+    editableDateField: false,
+    openSelectorOnInputClick: true
+  };
 
   constructor(
     public toastr: ToastsManager,
@@ -66,29 +72,82 @@ export class AddProductComponent implements OnInit {
   createForm() {
     this.addProductForm = this.fb.group({
       'id': [''],
-      'name': ['', Validators.compose([Validators.required,
-      Validators.minLength(1), Validators.maxLength(100)])],
-      'shortDescription': ['', Validators.compose([Validators.required,
-      Validators.minLength(1), Validators.maxLength(1000)])],
-      'fullDescription': ['', Validators.compose([
-        Validators.minLength(1), Validators.maxLength(5000)])],
-      'sku': ['', Validators.required],
-      'status': ['', Validators.required],
-      'netPrice': ['', Validators.required],
-      'netShipping': ['', Validators.required],
-      'MrpPrice': ['', Validators.required],
+      'name': [
+        '', 
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(1), 
+          Validators.maxLength(100)
+        ])
+      ],
+      'shortDescription': [
+        '', 
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(1), 
+          Validators.maxLength(1000)
+        ])
+      ],
+      'fullDescription': [
+        '', 
+        Validators.compose([
+          Validators.minLength(1), 
+          Validators.maxLength(5000)
+        ])
+      ],
+      'sku': [
+        '', 
+        Validators.required
+      ],
+      'status': [
+        '', 
+        Validators.required
+      ],
+      'currency': [''],
+      'netPrice': [
+        '', 
+        Validators.required
+      ],
+      'netShipping': [
+        '', 
+        Validators.required
+      ],
+      'MrpPrice': [
+        '', 
+        Validators.required
+      ],
       'oldPrice': [''],
-      'retailPrice': ['', Validators.required],
-      'retailShipping': ['', Validators.required],
-      'rpi': ['', Validators.required],
-      'stockQuantity': ['', Validators.required],
-      'categories': [[], Validators.required],
-      'vendor': [''],
+      'retailPrice': [
+        '', 
+        Validators.required
+      ],
+      'retailShipping': [
+        '', 
+        Validators.required
+      ],
+      'rpi': [
+        '', 
+        Validators.required
+      ],
+      'applicableDate': [''],
+      'stockQuantity': [
+        '', 
+        Validators.required
+      ],
+      'categories': [
+        [], 
+        Validators.required
+      ],
+      'vendor': [
+        '',
+        Validators.required
+      ],
       'pictureName': [''],
       'pictureAlt': [''],
       'pictureTitle': [''],
       'pictureDisplayorder': [''],
-      'type': ['']
+      'type': [''],
+      'brand': ['']
     });
   }
 
@@ -111,9 +170,14 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['fullDescription'].setValue(product.fullDescription);
           this.addProductForm.controls['sku'].setValue(product.sku);
           this.addProductForm.controls['status'].setValue(product.status); 
+          this.addProductForm.controls['currency'].setValue(product.currency);
+          this.addProductForm.controls['netPrice'].setValue(product.netPrice);
+          this.addProductForm.controls['netShipping'].setValue(product.netShipping);
           this.addProductForm.controls['MrpPrice'].setValue(product.MrpPrice);
           this.addProductForm.controls['oldPrice'].setValue(product.MrpPrice);
           this.addProductForm.controls['retailPrice'].setValue(product.retailPrice);
+          this.addProductForm.controls['retailShipping'].setValue(product.retailShipping);
+          this.addProductForm.controls['rpi'].setValue(product.rpi);
           this.addProductForm.controls['stockQuantity'].setValue(product.stockQuantity); 
           this.addProductForm.controls['vendor'].setValue(product.vendor);
           // this.addProductForm.controls['pictureName'].setValue(product.picture[0].url);
@@ -122,6 +186,7 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['pictureDisplayorder'].setValue(product.picture[0].displayOrder);
           this.addProductForm.controls['categories'].setValue(product.categories);
           this.addProductForm.controls['type'].setValue(product.type);
+          this.addProductForm.controls['brand'].setValue(product.brand);
         }
       });
     }

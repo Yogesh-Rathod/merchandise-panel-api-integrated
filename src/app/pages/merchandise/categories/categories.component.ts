@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import * as _ from 'lodash';
+declare let $: any;
 
 import { MerchandiseService } from 'app/services';
 import { BulkUploadComponent } from './bulk-upload/bulk-upload.component';
@@ -28,6 +28,9 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
     this.getAllCategories();
     // this.bulkUpload();
   }

@@ -42,7 +42,7 @@ export class AddVendorComponent implements OnInit {
     )
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     $(document).ready(() => {
       $('[data-toggle="tooltip"]').tooltip();
     });
