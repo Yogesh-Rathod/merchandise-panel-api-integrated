@@ -28,7 +28,7 @@
           <label for="firstName">
             First Name:
             <span class="mandatory">*</span>
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors First Name"></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors First Name (Should be 1 to 100 characters)"></i>
           </label>
           <input type="text" class="form-control" id="firstName" formControlName="first_name">
         </div>
@@ -36,7 +36,7 @@
           <label for="lastName">
             Last Name:
             <span class="mandatory">*</span>
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors Last Name"></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors Last Name (Should be 1 to 100 characters)"></i>
           </label>
           <input type="text" class="form-control" id="lastName" formControlName="last_name">
         </div>
@@ -45,14 +45,14 @@
           <label for="Suffix">
             Suffix:
             <span class="mandatory">*</span>
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Suffix for the vendor."></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Suffix for the vendor (Should be 2 to 100 characters)"></i>
           </label>
           <input type="text" class="form-control" id="Suffix" formControlName="suffix">
         </div>
         <div class="form-group col-6">
           <label for="Company">
             Company:
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Company name the vendor."></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendors company name."></i>
           </label>
           <input type="text" class="form-control" id="Company" formControlName="company">
         </div>
@@ -68,14 +68,14 @@
           <label for="Phone">
             Phone Number:
             <span class="mandatory">*</span>
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Phone Number."></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Phone Number (Should be 10 digit long and must start with 7/8/9)"></i>
           </label>
           <input type="text" class="form-control" id="Phone" formControlName="phone" (keydown)='validatenumber($event)'>
         </div>
         <div class="form-group col-6">
           <label for="Website">
             Website:
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Website."></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Website (should start with 'http://' or 'https://')"></i>
           </label>
           <input formControlName="website" type="text" class="form-control" id="Website">
         </div>
@@ -93,15 +93,17 @@
         <div class="form-group col-6">
           <label for="city">City:
             <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor City."></i>
           </label>
           <select formControlName="city" id="city" class="form-control">
-            <option value="mumbai">Mumbai</option>
+            <option value="Mumbai">Mumbai</option>
             <option value="Thane">Thane</option>
           </select>
         </div>
         <div class="form-group col-6">
           <label for="State">State:
             <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor State."></i>
           </label>
           <select formControlName="state" id="State" class="form-control">
             <option value="Maharashtra">Maharashtra</option>
@@ -111,6 +113,7 @@
         <div class="form-group col-6">
           <label for="Country">Country:
             <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Country."></i>
           </label>
           <select formControlName="country" id="Country" class="form-control">
             <option value="India">India</option>
@@ -120,13 +123,14 @@
         <div class="form-group col-6">
           <label for="Zip">Zip Code:
             <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Zip / Postal Code should be number with length 6."></i>
           </label>
-          <input formControlName="zip" id="Zip" class="form-control" type="text" (keydown)='validatenumber($event)'>
+          <input formControlName="zip" id="Zip" class="form-control" type="text" (keydown)='validatenumber($event)' >
         </div>
         <div class="form-group col-6">
           <label for="Status">Status:
             <span class="mandatory">*</span>
-            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Status."></i>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Status. (If deactivated products from this vendor will be disabled.)"></i>
             <input formControlName="status" id="Status" type="checkbox">
           </label>
           <input type="text" class="hidden form-control">

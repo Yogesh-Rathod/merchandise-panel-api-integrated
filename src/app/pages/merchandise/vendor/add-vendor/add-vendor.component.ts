@@ -176,7 +176,7 @@ export class AddVendorComponent implements OnInit {
           this.addVendorForm.controls['suffix'].setValue(vendor.suffix);
           this.addVendorForm.controls['company'].setValue(vendor.company);
           this.addVendorForm.controls['email'].setValue(vendor.email);
-          this.addVendorForm.controls['phone'].setValue(vendor.phone);
+          this.addVendorForm.controls['phone'].setValue(vendor.phoneNumber);
           this.addVendorForm.controls['website'].setValue(vendor.website);
           this.addVendorForm.controls['address'].setValue(vendor.address);
           this.addVendorForm.controls['city'].setValue(vendor.city);

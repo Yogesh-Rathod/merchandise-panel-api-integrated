@@ -131,7 +131,9 @@
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
 				</div>
 
-				<button class="btn btn-danger float-right deleteSelectedButton" *ngIf="showSelectedDelete">Delete Selected</button>
+				<button class="btn btn-danger float-right deleteSelectedButton" [ngClass]="
+				{'disabled': !showSelectedDelete }
+				">Delete Selected</button>
 				
 				<table class="table table-bordered table-responsive"  [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
