@@ -26,10 +26,9 @@ export class ProductsComponent implements OnInit {
     'grouped (product with variants)'
   ];
   manufacturer = ['apple', 'lenovo', 'samsung'];
-  published = ['published', 'unpublished'];
+  status = ['Active', 'Inactive', 'Banned', 'Out of stock'];
   vendor = ['vendor 1', 'vendor 2'];
   showSelectedDelete = false;
-  checkBoxValue: any;
   selectAllCheckbox = false;
 
   constructor(
@@ -58,7 +57,7 @@ export class ProductsComponent implements OnInit {
       category: [''],
       productType: [''],
       manufacturer: [''],
-      published: [''],
+      status: [''],
       vendor: ['']
     });
   }

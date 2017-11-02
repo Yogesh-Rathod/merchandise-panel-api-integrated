@@ -18,6 +18,8 @@ export class VendorComponent implements OnInit {
   searchTerm: any;
   bigLoader = false;
   deleteLoader: Number;
+  showSelectedDelete = false;
+  selectAllCheckbox = false;
 
   constructor(
     private modalService: NgbModal,
@@ -29,6 +31,45 @@ export class VendorComponent implements OnInit {
 
   ngOnInit() {
     this.getAllVendors();
+  }
+
+  selectAll(e) {
+    if (e.target.checked) {
+      this.selectAllCheckbox = true;
+      _.forEach(this.vendorsList, (item) => {
+        item.isChecked = true;
+      });
+      this.showSelectedDelete = true;
+    } else {
+      this.selectAllCheckbox = false;
+      _.forEach(this.vendorsList, (item) => {
+        item.isChecked = false;
+      });
+      this.showSelectedDelete = false;
+    }
+  }
+
+  checkBoxSelected(e, item) {
+    this.selectAllCheckbox = false;
+    if (e.target.checked) {
+      item.isChecked = true;
+    } else {
+      item.isChecked = false;
+    }
+
+    let isCheckedArray = [];
+
+    _.forEach(this.vendorsList, (item) => {
+      if (item.isChecked) {
+        this.showSelectedDelete = true;
+        isCheckedArray.push(item);
+      }
+    });
+
+    if (isCheckedArray.length === 0) {
+      this.showSelectedDelete = false;
+    }
+
   }
 
   getAllVendors() {

@@ -70,7 +70,7 @@
 
 					<div class="form-group col-6 row">
 						<label for="Manufacturer" class="col-4 text-right">
-							Manufacturer
+							Brand
 							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific manufacturer."></i>
 						</label>
 						<select id="Manufacturer" class="form-control col-8" formControlName="manufacturer">
@@ -82,13 +82,13 @@
 					</div>
 
 					<div class="form-group col-6 row">
-						<label for="Published" class="col-4 text-right">
-							Published
-							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a 'Published' property."></i>
+						<label for="Status" class="col-4 text-right">
+							Status
+							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a 'Status' property."></i>
 						</label>
-						<select id="Published" class="form-control col-8" formControlName="published">
+						<select id="Status" class="form-control col-8" formControlName="status">
 							<option value="all">All</option>
-							<option *ngFor="let item of published" value="{{ item }}">
+							<option *ngFor="let item of status" value="{{ item }}">
 								{{ item }}
 							</option>
 						</select>
@@ -131,14 +131,21 @@
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
 				</div>
 
-				<button class="btn btn-danger float-right deleteSelectedButton" [ngClass]="
-				{'disabled': !showSelectedDelete }
-				">Delete Selected</button>
+				<button 
+					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }">
+					Delete Selected
+				</button>
+				
+				<button 
+					class="btn btn-info float-right deleteSelectedButton" 
+					[ngClass]="{'disabled': !showSelectedDelete }">
+					Deactivate Selected
+				</button>
 				
 				<table class="table table-bordered table-responsive"  [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
 						<tr>
-							<th>
+							<th class="text-center">
 								<input type="checkbox" [ngModel]='selectAllCheckbox' (change)="selectAll($event)">
 							</th>
 							<th class="text-left">
@@ -172,7 +179,7 @@
 					<tbody *ngIf=" products && products.length > 0 ">
 						<tr *ngFor=" let item of mf.data; let i = index; " >
 
-							<td>
+							<td class="text-center">
 								<input [ngModel]="item.isChecked" type="checkbox" (change)="checkBoxSelected($event, item)">
 							</td>
 
