@@ -28,7 +28,7 @@ export class ProductsService {
       retailShipping: 1000,
       rpi: 1000,
       stockQuantity: 2,
-      categories: '',
+      categories: 'Computers',
       vendor: 'vendor 1',
       productType: 'Simple',
       type: 'Type of product',
@@ -53,8 +53,11 @@ export class ProductsService {
       retailPrice: 26990,
       stockQuantity: 20,
       productType: 'Simple',
-      status: false,
-      categories: ''
+      status: 'Inative',
+      categories: {
+        id: 'Electronics',
+        itemName: 'Electronics'
+      }
     }
   ];
 

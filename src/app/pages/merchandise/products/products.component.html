@@ -156,13 +156,13 @@
 								</mfDefaultSorter>
 							</th>
 							<th>
-								<strong>Stock quantity</strong>
+								<strong>Quantity</strong>
 							</th>
 							<th>
-								<strong>Product type</strong>
+								<strong>Type</strong>
 							</th>
 							<th>
-								<strong>Published</strong>
+								<strong>Status</strong>
 							</th>
 							<th class="action">
 								<strong>Action</strong>
@@ -185,12 +185,11 @@
 								<span>{{ item.name }}</span>
 							</td>
 							<td>{{ item.sku }}</td>
-							<td>{{ item.price | currency: 'INR': true }}</td>
+							<td>{{ item.MrpPrice | currency: 'INR': true }}</td>
 							<td>{{ item.stockQuantity }}</td>
 							<td>{{ item.productType }}</td>
 							<td class="text-center">
-									<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
-									<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+								{{ item.status }}
 							</td>
 							<td class="action">
 								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">

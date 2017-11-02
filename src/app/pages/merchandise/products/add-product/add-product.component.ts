@@ -184,7 +184,7 @@ export class AddProductComponent implements OnInit {
           this.addProductForm.controls['pictureAlt'].setValue(product.picture[0].alt);
           this.addProductForm.controls['pictureTitle'].setValue(product.picture[0].title);
           this.addProductForm.controls['pictureDisplayorder'].setValue(product.picture[0].displayOrder);
-          this.addProductForm.controls['categories'].setValue(product.categories);
+          // this.addProductForm.controls['categories'].setValue([product.categories]);
           this.addProductForm.controls['type'].setValue(product.type);
           this.addProductForm.controls['brand'].setValue(product.brand);
         }

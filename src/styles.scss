@@ -75,6 +75,11 @@ table {
 	font-size: 12px;
 }
 
+.disabled {
+	opacity: 0.7;
+	pointer-events: none;
+}
+
 .al-content {
 	padding: 8px 15px 8px 20px;
 }
