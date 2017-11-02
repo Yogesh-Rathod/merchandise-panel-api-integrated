@@ -10,6 +10,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 
 import { routing } from './catalog-management.routes';
 import { CatalogManagementComponent } from './catalog-management.component';
+import { SearchBankPipe } from './search-banks.pipe';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { CatalogManagementComponent } from './catalog-management.component';
     AngularMultiSelectModule
   ],
   declarations: [
-    CatalogManagementComponent
+    CatalogManagementComponent,
+    SearchBankPipe
   ],
   providers: [
   ],

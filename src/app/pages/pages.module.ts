@@ -12,6 +12,7 @@ import { MerchandiseService } from 'app/services';
 import { BulkUploadComponent } from './merchandise/categories/bulk-upload/bulk-upload.component';
 import { ProductsBulkUploadComponent } from './merchandise/products/bulk-upload/bulk-upload.component';
 import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bulk-upload.component';
+import { CatalogBulkUploadComponent } from './merchandise/catalog-management/bulk-upload/bulk-upload.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bul
     BulkUploadComponent,
     ProductsBulkUploadComponent,
     VendorsBulkUploadComponent,
+    CatalogBulkUploadComponent,
     FileSelectDirective
   ],
   providers: [
@@ -33,7 +35,8 @@ import { VendorsBulkUploadComponent } from './merchandise/vendor/bulk-upload/bul
   entryComponents: [
     BulkUploadComponent,
     ProductsBulkUploadComponent,
-    VendorsBulkUploadComponent
+    VendorsBulkUploadComponent,
+    CatalogBulkUploadComponent
   ],
 })
 export class PagesModule {
