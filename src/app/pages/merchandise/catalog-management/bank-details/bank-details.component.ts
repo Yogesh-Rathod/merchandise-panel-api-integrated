@@ -12,7 +12,10 @@ export class BankDetailsComponent implements OnInit {
     id: 12233,
     name: 'Saraswat',
     status: true,
-    createdOn: '12/12/2017'
+    createdOn: '12/12/2017',
+    vendorCount: 10,
+    productsCount: 2000,
+    purchasesCount: 222
   };
   banks: any;
   deleteLoader = false;

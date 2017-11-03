@@ -1,3 +1,63 @@
-<p>
-  basic-info works!
-</p>
+<div class="card" *ngIf="bankInfo">
+  <div class="card-body">
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Name
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Bank Name"></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="bankInfo.name">{{ bankInfo.name }}</span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Creation Date
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Bank Bank Creation Date"></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="bankInfo.createdOn">
+          {{ bankInfo.createdOn }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        No. of vendors 
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="No. of vendors"></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="bankInfo.vendorCount">
+          {{ bankInfo.vendorCount }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        No. of products
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="No. of products"></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="bankInfo.productsCount">
+          {{ bankInfo.productsCount }}
+        </span>
+      </div>
+    </div>
+
+    <div class="info-record row">
+      <div class="col-3 text-right bold">
+        Total purchases
+        <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Total purchases"></i>
+      </div>
+      <div class="col-9">
+        <span *ngIf="bankInfo.purchasesCount">
+          {{ bankInfo.purchasesCount }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

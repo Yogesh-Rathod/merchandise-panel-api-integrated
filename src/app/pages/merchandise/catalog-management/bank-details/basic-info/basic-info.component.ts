@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+declare let $: any;
 
 @Component({
-  selector: 'app-bank-basic-info',
+  selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
   styleUrls: ['./basic-info.component.scss']
 })
@@ -12,6 +13,9 @@ export class BasicInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
   }
 
 }

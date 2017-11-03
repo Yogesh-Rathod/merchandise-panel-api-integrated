@@ -91,6 +91,15 @@
       "role": "Role"
     }
   },
+  "userMangement": {
+    "name": "Name",
+    "username": "Username",
+    "email": "Email",
+    "status": "Status",
+    "mobile": "Mobile",
+    "action": "Action",
+    "role": "Role"
+  },
   "merchandise": {
     "categories": {
       "category": "Category",
