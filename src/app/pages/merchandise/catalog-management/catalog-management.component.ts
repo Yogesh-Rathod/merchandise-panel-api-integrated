@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 declare let $: any;
 
 import { CatalogBulkUploadComponent } from './bulk-upload/bulk-upload.component';
+import { BankDeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-catalog-management',
@@ -19,25 +20,24 @@ export class CatalogManagementComponent implements OnInit {
   deleteLoader: Number;
   banks = [
     {
+      id: 12233,
       name: 'Saraswat',
       status: true,
       createdOn: '12/12/2017'
     },
     {
+      id: 43221,
       name: 'SBI',
       status: false,
       createdOn: '01/01/2017'
     },
     {
+      id: 56788,
       name: 'PNB',
       status: false,
       createdOn: '11/11/2016'
     }
   ];
-  bankTobeDeleted = {
-    bank: null,
-    index: null
-  };
 
   constructor(
     private modalService: NgbModal,
@@ -60,16 +60,17 @@ export class CatalogManagementComponent implements OnInit {
     const activeModal = this.modalService.open(CatalogBulkUploadComponent, { size: 'sm' });
   }
 
-  bankToBeDeleted(bank, index) {
-    this.bankTobeDeleted.bank = bank;
-    this.bankTobeDeleted.index = index;
-  }
+  deleteBank(bank, index) {
+    const activeModal = this.modalService.open(BankDeletePopupComponent, { size: 'sm' });
 
-  deleteBank() {
-    this.deleteLoader = this.bankTobeDeleted.index;
-    _.remove(this.banks, this.bankTobeDeleted.bank);
-    this.deleteLoader = NaN;
-    this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+    activeModal.result.then((status) => {
+      if (status) {
+        this.deleteLoader = index;
+        _.remove(this.banks, bank);
+        this.deleteLoader = NaN;
+        this.toastr.success('Successfully Deleted!', 'Success!');
+      }
+    });
   }
 
 }

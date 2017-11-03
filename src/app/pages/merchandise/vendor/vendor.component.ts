@@ -94,7 +94,7 @@ export class VendorComponent implements OnInit {
         _.remove(this.vendorsList, item);
         this.vendorsService.editVendor(this.vendorsList);
         this.deleteLoader = NaN;
-        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+        this.toastr.success('Successfully Deleted!', 'Success!');
       }
     });
   }

@@ -72,10 +72,10 @@
               </td>
               <td>{{ item.createdOn }}</td>
               <td class="text-center">
-                <button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <button class="btn btn-secondary" [routerLink]="['./bank-details/', item.id]" title="View Details">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="btn btn-danger" (click)="bankToBeDeleted(item, i)" title="Delete"  data-toggle="modal" data-target="#deleteModal" [disabled]="deleteLoader == i">
+                <button class="btn btn-danger" (click)="deleteBank(item, i)" title="Delete"  data-toggle="modal" data-target="#deleteModal" [disabled]="deleteLoader == i">
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
                 <img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">

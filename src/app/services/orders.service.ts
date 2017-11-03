@@ -82,4 +82,9 @@ export class OrdersService {
   getOrders() {
     return this.ordersInfo;
   }
+
+  editOrder(orders) {
+    this.ordersInfo = orders;
+    return this.ordersInfo;
+  }
 }

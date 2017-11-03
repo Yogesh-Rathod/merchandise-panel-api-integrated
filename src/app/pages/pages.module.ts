@@ -16,6 +16,7 @@ import { CatalogBulkUploadComponent } from './merchandise/catalog-management/bul
 import { VendorDeletePopupComponent } from './merchandise/vendor/delete-popup/delete-popup.component';
 import { CategoryDeletePopupComponent } from './merchandise/categories/delete-popup/delete-popup.component';
 import { ProductsDeletePopupComponent } from './merchandise/products/delete-popup/delete-popup.component';
+import { BankDeletePopupComponent } from './merchandise/catalog-management/delete-popup/delete-popup.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ProductsDeletePopupComponent } from './merchandise/products/delete-popu
     FileSelectDirective,
     VendorDeletePopupComponent,
     CategoryDeletePopupComponent,
-    ProductsDeletePopupComponent
+    ProductsDeletePopupComponent,
+    BankDeletePopupComponent
   ],
   providers: [
     MerchandiseService,
@@ -45,7 +47,8 @@ import { ProductsDeletePopupComponent } from './merchandise/products/delete-popu
     CatalogBulkUploadComponent,
     VendorDeletePopupComponent,
     CategoryDeletePopupComponent,
-    ProductsDeletePopupComponent
+    ProductsDeletePopupComponent,
+    BankDeletePopupComponent
   ],
 })
 export class PagesModule {

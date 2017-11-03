@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { OrdersService } from 'app/services';
 
@@ -14,8 +16,11 @@ export class OrderDetailsComponent implements OnInit {
   orderId: any;
   orderInfo: any;
   orders: any;
+  deleteLoader = false;
 
   constructor(
+    private _location: Location,
+    public toastr: ToastsManager,
     private ordersService: OrdersService,
     private route: ActivatedRoute,
     private router: Router
@@ -39,6 +44,15 @@ export class OrderDetailsComponent implements OnInit {
         }
       });
     }
+  }
+
+  deleteOrder() {
+    this.deleteLoader = true;
+    _.remove(this.orders, this.orderInfo);
+    this.ordersService.editOrder(this.orders)
+    this.deleteLoader = false;
+    this.toastr.success('Successfully Deleted!', 'Success!');
+    this._location.back();
   }
 
 }

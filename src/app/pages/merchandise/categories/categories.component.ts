@@ -56,7 +56,7 @@ export class CategoriesComponent implements OnInit {
         _.remove(this.categories, item);
         this.merchandiseService.editCategories(this.categories);
         this.deleteLoader = NaN;
-        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+        this.toastr.success('Successfully Deleted!', 'Success!');
       }
     });
   }

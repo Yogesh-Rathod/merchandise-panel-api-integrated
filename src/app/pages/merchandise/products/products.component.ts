@@ -127,7 +127,7 @@ export class ProductsComponent implements OnInit {
         _.remove(this.products, item);
         this.productsService.editProduct(this.products);
         this.deleteLoader = NaN;
-        this.toastr.success('Sucessfully Deleted!', 'Sucess!');
+        this.toastr.success('Successfully Deleted!', 'Success!');
       }
     });
     
