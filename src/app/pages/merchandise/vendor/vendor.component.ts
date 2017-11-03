@@ -81,6 +81,25 @@ export class VendorComponent implements OnInit {
     this.searchTerm = searchText;
   }
 
+  deactivateAll() {
+    _.forEach(this.vendorsList, (item) => {
+      item.status = false;
+    });
+  }
+
+  deleteAll() {
+    const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
+
+    activeModal.result.then((status) => {
+      if (status) {
+        this.vendorsList = [];
+        this.toastr.success('Successfully Deleted!', 'Success!');
+        this.selectAllCheckbox = false;
+        this.showSelectedDelete = false;
+      }
+    });
+  }
+
   bulkUpload() {
     const activeModal = this.modalService.open(VendorsBulkUploadComponent, { size: 'sm' });
   }

@@ -118,6 +118,25 @@ export class ProductsComponent implements OnInit {
 
   }
 
+  deactivateAll() {
+    _.forEach(this.products, (item) => {
+      item.status = 'Inactive';
+    });
+  }
+
+  deleteAll() {
+    const activeModal = this.modalService.open(ProductsDeletePopupComponent, { size: 'sm' });
+
+    activeModal.result.then((status) => {
+      if (status) {
+        this.products = [];
+        this.toastr.success('Successfully Deleted!', 'Success!');
+        this.selectAllCheckbox = false;
+        this.showSelectedDelete = false;
+      }
+    });
+  }
+
   deleteProduct(item, index) {
     const activeModal = this.modalService.open(ProductsDeletePopupComponent, { size: 'sm' });
 

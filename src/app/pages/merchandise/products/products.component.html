@@ -132,13 +132,15 @@
 				</div>
 
 				<button 
-					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }">
+					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }"
+					(click)="deleteAll()">
 					Delete Selected
 				</button>
 				
 				<button 
 					class="btn btn-info float-right deleteSelectedButton" 
-					[ngClass]="{'disabled': !showSelectedDelete }">
+					[ngClass]="{'disabled': !showSelectedDelete }"
+					(click)="deactivateAll()">
 					Deactivate Selected
 				</button>
 				
