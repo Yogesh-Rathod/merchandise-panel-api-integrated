@@ -15,7 +15,27 @@ export class BankDetailsComponent implements OnInit {
     createdOn: '12/12/2017',
     vendorCount: 10,
     productsCount: 2000,
-    purchasesCount: 222
+    purchasesCount: 222,
+    productsInfo: [
+      {
+        picture: 'assets/images/products/home-office-336373_640.jpg',
+        name: 'Pride and Prejudice',
+        sku: 'PRIDE_PRJ',
+        price: 13000,
+        quantity: 1,
+        discount: 1000,
+        total: 12000
+      },
+      {
+        picture: 'assets/images/products/laptop-154091_640.png',
+        name: 'First Prize Pies',
+        sku: 'FIRST_PRP',
+        price: 1000,
+        quantity: 1,
+        discount: 500,
+        total: 500
+      }
+    ],
   };
   banks: any;
   deleteLoader = false;

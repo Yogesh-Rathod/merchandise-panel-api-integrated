@@ -1,0 +1,77 @@
+<div class="card" *ngIf="bankInfo">
+  <div class="card-body">
+
+    <table class="table table-responsive table-bordered">
+      <thead class="black-muted-bg">
+        <tr>
+          <th class="text-left">Picture</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Discount</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+
+      <tbody *ngIf="bankInfo.productsInfo && bankInfo.productsInfo.length > 0">
+        <tr *ngFor="let item of bankInfo.productsInfo">
+          <td class="text-left">
+            <div class="product-image">
+              <img class="img-fluid" src="{{ item.picture ? item.picture : 'assets/images/products/Placeholder.png' }}" alt="Product Image">
+            </div>
+          </td>
+          <td>
+            <span class="productName">
+              <em>
+                {{ item.name }}
+              </em>
+            </span>
+            <span class="block">
+              <span class="bold">SKU</span>: {{ item.sku }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ item.price | currency: 'INR': true }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ item.quantity }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ item.discount | currency: 'INR': true }}
+            </span>
+          </td>
+          <td>
+            <span>
+              {{ item.total | currency: 'INR': true }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+
+      <tfoot *ngIf=" bankInfo.productsInfo && bankInfo.productsInfo.length > 10 ">
+        <tr>
+          <td colspan="5">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+
+      <tbody *ngIf="bankInfo.productsInfo && bankInfo.productsInfo.length == 0">
+        <tr>
+          <td colspan="6">
+            <span class="bold">
+              There are no products in this order!
+            </span>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>

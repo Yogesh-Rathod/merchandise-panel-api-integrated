@@ -13,6 +13,7 @@ import { CatalogManagementComponent } from './catalog-management.component';
 import { SearchBankPipe } from './search-banks.pipe';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
 import { BasicInfoComponent } from "./bank-details/basic-info/basic-info.component";
+import { ProductsInfoComponent } from './bank-details/products-info/products-info.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { BasicInfoComponent } from "./bank-details/basic-info/basic-info.compone
     CatalogManagementComponent,
     SearchBankPipe,
     BankDetailsComponent,
-    BasicInfoComponent
+    BasicInfoComponent,
+    ProductsInfoComponent
   ],
   providers: [
   ],
