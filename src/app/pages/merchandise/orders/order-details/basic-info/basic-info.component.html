@@ -8,7 +8,10 @@
       </div>
       <div class="col-9">
         <span class="bold" *ngIf="orderInfo.orderStatus">{{ orderInfo.orderStatus }}</span>
-        <button class="btn btn-danger">Cancel Order</button>
+        <span *ngIf="orderCancelled" class="bold error">
+           : Order Cancelled
+        </span>
+        <button *ngIf="!orderCancelled" class="btn btn-danger" (click)="cancelOrder()">Cancel Order</button>
         <button class="btn btn-info">Change Status</button>
       </div>
     </div>

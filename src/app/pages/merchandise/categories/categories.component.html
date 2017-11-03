@@ -50,7 +50,7 @@
 							<!-- <th>No.</th> -->
 							<th class="text-left"><strong>Name</strong></th>
 							<th class="text-center"><strong>Published</strong></th>
-							<th><strong>Display Order</strong></th>
+							<th class="text-center"><strong>Display Order</strong></th>
 							<th class="text-center"><strong>Action</strong></th>
 						</tr>
 					</thead>
@@ -67,7 +67,7 @@
 								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
 								<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
 							</td>
-							<td>{{ item.display_order }}</td>
+							<td class="text-center">{{ item.display_order }}</td>
 							<td class="text-center">
 								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>

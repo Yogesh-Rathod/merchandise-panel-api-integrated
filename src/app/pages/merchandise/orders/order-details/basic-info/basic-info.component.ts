@@ -9,8 +9,13 @@ declare let $: any;
 export class BasicInfoComponent implements OnInit {
 
   @Input() orderInfo: any;
+  orderCancelled = false;
 
   constructor() { }
+
+  cancelOrder() {
+    this.orderCancelled = true;
+  }
 
   ngOnInit() {
     $(document).ready(() => {
