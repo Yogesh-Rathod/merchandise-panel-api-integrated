@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pages.routing';
 import { NgaModule } from '../theme/nga.module';
 import { AppTranslationModule } from '../app.translation.module';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { Pages } from './pages.component';
 
@@ -24,6 +24,7 @@ import { BankDeletePopupComponent } from './merchandise/catalog-management/delet
     AppTranslationModule,
     NgaModule,
     routing,
+    FileUploadModule,
   ],
   declarations: [
     Pages,
@@ -31,7 +32,6 @@ import { BankDeletePopupComponent } from './merchandise/catalog-management/delet
     ProductsBulkUploadComponent,
     VendorsBulkUploadComponent,
     CatalogBulkUploadComponent,
-    FileSelectDirective,
     VendorDeletePopupComponent,
     CategoryDeletePopupComponent,
     ProductsDeletePopupComponent,
