@@ -119,9 +119,21 @@ export class ProductsComponent implements OnInit {
   }
 
   deactivateAll() {
-    _.forEach(this.products, (item) => {
-      item.status = 'Inactive';
-    });
+    if (this.selectAllCheckbox) {
+      _.forEach(this.products, (item) => {
+        item.status = 'Inactive';
+        item.isChecked = false;
+      });
+    } else {
+      _.forEach(this.products, (item) => {
+        if (item.isChecked) {
+          item.status = 'Inactive';
+          item.isChecked = false;
+        }
+      });
+    }
+    this.selectAllCheckbox = false;
+    this.showSelectedDelete = false;
   }
 
   deleteAll() {
@@ -129,7 +141,16 @@ export class ProductsComponent implements OnInit {
 
     activeModal.result.then((status) => {
       if (status) {
-        this.products = [];
+        if (this.selectAllCheckbox) {
+          this.products = [];
+        } else {
+          _.forEach(this.products, (item) => {
+            if (item.isChecked) {
+              _.remove(this.products, item);
+            }
+          });
+          this.productsService.editProduct(this.products);
+        }
         this.toastr.success('Successfully Deleted!', 'Success!');
         this.selectAllCheckbox = false;
         this.showSelectedDelete = false;

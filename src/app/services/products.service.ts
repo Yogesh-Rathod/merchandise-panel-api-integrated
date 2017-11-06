@@ -55,6 +55,27 @@ export class ProductsService {
       productType: 'Simple',
       status: 'Inative',
       categories: ''
+    },
+    {
+      id: 12346,
+      picture: [
+        {
+          url: 'assets/images/products/laptop-images.jpeg',
+          alt: 'some text',
+          title: 'some text',
+          displayOrder: 1
+        }
+      ],
+      name: 'HP 15 Core i3',
+      shortDescription: '',
+      fullDescription: '',
+      sku: 'HP_15_Core_i3',
+      MrpPrice: 32990,
+      retailPrice: 26990,
+      stockQuantity: 20,
+      productType: 'Simple',
+      status: 'Active',
+      categories: ''
     }
   ];
 

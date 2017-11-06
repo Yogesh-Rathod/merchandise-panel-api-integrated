@@ -82,9 +82,21 @@ export class VendorComponent implements OnInit {
   }
 
   deactivateAll() {
-    _.forEach(this.vendorsList, (item) => {
-      item.status = false;
-    });
+    if (this.selectAllCheckbox) {
+      _.forEach(this.vendorsList, (item) => {
+        item.status = false;
+        item.isChecked = false;
+      });
+    } else {
+      _.forEach(this.vendorsList, (item) => {
+        if (item.isChecked) {
+          item.status = false;
+          item.isChecked = false;
+        }
+      });
+    }
+    this.selectAllCheckbox = false;
+    this.showSelectedDelete = false;
   }
 
   deleteAll() {

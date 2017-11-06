@@ -62,8 +62,6 @@ export class ProductsInfoComponent implements OnInit {
         item.status = 'Inactive';
         item.isChecked = false;
       });
-      this.showSelectedDelete = false;
-      this.selectAllCheckbox = false;
     } else {
       _.forEach(this.bankInfo.productsInfo, (item) => {
         if (item.isChecked) {
@@ -71,9 +69,9 @@ export class ProductsInfoComponent implements OnInit {
           item.isChecked = false;
         }
       });
-      this.showSelectedDelete = false;
-      this.selectAllCheckbox = false;
     }
+    this.showSelectedDelete = false;
+    this.selectAllCheckbox = false;
   }
 
   deleteAll() {

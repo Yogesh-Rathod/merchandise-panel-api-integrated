@@ -214,7 +214,7 @@
 
 					<tbody *ngIf=" products && products.length === 0 ">
 						<tr>
-							<td colspan="8">
+							<td colspan="9">
 								<strong>There are no products!</strong>
 							</td>
 						</tr>
@@ -222,7 +222,7 @@
 
 					<tfoot *ngIf=" products && products.length > 10 ">
 						<tr>
-							<td colspan="5">
+							<td colspan="9">
 								<mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
 							</td>
 						</tr>
