@@ -1,4 +1,28 @@
-<div class="card" *ngIf="bankInfo">
+
+<!-- <div class="card"> -->
+  <!-- <div class="card-body"> -->
+    <button class="btn btn-primary newVendorBtn" (click)="addNewVendor = !addNewVendor">
+      Add new vendor 
+      <i *ngIf="!addNewVendor" class="fa fa-plus-square" aria-hidden="true"></i>
+      <i *ngIf="addNewVendor" class="fa fa-minus-square" aria-hidden="true"></i>
+    </button>
+    <div class="row no_padding no_margin" *ngIf="addNewVendor">
+      <div class="col-4 no_padding">
+        <angular2-multiselect id="vendors" [data]="vendors" [(ngModel)]="selectedvendors" [settings]="vendorsDropdownSettings">
+        </angular2-multiselect>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-info sync-button">
+          <i class="fa fa-refresh" aria-hidden="true"></i> 
+           Sync Products
+        </button>
+      </div>
+    </div>
+
+  <!-- </div> -->
+<!-- </div> -->
+
+<div class="card marginAbove" *ngIf="bankInfo">
   <div class="card-body">
     <h3>Filters</h3>
     <form class="form-inline">

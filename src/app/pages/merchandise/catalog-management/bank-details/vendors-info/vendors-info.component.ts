@@ -11,6 +11,29 @@ export class VendorsInfoComponent implements OnInit {
   @Input() bankInfo: any;
   showSelectedDelete = false;
   selectAllCheckbox = false;
+  addNewVendor = false;
+  selectedvendors = [];
+  vendorsDropdownSettings = {
+    singleSelection: false,
+    text: "Select Vendors",
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    enableSearchFilter: true
+  };
+  vendors = [
+    {
+      id: 'vendor 1',
+      itemName: 'vendor 1'
+    },
+    {
+      id: 'vendor 2',
+      itemName: 'vendor 2'
+    },
+    {
+      id: 'vendor 3',
+      itemName: 'vendor 3'
+    }
+  ];
 
   constructor() { }
 
