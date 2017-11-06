@@ -24,7 +24,8 @@ export class BankDetailsComponent implements OnInit {
         price: 13000,
         quantity: 1,
         discount: 1000,
-        total: 12000
+        total: 12000,
+        status: 'Active'
       },
       {
         picture: 'assets/images/products/laptop-154091_640.png',
@@ -33,7 +34,18 @@ export class BankDetailsComponent implements OnInit {
         price: 1000,
         quantity: 1,
         discount: 500,
-        total: 500
+        total: 500,
+        status: 'Inactive'
+      },
+      {
+        picture: 'assets/images/products/laptop-images.jpeg',
+        name: 'HP 15 Core i3',
+        sku: 'HP_15_Core_i3',
+        price: 32990,
+        quantity: 3,
+        discount: 990,
+        total: 32000,
+        status: 'Active'
       }
     ],
   };

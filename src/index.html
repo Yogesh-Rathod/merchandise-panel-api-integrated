@@ -28,7 +28,7 @@
         if (!(
           arguments.length == 1 &&
           typeof arguments[0] === 'string' &&
-          arguments[0].match(/^\[(HMR|WDS|Slow)\]/)
+          arguments[0].match(/^\[(HMR|WDS|Slow|network)\]/)
         )) {
           console_log.apply(global.console, arguments)
         }
