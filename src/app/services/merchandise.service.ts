@@ -36,7 +36,7 @@ export class MerchandiseService {
       name: 'Electronics',
       parent_name: null,
       published: true,
-      display_order: 1,
+      display_order: 2,
       breadCrumb: 'Electronics',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
@@ -63,7 +63,7 @@ export class MerchandiseService {
       name: 'Apparel',
       parent_name: null,
       published: false,
-      display_order: 1,
+      display_order: 3,
       breadCrumb: 'Apparel',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     },
