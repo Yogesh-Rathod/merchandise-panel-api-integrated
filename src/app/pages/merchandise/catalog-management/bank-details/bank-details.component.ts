@@ -48,6 +48,56 @@ export class BankDetailsComponent implements OnInit {
         status: 'Active'
       }
     ],
+    vendors: [
+      {
+        'id': 1,
+        'first_name': 'Verla',
+        'last_name': 'Spong',
+        'email': 'test@test.com',
+        'status': true,
+        'suffix': 'VS',
+        'company': 'HDFC',
+        'phoneNumber': '1234567890',
+        'website': 'https://www.india.com',
+        'address': '101, Ruby Tower, dadar.',
+        'city': 'Mumbai',
+        'state': 'Maharashtra',
+        'country': 'India',
+        'zip': '400606'
+      },
+      {
+        'id': 2,
+        'first_name': 'Jade',
+        'last_name': 'O Sharkey',
+        'email': 'Jade.Sharkey@gmail.com',
+        'status': false,
+        'suffix': 'JO',
+        'company': 'JIO',
+        'phoneNumber': '9387654321',
+        'website': 'https://www.JIO.com',
+        'address': '101, Ruby Tower, dadar.',
+        'city': 'Mumbai',
+        'state': 'Maharashtra',
+        'country': 'India',
+        'zip': '400606'
+      },
+      {
+        'id': 3,
+        'first_name': 'Vernice',
+        'last_name': 'Cicconettii',
+        'email': 'Vernice.Cicconettii@gmail.com',
+        'status': true,
+        'suffix': 'VC',
+        'company': 'Reliance',
+        'phoneNumber': '9387654321',
+        'website': 'https://www.Reliance.com',
+        'address': '101, Ruby Tower, dadar.',
+        'city': 'Mumbai',
+        'state': 'Maharashtra',
+        'country': 'India',
+        'zip': '400606'
+      }
+    ]
   };
   banks: any;
   deleteLoader = false;

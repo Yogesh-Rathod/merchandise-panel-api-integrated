@@ -1,9 +1,75 @@
 <div class="card" *ngIf="bankInfo">
   <div class="card-body">
-    <p>
-      <span class="bold">
-        Vendors are not available for this bank.
-      </span>
-    </p>
+    <h3>Filters</h3>
+    <form class="form-inline">
+      <label class="vendorName sr-only" for="vendorName">Vendor Name</label>
+      <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="vendorName" placeholder="Vendor Name">
+
+      <label class="vendorEmail sr-only" for="vendorEmail">Vendor Email</label>
+      <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="vendorEmail" placeholder="Vendor Email">
+
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
   </div>
+</div>
+
+<div class="filters card col-12">
+  <div class="card-body">
+
+    <button class="btn btn-info float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deactivateAll()">
+      Deactivate Selected
+    </button>
+
+
+    <table class="table table-bordered table-responsive" [mfData]="bankInfo.vendors" #mf="mfDataTable" [mfRowsOnPage]="10">
+      <thead class="black-muted-bg">
+        <tr>
+          <th class="text-center">
+            <input type="checkbox" [ngModel]='selectAllCheckbox' (change)="selectAll($event)">
+          </th>
+          <th class="text-left">
+            <strong>Name</strong>
+          </th>
+          <th>
+            <strong>Email</strong>
+          </th>
+          <th class="text-center">
+            <strong>Status</strong>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf=" bankInfo.vendors && bankInfo.vendors.length > 0 ">
+        <tr *ngFor=" let item of mf.data; let i = index;">
+          <td class="text-center">
+            <input [ngModel]="item.isChecked" type="checkbox" (change)="checkBoxSelected($event, item)">
+          </td>
+          <td class="text-left">
+            {{ item.first_name }} {{ item.last_name }}
+          </td>
+          <td>{{ item.email }}</td>
+          <td class="text-center">
+            <i *ngIf=" item.status " class="fa fa-check" aria-hidden="true"></i>
+            <i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
+          </td>
+        </tr>
+      </tbody>
+
+      <tbody *ngIf=" bankInfo.vendors && bankInfo.vendors.length === 0 ">
+        <tr>
+          <td colspan="5">
+            <strong>There are no vendors!</strong>
+          </td>
+        </tr>
+      </tbody>
+
+      <tfoot *ngIf=" bankInfo.vendors && bankInfo.vendors.length > 10 ">
+        <tr>
+          <td colspan="5">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
 </div>
