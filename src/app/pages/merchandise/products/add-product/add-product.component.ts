@@ -19,9 +19,10 @@ import { MerchandiseService, ProductsService } from 'app/services';
 export class AddProductComponent implements OnInit {
 
   addProductForm: FormGroup;
-  public config = {
+  config = {
     uiColor: '#F0F3F4',
-    height: '200'
+    height: '200',
+    toolbarCanCollapse: true
   };
   productId: any;
   products: any;
