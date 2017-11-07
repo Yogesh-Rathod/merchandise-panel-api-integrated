@@ -8,6 +8,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class VendorDeletePopupComponent implements OnInit {
 
+  modalText: string; 
+
   constructor(
     private activeModal: NgbActiveModal
   ) { }

@@ -8,6 +8,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductsDeletePopupComponent implements OnInit {
 
+  modalText: string; 
+  
   constructor(
     private activeModal: NgbActiveModal
   ) { }

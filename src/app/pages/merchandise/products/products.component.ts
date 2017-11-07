@@ -138,6 +138,7 @@ export class ProductsComponent implements OnInit {
 
   deleteAll() {
     const activeModal = this.modalService.open(ProductsDeletePopupComponent, { size: 'sm' });
+    activeModal.componentInstance.modalText = 'products';
 
     activeModal.result.then((status) => {
       if (status) {
@@ -160,6 +161,7 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct(item, index) {
     const activeModal = this.modalService.open(ProductsDeletePopupComponent, { size: 'sm' });
+    activeModal.componentInstance.modalText = 'product';
 
     activeModal.result.then((status) => {
       if (status) {

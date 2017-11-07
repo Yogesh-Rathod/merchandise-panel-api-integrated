@@ -101,6 +101,7 @@ export class VendorComponent implements OnInit {
 
   deleteAll() {
     const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
+    activeModal.componentInstance.modalText = 'vendors';
 
     activeModal.result.then((status) => {
       if (status) {
@@ -117,7 +118,8 @@ export class VendorComponent implements OnInit {
   }
 
   deleteVendor(item, index) {
-    const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' }); 
+    const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
+    activeModal.componentInstance.modalText = 'vendor';
 
     activeModal.result.then( (status) => {
       if (status) {
