@@ -36,13 +36,11 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="ParentCategory" class="col-3 text-right">Parent Category</label>
+					<label for="ParentCategory" class="col-3 text-right">Parent Category{{categoriesMaxLevel}}</label>
 					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat" *ngIf=" categories ">
-						<option *ngFor="let category of categories " [ngValue]=" category ">
-							{{ category.breadCrumb }}
-							<!-- <span *ngIf=" category.parent_name !== null && category.parent_name !== '' ">{{ category.parent_name }} >></span>
-							<span>{{ category.name }}</span> -->
-						</option>
+						<ng-container *ngFor="let category of categories">
+							<option *ngIf="category.level < categoriesMaxLevel " [ngValue]="category">{{ category.breadCrumb }}</option>
+						</ng-container>
 					</select>
 					<select *ngIf=" !categories " class="form-control col-9">
 						<option value="noCat">There are no categories yet!</option>

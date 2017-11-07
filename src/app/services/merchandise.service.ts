@@ -7,6 +7,7 @@ export class MerchandiseService {
     {
       id: 1,
       name: 'Computers',
+      level: 1,
       parent_name: null,
       published: true,
       display_order: 1,
@@ -16,6 +17,7 @@ export class MerchandiseService {
     {
       id: 2,
       name: 'Desktops',
+      level: 2,
       parent_name: 'Computers',
       published: false,
       display_order: 1,
@@ -25,6 +27,7 @@ export class MerchandiseService {
     {
       id: 3,
       name: 'Software',
+      level: 2,
       parent_name: 'Computers',
       published: true,
       display_order: 2,
@@ -34,6 +37,7 @@ export class MerchandiseService {
     {
       id: 4,
       name: 'Electronics',
+      level: 1,
       parent_name: null,
       published: true,
       display_order: 2,
@@ -43,6 +47,7 @@ export class MerchandiseService {
     {
       id: 5,
       name: 'Cell phones',
+      level: 2,
       parent_name: 'Electronics',
       published: false,
       display_order: 1,
@@ -52,6 +57,7 @@ export class MerchandiseService {
     {
       id: 6,
       name: 'Others',
+      level: 2,
       parent_name: 'Electronics',
       published: true,
       display_order: 2,
@@ -61,6 +67,7 @@ export class MerchandiseService {
     {
       id: 7,
       name: 'Apparel',
+      level: 1,
       parent_name: null,
       published: false,
       display_order: 3,
@@ -70,6 +77,7 @@ export class MerchandiseService {
     {
       id: 8,
       name: 'Clothing',
+      level: 2,
       parent_name: 'Apparel',
       published: true,
       display_order: 1,
@@ -79,10 +87,31 @@ export class MerchandiseService {
     {
       id: 9,
       name: 'Accessories',
+      level: 2,
       parent_name: 'Apparel',
       published: false,
       display_order: 2,
       breadCrumb: 'Apparel >> Accessories',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
+    },
+    {
+      id: 10,
+      name: 'Caps',
+      level: 3,
+      parent_name: 'Apparel',
+      published: false,
+      display_order: 3,
+      breadCrumb: 'Apparel >> Accessories >> Caps',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
+    },
+    {
+      id: 11,
+      name: 'Armani Caps',
+      level: 4,
+      parent_name: 'Apparel',
+      published: true,
+      display_order: 4,
+      breadCrumb: 'Apparel >> Accessories >> Caps >> Armani Caps',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti cumque earum placeat officiis culpa est maiores. Optio sint earum odit cumque, blanditiis eligendi ipsum eveniet accusamus illo. Aspernatur, assumenda, at.'
     }
   ];

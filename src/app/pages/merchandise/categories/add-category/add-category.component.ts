@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
+import { Config } from 'app/pages/app-config';
 import { MerchandiseService } from 'app/services';
 
 @Component({
@@ -21,7 +22,8 @@ export class AddCategoryComponent implements OnInit {
   };
   addCategoryForm: FormGroup;
   showLoader = false;
-  deleteLoader = false; 
+  deleteLoader = false;
+  categoriesMaxLevel = Config.categoriesMaxLevel;
   categories: any;
   categoryId: any;
   categoryInfo: any;
@@ -69,6 +71,7 @@ export class AddCategoryComponent implements OnInit {
     const categoryInfo = {
       name: addCategoryFormValues.name,
       parent_name: addCategoryFormValues.parentCat.name,
+      level: addCategoryFormValues.parentCat.level + 1,
       published: addCategoryFormValues.published,
       display_order: addCategoryFormValues.order,
       description: addCategoryFormValues.description,
