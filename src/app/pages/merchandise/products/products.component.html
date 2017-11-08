@@ -21,7 +21,7 @@
 
 					<div class="form-group col-6 row">
 						<label for="name" class="col-4 text-right">
-							Product Name 
+							Product Name
 							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A product name."></i>
 						</label>
 						<input type="text" class="form-control col-8" id="name" placeholder="Product Name" formControlName="name">
@@ -31,12 +31,12 @@
 						<label for="Store" class="col-4 text-right">
 							Store
 							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by a specific store."></i>
-						</label>                 
+						</label>
 						<select id="Store" class="form-control col-8" formControlName="store">
 							<option value="all">All</option>
 							<option *ngFor="let item of stores" value="{{ item }}">
 								{{ item }}
-							</option>	
+							</option>
 						</select>
 					</div>
 
@@ -131,19 +131,19 @@
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
 				</div>
 
-				<button 
+				<button
 					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }"
 					(click)="deleteAll()">
 					Delete Selected
 				</button>
-				
-				<button 
-					class="btn btn-info float-right deleteSelectedButton" 
+
+				<button
+					class="btn btn-info float-right deleteSelectedButton"
 					[ngClass]="{'disabled': !showSelectedDelete }"
 					(click)="deactivateAll()">
 					Deactivate Selected
 				</button>
-				
+
 				<table class="table table-bordered table-responsive"  [mfData]="products" #mf="mfDataTable" [mfRowsOnPage]="10">
 					<thead class="black-muted-bg">
 						<tr>

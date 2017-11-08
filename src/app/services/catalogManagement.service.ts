@@ -14,6 +14,7 @@ export class CatalogManagementService {
       purchasesCount: 222,
       productsInfo: [
         {
+          id: 12345,
           picture: 'assets/images/products/home-office-336373_640.jpg',
           name: 'Pride and Prejudice',
           sku: 'PRIDE_PRJ',
@@ -24,6 +25,7 @@ export class CatalogManagementService {
           status: 'Active'
         },
         {
+          id: 12346,
           picture: 'assets/images/products/laptop-154091_640.png',
           name: 'First Prize Pies',
           sku: 'FIRST_PRP',
@@ -34,6 +36,7 @@ export class CatalogManagementService {
           status: 'Inactive'
         },
         {
+          id: 12347,
           picture: 'assets/images/products/laptop-images.jpeg',
           name: 'HP 15 Core i3',
           sku: 'HP_15_Core_i3',

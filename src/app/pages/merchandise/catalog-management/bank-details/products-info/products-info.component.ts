@@ -11,10 +11,12 @@ export class ProductsInfoComponent implements OnInit {
   @Input() bankInfo: any;
   showSelectedDelete = false;
   selectAllCheckbox = false;
+  bankId: any;
 
   constructor() { }
 
   ngOnInit() {
+    this.bankId = this.bankInfo.id;
   }
 
   selectAll(e) {

@@ -231,7 +231,7 @@ export class AddProductComponent implements OnInit {
 
     this.toastr.success('Sucessfully Done!', 'Sucess!');
     this.showLoader = false;
-    this._location.back();
+    this.goBack();
   }
 
   getAllCategories() {
@@ -258,7 +258,7 @@ export class AddProductComponent implements OnInit {
     _.remove(this.products, this.productInfo);
     this.productsService.editProduct(this.products);
     this.deleteLoader = false;
-    this._location.back();
+    this.goBack();
   }
 
   uploadProductImage(addProductForm) {
@@ -271,6 +271,10 @@ export class AddProductComponent implements OnInit {
     } else {
       this.productImageName = '';
     }
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   resetForm() {

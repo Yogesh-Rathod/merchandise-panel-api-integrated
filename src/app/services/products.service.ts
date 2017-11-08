@@ -57,7 +57,7 @@ export class ProductsService {
       categories: ''
     },
     {
-      id: 12346,
+      id: 12347,
       picture: [
         {
           url: 'assets/images/products/laptop-images.jpeg',

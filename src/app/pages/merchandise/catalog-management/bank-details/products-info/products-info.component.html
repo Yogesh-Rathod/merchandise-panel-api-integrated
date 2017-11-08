@@ -9,7 +9,7 @@
       <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="productName" placeholder="Product Name">
 
       <button type="submit" class="btn btn-primary">
-        <i class="fa fa-search" aria-hidden="true"></i> 
+        <i class="fa fa-search" aria-hidden="true"></i>
         Search
       </button>
     </form>
@@ -22,7 +22,7 @@
     <!-- <button class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deleteAll()">
       Delete Selected
     </button> -->
-    
+
     <button class="btn btn-info float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deactivateAll()">
       Deactivate Selected
     </button>
@@ -40,6 +40,9 @@
           <th>Discount</th>
           <th>Total</th>
           <th class="text-center">Status</th>
+          <th class="action">
+            Action
+          </th>
         </tr>
       </thead>
 
@@ -51,7 +54,7 @@
           <td class="text-left">
             <div class="product-image">
               <img class="img-fluid" src="{{ item.picture ? item.picture : 'assets/images/products/Placeholder.png' }}" alt="Product Image">
-            </div> 
+            </div>
           </td>
           <td>
             <span class="productName">
@@ -85,6 +88,11 @@
           </td>
           <td class="text-center">
             {{ item.status }}
+          </td>
+          <td class="action">
+            <button class="btn btn-secondary" [routerLink]="['/merchandise/products/edit-product/', item.id, bankId]" title="Edit">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
           </td>
         </tr>
       </tbody>
