@@ -48,6 +48,7 @@ export class AddProductComponent implements OnInit {
     editableDateField: false,
     openSelectorOnInputClick: true
   };
+  bankId: any;
 
   constructor(
     public toastr: ToastsManager,
@@ -58,9 +59,10 @@ export class AddProductComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.route.params.subscribe(params =>
-      this.productId = params['productId']
-    )
+    this.route.params.subscribe((params) => {
+      this.productId = params['productId'];
+      this.bankId = params['bankId'];
+    });
   }
 
   ngOnInit() {

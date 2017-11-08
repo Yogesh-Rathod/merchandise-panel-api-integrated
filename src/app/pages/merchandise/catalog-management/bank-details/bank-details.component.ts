@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CatalogManagementService } from 'app/services';
 
 @Component({
@@ -13,7 +14,7 @@ export class BankDetailsComponent implements OnInit {
   banks: any;
   deleteLoader = false;
   bigLoader: false;
-  
+
   constructor(
     private catalogManagementService: CatalogManagementService
   ) { }
