@@ -131,6 +131,11 @@
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
 				</div>
 
+				<button class="btn btn-info deleteSelectedButton" [ngClass]="{ 'disabled': products && products.length === 0 }">
+					<i class="fa fa-download" aria-hidden="true"></i>
+					Export Products
+				</button>
+
 				<button
 					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }"
 					(click)="deleteAll()">

@@ -22,21 +22,26 @@ export class CatalogManagementComponent implements OnInit {
       id: 12233,
       name: 'Saraswat',
       status: true,
-      createdOn: '12/12/2017'
+      createdOn: '12/12/2017',
+      isChecked: false
     },
     {
       id: 43221,
       name: 'SBI',
       status: false,
-      createdOn: '01/01/2017'
+      createdOn: '01/01/2017',
+      isChecked: false
     },
     {
       id: 56788,
       name: 'PNB',
       status: false,
-      createdOn: '11/11/2016'
+      createdOn: '11/11/2016',
+      isChecked: false
     }
   ];
+  showSelectedDelete = false;
+  selectAllCheckbox = false;
 
   constructor(
     private modalService: NgbModal,
@@ -58,6 +63,63 @@ export class CatalogManagementComponent implements OnInit {
   bulkUpload() {
     const activeModal = this.modalService.open(CatalogBulkUploadComponent, { size: 'sm' });
   }
+
+  selectAll(e) {
+    if (e.target.checked) {
+      this.selectAllCheckbox = true;
+      _.forEach(this.banks, (item) => {
+        item.isChecked = true;
+      });
+      this.showSelectedDelete = true;
+    } else {
+      this.selectAllCheckbox = false;
+      _.forEach(this.banks, (item) => {
+        item.isChecked = false;
+      });
+      this.showSelectedDelete = false;
+    }
+  }
+
+  checkBoxSelected(e, item) {
+    this.selectAllCheckbox = false;
+    if (e.target.checked) {
+      item.isChecked = true;
+    } else {
+      item.isChecked = false;
+    }
+
+    let isCheckedArray = [];
+
+    _.forEach(this.banks, (item) => {
+      if (item.isChecked) {
+        this.showSelectedDelete = true;
+        isCheckedArray.push(item);
+      }
+    });
+
+    if (isCheckedArray.length === 0) {
+      this.showSelectedDelete = false;
+    }
+
+  }
+
+  // deactivateAll() {
+  //   if (this.selectAllCheckbox) {
+  //     _.forEach(this.products, (item) => {
+  //       item.status = 'Inactive';
+  //       item.isChecked = false;
+  //     });
+  //   } else {
+  //     _.forEach(this.banks, (item) => {
+  //       if (item.isChecked) {
+  //         item.status = 'Inactive';
+  //         item.isChecked = false;
+  //       }
+  //     });
+  //   }
+  //   this.selectAllCheckbox = false;
+  //   this.showSelectedDelete = false;
+  // }
 
 
 }

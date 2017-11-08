@@ -104,7 +104,7 @@ export class ProductsComponent implements OnInit {
     }
 
     let isCheckedArray = [];
-    
+
     _.forEach(this.products, (item) => {
       if (item.isChecked) {
         this.showSelectedDelete = true;
@@ -172,7 +172,7 @@ export class ProductsComponent implements OnInit {
         this.toastr.success('Successfully Deleted!', 'Success!');
       }
     });
-    
+
   }
 
   resetForm() {

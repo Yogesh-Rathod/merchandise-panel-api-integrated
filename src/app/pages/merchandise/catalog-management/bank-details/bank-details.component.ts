@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare let $: any;
 
 import { CatalogManagementService } from 'app/services';
 
@@ -19,6 +20,10 @@ export class BankDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
     this.getBanks();
   }
 
