@@ -2,9 +2,13 @@
 <!-- <div class="card"> -->
   <!-- <div class="card-body"> -->
     <button class="btn btn-primary newVendorBtn" (click)="addNewVendor = !addNewVendor">
-      Add new vendor 
+      Add / Sync vendor
       <i *ngIf="!addNewVendor" class="fa fa-plus-square" aria-hidden="true"></i>
       <i *ngIf="addNewVendor" class="fa fa-minus-square" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-primary newVendorBtn">
+      <i class="fa fa-refresh" aria-hidden="true"></i> 
+      Sync all existing vendors
     </button>
     <div class="row no_padding no_margin" *ngIf="addNewVendor">
       <div class="col-4 no_padding">
@@ -33,7 +37,7 @@
       <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="vendorEmail" placeholder="Vendor Email">
 
       <button type="submit" class="btn btn-primary">
-        <i class="fa fa-search" aria-hidden="true"></i> 
+        <i class="fa fa-search" aria-hidden="true"></i>
         Search
       </button>
     </form>

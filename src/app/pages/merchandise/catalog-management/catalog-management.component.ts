@@ -17,7 +17,6 @@ export class CatalogManagementComponent implements OnInit {
 
   searchTerm: any;
   showLoader = false;
-  deleteLoader: Number;
   banks = [
     {
       id: 12233,
@@ -52,7 +51,7 @@ export class CatalogManagementComponent implements OnInit {
   }
 
   searchBank(searchText) {
-    console.log("searchText ", searchText); 
+    console.log("searchText ", searchText);
     this.searchTerm = searchText;
   }
 
@@ -60,17 +59,5 @@ export class CatalogManagementComponent implements OnInit {
     const activeModal = this.modalService.open(CatalogBulkUploadComponent, { size: 'sm' });
   }
 
-  deleteBank(bank, index) {
-    const activeModal = this.modalService.open(BankDeletePopupComponent, { size: 'sm' });
-
-    activeModal.result.then((status) => {
-      if (status) {
-        this.deleteLoader = index;
-        _.remove(this.banks, bank);
-        this.deleteLoader = NaN;
-        this.toastr.success('Successfully Deleted!', 'Success!');
-      }
-    });
-  }
 
 }

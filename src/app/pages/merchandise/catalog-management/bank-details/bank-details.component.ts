@@ -12,7 +12,6 @@ export class BankDetailsComponent implements OnInit {
   bankId = 12233;
   bankInfo: any;
   banks: any;
-  deleteLoader = false;
   bigLoader: false;
 
   constructor(

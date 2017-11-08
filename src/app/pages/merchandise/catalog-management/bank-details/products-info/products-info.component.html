@@ -19,11 +19,12 @@
 <div class="card" *ngIf="bankInfo">
   <div class="card-body">
 
-    <!-- <button class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deleteAll()">
-      Delete Selected
-    </button> -->
+    <button class="btn btn-info deleteSelectedButton" [ngClass]="{ 'disabled': bankInfo.productsInfo && bankInfo.productsInfo.length == 0 }">
+      <i class="fa fa-download" aria-hidden="true"></i> 
+      Export Products
+    </button>
 
-    <button class="btn btn-info float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deactivateAll()">
+    <button class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }" (click)="deactivateAll()">
       Deactivate Selected
     </button>
 

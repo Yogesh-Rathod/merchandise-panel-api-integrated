@@ -8,10 +8,6 @@
           <i class="fa fa-download" aria-hidden="true"></i>
           Import
         </button>
-        <!-- <button class="btn btn-primary float-right" [routerLink]="['./add-category']">
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-          Add New
-        </button> -->
       </h2>
     </div>
 
@@ -26,11 +22,7 @@
               <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Bank Name."></i>
             </label>
             <input type="text" #searchText class="form-control col-4" id="name" placeholder="Bank Name">
-          </div>
-
-          <div class="form-group row">
-            <label class="col-2"></label>
-            <button type="submit" class="btn btn-primary no_margin" (click)=" searchBank(searchText.value) ">
+            <button type="submit" class="btn btn-primary searchbutton" (click)=" searchBank(searchText.value) ">
               <i class="fa fa-search" aria-hidden="true"></i>
               Search
             </button>
@@ -75,10 +67,6 @@
                 <button class="btn btn-secondary" [routerLink]="['./bank-details/', item.id]" title="View Details">
                   <i class="fa fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="btn btn-danger" (click)="deleteBank(item, i)" title="Delete"  data-toggle="modal" data-target="#deleteModal" [disabled]="deleteLoader == i">
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </button>
-                <img *ngIf="deleteLoader == i" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35" height="35">
               </td>
             </tr>
           </tbody>
