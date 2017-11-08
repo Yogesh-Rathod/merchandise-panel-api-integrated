@@ -10,21 +10,27 @@
 		& + .btn {
 			margin-right: 10px;
 		}
-	}	
+	}
+}
+
+label {
+	margin-top: 10px;
+
+	.fa[data-toggle="tooltip"] {
+		color: #209e91;
+		margin-left: 5px;
+	}
+}
+
+button[type="submit"].searchButton {
+	margin-top: 10px;
+	margin-left: 0;
 }
 
 .form-group {
 
 	select {
 		text-transform: capitalize;
-	}
-
-	label {
-	margin-top: 10px;
-
-		.fa {
-			color: #209e91;
-		}
 	}
 
 	.btn {
@@ -38,18 +44,12 @@
 	width: 100px;
 }
 
-.searchButton {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 0;
-}
-
 .action {
 	width: 150px;
 }
 
-.deleteSelectedButton {
-	margin-bottom: 15px;
+.deleteSelectedButton.float-right {
+	margin-left: 5px;
 }
 
 table {
@@ -62,7 +62,9 @@ table {
 }
 
 .filters {
-	button {
-		margin-left: 10px;
+	> .card-body:first-child {
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 3px;
 	}
 }
