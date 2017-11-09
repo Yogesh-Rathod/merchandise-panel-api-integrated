@@ -98,7 +98,7 @@ export class MerchandiseService {
       id: 10,
       name: 'Caps',
       level: 3,
-      parent_name: 'Apparel',
+      parent_name: 'Apparel >> Accessories',
       published: false,
       display_order: 3,
       breadCrumb: 'Apparel >> Accessories >> Caps',
@@ -108,7 +108,7 @@ export class MerchandiseService {
       id: 11,
       name: 'Armani Caps',
       level: 4,
-      parent_name: 'Apparel',
+      parent_name: 'Apparel >> Accessories >> Caps',
       published: true,
       display_order: 4,
       breadCrumb: 'Apparel >> Accessories >> Caps >> Armani Caps',
@@ -124,7 +124,6 @@ export class MerchandiseService {
 
   addCategory(categoryInfo) {
     this.categories.push(categoryInfo);
-    // localStorage.setItem('categories', JSON.stringify(this.categories) );
     return this.categories;
   }
 

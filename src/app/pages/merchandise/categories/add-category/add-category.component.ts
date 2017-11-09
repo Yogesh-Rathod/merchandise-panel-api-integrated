@@ -56,6 +56,7 @@ export class AddCategoryComponent implements OnInit {
       'id': [''],
       'name': ['', Validators.compose([Validators.required,
         Validators.minLength(1), Validators.maxLength(100)])],
+      'display_name': [],
       'description': ['', Validators.compose([Validators.required,
         Validators.minLength(1), Validators.maxLength(1000)])],
       'picture': [''],
@@ -70,12 +71,13 @@ export class AddCategoryComponent implements OnInit {
     this.showLoader = true;
     const categoryInfo = {
       name: addCategoryFormValues.name,
-      parent_name: addCategoryFormValues.parentCat.name,
-      level: addCategoryFormValues.parentCat.level + 1,
+      display_name: addCategoryFormValues.display_name,
+      parent_name: addCategoryFormValues.parentCat ? addCategoryFormValues.parentCat.breadCrumb : null,
+      level: addCategoryFormValues.parentCat ? addCategoryFormValues.parentCat.level + 1 : null ,
       published: addCategoryFormValues.published,
       display_order: addCategoryFormValues.order,
       description: addCategoryFormValues.description,
-      breadCrumb: `${addCategoryFormValues.parentCat.breadCrumb} >> ${addCategoryFormValues.name}`
+      breadCrumb: addCategoryFormValues.parentCat ? `${addCategoryFormValues.parentCat.breadCrumb} >> ${addCategoryFormValues.name}` : addCategoryFormValues.name
     };
     if (addCategoryFormValues.id) {
       categoryInfo['id'] = addCategoryFormValues.id;
@@ -83,11 +85,13 @@ export class AddCategoryComponent implements OnInit {
       this.categories.splice(index, 1, categoryInfo );
       this.merchandiseService.editCategories(this.categories);
     } else {
+      categoryInfo['id'] = Math.floor(Math.random() * 89999 + 10000);
       this.merchandiseService.addCategory(categoryInfo);
     }
     this.showLoader = false;
     this.toastr.success('Sucessfully Done!', 'Sucess!');
     this.router.navigate(['../']);
+    this.categories = this.merchandiseService.getCategories();
   }
 
   imageUpload(event) {
@@ -101,11 +105,18 @@ export class AddCategoryComponent implements OnInit {
       _.forEach(categories, (category) => {
         if (category.id === parseInt(this.categoryId) ) {
           this.categoryInfo = category;
+ console.log("this.categoryInfo ", this.categoryInfo);
           this.addCategoryForm.controls['id'].setValue(category.id);
-          this.addCategoryForm.controls['description'].setValue(category.description);
           this.addCategoryForm.controls['name'].setValue(category.name);
+          this.addCategoryForm.controls['display_name'].setValue(category.display_name);
+          this.addCategoryForm.controls['description'].setValue(category.description);
           this.addCategoryForm.controls['order'].setValue(category.display_order);
           this.addCategoryForm.controls['published'].setValue(category.published);
+        }
+      });
+      _.forEach(categories, (category) => {
+        if (this.categoryInfo.parent_name === category.breadCrumb) {
+          this.addCategoryForm.controls['parentCat'].setValue(category);
         }
       });
     }

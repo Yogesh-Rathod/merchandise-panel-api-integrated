@@ -26,6 +26,12 @@
 				</div>
 
 				<div class="form-group row">
+					<label for="display_name" class="col-3 text-right">Display Name (if any)
+					</label>
+					<input type="text" class="form-control col-9" id="display_name" placeholder="Display Name" formControlName="display_name">
+				</div>
+
+				<div class="form-group row">
 					<label for="Description" class="col-3 text-right">Description <span class="mandatory">*</span></label>
 					<ckeditor class="form-control col-9" [config]="config" formControlName="description"></ckeditor>
 				</div>
@@ -36,8 +42,9 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="ParentCategory" class="col-3 text-right">Parent Category{{categoriesMaxLevel}}</label>
+					<label for="ParentCategory" class="col-3 text-right">Parent Category</label>
 					<select id="ParentCategory" class="form-control col-9" formControlName="parentCat" *ngIf=" categories ">
+						<option></option>
 						<ng-container *ngFor="let category of categories">
 							<option *ngIf="category.level < categoriesMaxLevel " [ngValue]="category">{{ category.breadCrumb }}</option>
 						</ng-container>

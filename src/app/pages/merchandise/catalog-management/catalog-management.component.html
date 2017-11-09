@@ -3,7 +3,7 @@
 
     <div class="catSearch clearfix card-header">
       <h2 class="card-title ">
-        Manage Bank Catalog's
+        Manage Program Catalog's
         <button class="btn btn-primary float-right" (click)=" bulkUpload() ">
           <i class="fa fa-download" aria-hidden="true"></i>
           Import
@@ -17,11 +17,11 @@
 
           <div class="form-group row">
             <label for="name" class="col-2 text-right">
-               Bank Name
+               Program Name
               <span class="mandatory">*</span>
-              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Bank Name."></i>
+              <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Program Name."></i>
             </label>
-            <input type="text" #searchText class="form-control col-4" id="name" placeholder="Bank Name">
+            <input type="text" #searchText class="form-control col-4" id="name" placeholder="Program Name">
             <button type="submit" class="btn btn-primary searchbutton" (click)=" searchBank(searchText.value) ">
               <i class="fa fa-search" aria-hidden="true"></i>
               Search
@@ -50,12 +50,12 @@
                 </th>
               <th class="text-left">
                  <mfDefaultSorter by="name">
-                   <strong>Bank Name</strong>
+                   <strong>Program Name</strong>
                  </mfDefaultSorter>
               </th>
               <th class="text-center">
                 <mfDefaultSorter by="status">
-                  <strong>Status</strong>
+                  <strong>Catalog Status</strong>
                 </mfDefaultSorter>
               </th>
               <th>
