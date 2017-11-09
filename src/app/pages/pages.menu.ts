@@ -52,11 +52,11 @@ const menus = [
     ]
   },
   {
-    path: 'orders',
+    path: 'catalog-management',
     data: {
       menu: {
-        title: 'Order Management',
-        icon: 'ion-briefcase',
+        title: 'Catalog Management',
+        icon: 'ion-document',
         selected: false,
         expanded: false,
         order: 1
@@ -64,11 +64,11 @@ const menus = [
     }
   },
   {
-    path: 'catalog-management',
+    path: 'orders',
     data: {
       menu: {
-        title: 'Catalog Management',
-        icon: 'ion-document',
+        title: 'Order Management',
+        icon: 'ion-briefcase',
         selected: false,
         expanded: false,
         order: 1

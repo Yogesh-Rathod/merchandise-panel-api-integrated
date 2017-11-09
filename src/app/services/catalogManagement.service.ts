@@ -9,8 +9,8 @@ export class CatalogManagementService {
       name: 'Saraswat',
       status: true,
       createdOn: '12/12/2017',
-      vendorCount: 10,
-      productsCount: 2000,
+      vendorCount: 3,
+      productsCount: 3,
       purchasesCount: 222,
       productsInfo: [
         {
