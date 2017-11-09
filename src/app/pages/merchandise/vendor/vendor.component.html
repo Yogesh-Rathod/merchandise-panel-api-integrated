@@ -43,13 +43,13 @@
 					<img src="assets/img/ajax-loader.gif" alt="Loader Image">
 				</div>
 
-				<button 
+				<button
 					class="btn btn-danger float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }"
 					(click)="deleteAll()">
 					Delete Selected
 				</button>
-				
-				<button 
+
+				<button
 				class="btn btn-info float-right deleteSelectedButton" [ngClass]="{'disabled': !showSelectedDelete }"
 				(click)="deactivateAll()">
 					Deactivate Selected
@@ -92,6 +92,9 @@
 							<td class="text-center">
 								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button>
+								<button class="btn btn-secondary" [routerLink]="['/merchandise/products', item.id]" title="View Products">
+									<i class="fa fa-eye" aria-hidden="true"></i>
 								</button>
 								<button class="btn btn-danger" (click)="deleteVendor(item, i)" title="Delete" [disabled]="deleteLoader == i">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>

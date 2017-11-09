@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 declare let $: any;
 
-import { ProductsService, MerchandiseService } from 'app/services';
+import { ProductsService, MerchandiseService, VendorsService } from 'app/services';
 import { ProductsBulkUploadComponent } from "./bulk-upload/bulk-upload.component";
 import { ProductsDeletePopupComponent } from './delete-popup/delete-popup.component';
 
@@ -28,16 +29,23 @@ export class ProductsComponent implements OnInit {
   ];
   manufacturer = ['apple', 'lenovo', 'samsung'];
   status = ['Active', 'Inactive', 'Banned', 'Out of stock'];
-  vendor = ['vendor 1', 'vendor 2'];
+  vendors: any;
   showSelectedDelete = false;
   selectAllCheckbox = false;
+  vendorId: any;
+  vendorInfo: any;
 
   constructor(
     public toastr: ToastsManager,
     private modalService: NgbModal,
     private fb: FormBuilder,
     private productsService: ProductsService,
+    private route: ActivatedRoute,
+    private vendorsService: VendorsService,
     private merchandiseService: MerchandiseService) {
+    this.route.params.subscribe((params) => {
+      this.vendorId = params['vendorId'];
+    });
   }
 
   ngOnInit() {
@@ -47,7 +55,12 @@ export class ProductsComponent implements OnInit {
     this.searchForm();
     this.getAllProducts();
     this.getAllCategories();
+    this.getAllVendors();
     this.bigLoader = false;
+    if (this.vendorId) {
+      console.log("this.vendorId ", this.vendorId);
+      this.getVendorInfo(this.vendorId);
+    }
   }
 
   // For Creating Add Category Form
@@ -70,6 +83,9 @@ export class ProductsComponent implements OnInit {
   getAllProducts() {
     this.products = this.productsService.getProducts();
   }
+  getAllVendors() {
+    this.vendors = this.vendorsService.getVendors();
+  }
 
   searchProduct(searchProductForm) {
     console.log('searchProductForm', searchProductForm);
@@ -77,6 +93,17 @@ export class ProductsComponent implements OnInit {
 
   bulkUpload() {
     const activeModal = this.modalService.open(ProductsBulkUploadComponent, { size: 'sm' });
+  }
+
+  getVendorInfo(vendorId) {
+    const vendors = this.vendorsService.getVendors();
+    _.forEach(vendors, (vendor) => {
+      if (parseInt(vendor.id) === parseInt(vendorId)) {
+        this.vendorInfo = vendor;
+        console.log("this.vendorInfo", this.vendorInfo );
+        this.searchProductForm.controls['vendor'].setValue(vendor);
+      }
+    });
   }
 
   selectAll(e) {

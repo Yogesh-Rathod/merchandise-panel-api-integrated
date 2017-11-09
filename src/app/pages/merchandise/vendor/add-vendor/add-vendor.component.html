@@ -4,6 +4,10 @@
     <h2 class="card-title">
       Add Vendor
 
+      <button *ngIf=" vendorId " class="btn btn-success" [routerLink]="['/merchandise/products', vendorId]">
+        Show Products
+      </button>
+
       <img *ngIf=" deleteLoader " class="float-right deleteLoader" src="assets/img/ajax-loader.gif" alt="Loader Image" width="35"
         height="35">
 

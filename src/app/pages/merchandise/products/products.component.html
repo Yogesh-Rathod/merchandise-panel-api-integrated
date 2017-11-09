@@ -50,8 +50,8 @@
 						</label>
 						<select id="Vendor" class="form-control col-12" formControlName="vendor">
 							<option value="all">All</option>
-							<option *ngFor="let item of vendor" value="{{ item }}">
-								{{ item }}
+							<option *ngFor="let item of vendors" [ngValue]="item">
+								{{ item.first_name }} {{ item.last_name }}
 							</option>
 						</select>
 					</div>

@@ -13,16 +13,16 @@ export const routes: Routes = [
   {
     path: '',
     component: Pages,
-    canActivateChild: [AuthGuard], 
+    canActivateChild: [AuthGuard],
     children: [
-      { 
-        path: '', 
-        redirectTo: 'merchandise/categories', 
-        pathMatch: 'full' 
+      {
+        path: '',
+        redirectTo: 'merchandise/categories',
+        pathMatch: 'full'
       },
-      { 
-        path: 'merchandise', 
-        loadChildren: './merchandise/merchandise.module#MerchandiseModule' 
+      {
+        path: 'merchandise',
+        loadChildren: './merchandise/merchandise.module#MerchandiseModule'
       },
       {
         path: 'user-management',
@@ -38,10 +38,11 @@ export const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'PageNotFound',
-    component: NotFoundComponent
-  }
+  // To Be Done At The End
+  // {
+  //   path: 'PageNotFound',
+  //   component: NotFoundComponent
+  // }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

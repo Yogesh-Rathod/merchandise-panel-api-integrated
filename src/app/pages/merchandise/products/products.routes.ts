@@ -10,6 +10,10 @@ const routes: Routes = [
     component: ProductsComponent
   },
   {
+    path: ':vendorId',
+    component: ProductsComponent
+  },
+  {
     path: 'add-product',
     component: AddProductComponent
   },

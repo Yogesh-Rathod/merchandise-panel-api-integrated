@@ -10,7 +10,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2
 import { DateTimePickerModule } from 'ng-pick-datetime';
 
 import { ProductsComponent} from './products.component';
-import { ProductsService } from 'app/services';
+import { ProductsService, VendorsService } from 'app/services';
 import { AddProductComponent } from "./add-product/add-product.component";
 
 @NgModule({
@@ -31,7 +31,8 @@ import { AddProductComponent } from "./add-product/add-product.component";
     AddProductComponent
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    VendorsService
   ]
 })
 export class ProductsModule {}
