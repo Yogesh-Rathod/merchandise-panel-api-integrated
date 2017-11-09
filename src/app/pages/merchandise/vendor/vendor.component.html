@@ -93,7 +93,7 @@
 								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<button class="btn btn-secondary" [routerLink]="['/merchandise/products', item.id]" title="View Products">
+								<button class="btn btn-secondary" [routerLink]="['/merchandise/products/vendorproducts', item.id]" title="View Products">
 									<i class="fa fa-eye" aria-hidden="true"></i>
 								</button>
 								<button class="btn btn-danger" (click)="deleteVendor(item, i)" title="Delete" [disabled]="deleteLoader == i">

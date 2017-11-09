@@ -9,7 +9,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
 import { RegEx } from 'app/pages/regular-expressions';
-import { MerchandiseService, ProductsService } from 'app/services';
+import { MerchandiseService, ProductsService, VendorsService } from 'app/services';
 
 @Component({
   selector: 'app-add-product',
@@ -56,6 +56,7 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder,
     private productsService: ProductsService,
     private merchandiseService: MerchandiseService,
+    private vendorsService: VendorsService,
     private route: ActivatedRoute,
     private router: Router
   ) {

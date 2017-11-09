@@ -44,6 +44,7 @@ export class ProductsComponent implements OnInit {
     private vendorsService: VendorsService,
     private merchandiseService: MerchandiseService) {
     this.route.params.subscribe((params) => {
+      console.log("params ", params);
       this.vendorId = params['vendorId'];
     });
   }

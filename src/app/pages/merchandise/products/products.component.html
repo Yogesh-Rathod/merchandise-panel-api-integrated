@@ -8,7 +8,11 @@
 					<i class="fa fa-download" aria-hidden="true"></i>
 					Import
 				</button>
-				<button class="btn btn-primary float-right" [routerLink]="['./add-product']">
+				<button *ngIf="!vendorId" class="btn btn-primary float-right" [routerLink]="['/merchandise/products/add-product']">
+					<i class="fa fa-plus-square" aria-hidden="true"></i>
+					Add New
+				</button>
+				<button *ngIf="vendorId" class="btn btn-primary float-right" [routerLink]="['/merchandise/products/vendorproducts/add-product',vendorId]">
 					<i class="fa fa-plus-square" aria-hidden="true"></i>
 					Add New
 				</button>
@@ -168,6 +172,9 @@
 								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
+								<!-- <button  class="btn btn-secondary" [routerLink]="[''/merchandise/products/vendorproducts/add-product',vendorId', item.id, vendorId]" title="Edit">
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</button> -->
 								<button class="btn btn-danger" (click)="deleteProduct(item, i)" title="Delete" [disabled]="deleteLoader == i">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>
