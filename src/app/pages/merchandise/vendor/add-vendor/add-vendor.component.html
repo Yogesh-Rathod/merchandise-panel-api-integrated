@@ -26,7 +26,6 @@
     <form class="col-12 row" [formGroup]=" addVendorForm " (ngSubmit)=" addVendor(addVendorForm.value) ">
       <input type="hidden" formControlName="id">
 
-      
       <div class="col-6 row">
         <div class="form-group col-6">
           <label for="firstName">
@@ -82,6 +81,14 @@
             <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Website (should start with 'http://' or 'https://')"></i>
           </label>
           <input formControlName="website" type="text" class="form-control" id="Website">
+        </div>
+        <div class="form-group col-6">
+          <label for="listingFee">
+            Listing Fee
+            <span class="mandatory">*</span>
+            <i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Vendor Listing Fee"></i>
+          </label>
+          <input formControlName="listingFee" type="text" class="form-control" id="listingFee" (keydown)='validatenumber($event)'>
         </div>
 
       </div>

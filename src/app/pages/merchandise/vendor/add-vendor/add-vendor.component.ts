@@ -42,7 +42,7 @@ export class AddVendorComponent implements OnInit {
     )
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     $(document).ready(() => {
       $('[data-toggle="tooltip"]').tooltip();
     });
@@ -97,6 +97,12 @@ export class AddVendorComponent implements OnInit {
         '',
         Validators.compose([
           Validators.pattern(RegEx.websiteUrl)
+        ])
+      ],
+      "listingFee": [
+        '',
+        Validators.compose([
+          Validators.required
         ])
       ],
       "address": [
@@ -178,6 +184,7 @@ export class AddVendorComponent implements OnInit {
           this.addVendorForm.controls['email'].setValue(vendor.email);
           this.addVendorForm.controls['phone'].setValue(vendor.phoneNumber);
           this.addVendorForm.controls['website'].setValue(vendor.website);
+          this.addVendorForm.controls['listingFee'].setValue(vendor.listingFee);
           this.addVendorForm.controls['address'].setValue(vendor.address);
           this.addVendorForm.controls['city'].setValue(vendor.city);
           this.addVendorForm.controls['state'].setValue(vendor.state);
