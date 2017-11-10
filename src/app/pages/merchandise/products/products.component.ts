@@ -35,6 +35,7 @@ export class ProductsComponent implements OnInit {
   atLeastOnePresent = false;
   vendorId: any;
   vendorInfo: any;
+  dropDownAction = ['Delete Selected', 'Deactivate Selected', 'Approve Selected', 'Reject Selected'];
 
   constructor(
     public toastr: ToastsManager,
@@ -160,6 +161,63 @@ export class ProductsComponent implements OnInit {
     }
 
   }
+
+  dropDownActionFunction(dropDownActionValue) {
+    console.log("dropDownActionValue ", dropDownActionValue);
+    switch (dropDownActionValue) {
+      case 'Delete Selected':
+        this.deleteAll();
+        break;
+      case 'Deactivate Selected':
+        this.deactivateAll();
+        break;
+      case 'Approve Selected':
+        this.approveAll();
+        break;
+      case 'Reject Selected':
+        this.rejectAll();
+        break;
+      default:
+        break;
+    }
+  }
+
+  rejectAll() {
+    if (this.selectAllCheckbox) {
+      _.forEach(this.products, (item) => {
+        item.approvalStatus = 'Rejected';
+        item.isChecked = false;
+      });
+    } else {
+      _.forEach(this.products, (item) => {
+        if (item.isChecked) {
+          item.approvalStatus = 'Rejected';
+          item.isChecked = false;
+        }
+      });
+    }
+    this.selectAllCheckbox = false;
+    this.showSelectedDelete = false;
+  }
+
+  approveAll() {
+    if (this.selectAllCheckbox) {
+      _.forEach(this.products, (item) => {
+        item.approvalStatus = 'Approved';
+        item.isChecked = false;
+      });
+    } else {
+      _.forEach(this.products, (item) => {
+        if (item.isChecked) {
+          item.approvalStatus = 'Approved';
+          item.isChecked = false;
+        }
+      });
+    }
+    this.selectAllCheckbox = false;
+    this.showSelectedDelete = false;
+  }
+
 
   deactivateAll() {
     if (this.selectAllCheckbox) {

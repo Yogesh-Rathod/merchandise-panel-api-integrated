@@ -33,7 +33,8 @@ export class ProductsService {
       productType: 'Simple',
       type: 'Type of product',
       status: 'Active',
-      brand: 'Spykar'
+      brand: 'Spykar',
+      approvalStatus: 'Approved'
     },
     {
       id: 12346,
@@ -54,7 +55,8 @@ export class ProductsService {
       stockQuantity: 20,
       productType: 'Simple',
       status: 'Inative',
-      categories: ''
+      categories: '',
+      approvalStatus: 'Rejected'
     },
     {
       id: 12347,
@@ -75,7 +77,8 @@ export class ProductsService {
       stockQuantity: 20,
       productType: 'Simple',
       status: 'Active',
-      categories: ''
+      categories: '',
+      approvalStatus: 'Pending'
     }
   ];
 
