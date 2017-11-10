@@ -59,9 +59,14 @@
                 </mfDefaultSorter>
               </th>
               <th>
-                <!-- <mfDefaultSorter by="createdOn"> -->
+                <mfDefaultSorter by="createdOn">
                   <strong>Created Date</strong>
-                <!-- </mfDefaultSorter> -->
+                </mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter by="createdOn">
+                  <strong>Type</strong>
+                </mfDefaultSorter>
               </th>
               <th class="text-center">
                 <strong>Action</strong>
@@ -80,7 +85,8 @@
                 <i *ngIf=" item.status " class="fa fa-check" aria-hidden="true"></i>
                 <i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
               </td>
-              <td>{{ item.createdOn }}</td>
+              <td>{{ item.createdOn | date }}</td>
+              <td>{{ item.type }}</td>
               <td class="text-center">
                 <button class="btn btn-secondary" [routerLink]="['./bank-details/', item.id]" title="View Details">
                   <i class="fa fa-eye" aria-hidden="true"></i>

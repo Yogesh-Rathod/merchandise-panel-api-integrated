@@ -7,6 +7,7 @@ declare let $: any;
 
 import { CatalogBulkUploadComponent } from './bulk-upload/bulk-upload.component';
 import { BankDeletePopupComponent } from './delete-popup/delete-popup.component';
+import { CatalogManagementService } from 'app/services';
 
 @Component({
   selector: 'app-catalog-management',
@@ -17,33 +18,12 @@ export class CatalogManagementComponent implements OnInit {
 
   searchTerm: any;
   showLoader = false;
-  banks = [
-    {
-      id: 12233,
-      name: 'Saraswat',
-      status: true,
-      createdOn: '12/12/2017',
-      isChecked: false
-    },
-    {
-      id: 43221,
-      name: 'SBI',
-      status: false,
-      createdOn: '01/01/2017',
-      isChecked: false
-    },
-    {
-      id: 56788,
-      name: 'PNB',
-      status: false,
-      createdOn: '11/11/2016',
-      isChecked: false
-    }
-  ];
+  banks: any;
   showSelectedDelete = false;
   selectAllCheckbox = false;
 
   constructor(
+    private catalogManagementService: CatalogManagementService,
     private modalService: NgbModal,
     public toastr: ToastsManager,
     private fb: FormBuilder
@@ -53,6 +33,11 @@ export class CatalogManagementComponent implements OnInit {
     $(document).ready(() => {
       $('[data-toggle="tooltip"]').tooltip();
     });
+    this.getBankInfo();
+  }
+
+  getBankInfo() {
+    this.banks = this.catalogManagementService.getBanks();
   }
 
   searchBank(searchText) {
