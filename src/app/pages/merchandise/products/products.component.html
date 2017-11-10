@@ -22,6 +22,12 @@
 		<div class="filters card col-12 fadeIn animated">
 			<div class="card-body">
 
+				<p class="error" *ngIf="atLeastOnePresent">
+					<em>
+						Please select atleast 1 criteria.
+					</em>
+				</p>
+
 				<form class="form-inline row" [formGroup]="searchProductForm" (ngSubmit)=" searchProduct(searchProductForm.value) ">
 
 					<div class="form-group col-3">

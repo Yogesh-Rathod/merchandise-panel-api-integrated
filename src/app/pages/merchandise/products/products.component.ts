@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit {
   vendors: any;
   showSelectedDelete = false;
   selectAllCheckbox = false;
+  atLeastOnePresent = false;
   vendorId: any;
   vendorInfo: any;
 
@@ -86,8 +87,24 @@ export class ProductsComponent implements OnInit {
     this.vendors = this.vendorsService.getVendors();
   }
 
+  atLeastOneFieldRequires(someObject) {
+    if (someObject) {
+      for (var key in someObject) {
+        if (someObject.hasOwnProperty(key)) {
+          if (someObject[key]) {
+            this.atLeastOnePresent = false;
+            return;
+          } else {
+            this.atLeastOnePresent = true;
+          }
+        }
+      }
+    }
+  }
+
   searchProduct(searchProductForm) {
     console.log('searchProductForm', searchProductForm);
+    this.atLeastOneFieldRequires(searchProductForm);
   }
 
   bulkUpload() {
