@@ -177,12 +177,9 @@
 								{{ item.status }}
 							</td>
 							<td class="action">
-								<button class="btn btn-secondary" [routerLink]="['./edit-product/', item.id]" title="Edit">
+								<button class="btn btn-secondary" [routerLink]="['/merchandise/products/edit-product/', item.id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
-								<!-- <button  class="btn btn-secondary" [routerLink]="[''/merchandise/products/vendorproducts/add-product',vendorId', item.id, vendorId]" title="Edit">
-									<i class="fa fa-pencil" aria-hidden="true"></i>
-								</button> -->
 								<button class="btn btn-danger" (click)="deleteProduct(item, i)" title="Delete" [disabled]="deleteLoader == i">
 									<i class="fa fa-trash-o" aria-hidden="true"></i>
 								</button>

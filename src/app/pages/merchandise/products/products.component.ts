@@ -44,7 +44,6 @@ export class ProductsComponent implements OnInit {
     private vendorsService: VendorsService,
     private merchandiseService: MerchandiseService) {
     this.route.params.subscribe((params) => {
-      console.log("params ", params);
       this.vendorId = params['vendorId'];
     });
   }
@@ -59,7 +58,6 @@ export class ProductsComponent implements OnInit {
     this.getAllVendors();
     this.bigLoader = false;
     if (this.vendorId) {
-      console.log("this.vendorId ", this.vendorId);
       this.getVendorInfo(this.vendorId);
     }
   }

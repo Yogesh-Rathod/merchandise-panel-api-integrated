@@ -49,6 +49,7 @@ export class AddProductComponent implements OnInit {
     openSelectorOnInputClick: true
   };
   bankId: any;
+  vendorId: any;
 
   constructor(
     public toastr: ToastsManager,
@@ -63,6 +64,7 @@ export class AddProductComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.productId = params['productId'];
       this.bankId = params['bankId'];
+      this.vendorId = params['vendorId'];
     });
   }
 
