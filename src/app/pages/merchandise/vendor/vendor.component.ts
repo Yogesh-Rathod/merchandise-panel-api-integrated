@@ -74,11 +74,27 @@ export class VendorComponent implements OnInit {
   }
 
   getAllVendors() {
-    this.vendorsList = this.vendorsService.getVendors();
+    this.vendorsService.getVendors('vendors').
+    then( (successData) => {
+      console.log("successData", successData);
+      this.vendorsList = successData.data;
+    }).catch(error => console.log(error));
   }
 
   searchVendor(searchText) {
     this.searchTerm = searchText;
+    if (this.searchTerm) {
+      this.vendorsService.getVendors(`vendors?name=${this.searchTerm}`).
+      then( (successData) => {
+        this.vendorsList = successData.data;
+      }).catch(error => console.log(error));
+    } else {
+      this.vendorsService.getVendors('vendors').
+      then( (successData) => {
+        console.log("successData", successData);
+        this.vendorsList = successData.data;
+      }).catch(error => console.log(error));
+    }
   }
 
   deactivateAll() {
@@ -118,16 +134,24 @@ export class VendorComponent implements OnInit {
   }
 
   deleteVendor(item, index) {
+    this.deleteLoader = index;
     const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
     activeModal.componentInstance.modalText = 'vendor';
 
+    console.log("item", item);
     activeModal.result.then( (status) => {
       if (status) {
-        this.deleteLoader = index;
-        _.remove(this.vendorsList, item);
-        this.vendorsService.editVendor(this.vendorsList);
-        this.deleteLoader = NaN;
-        this.toastr.success('Successfully Deleted!', 'Success!');
+        this.vendorsService.getVendors(`deleteVendor/${item._id}`).
+        then( (success) => {
+          console.log("success", success);
+          this.toastr.success('Successfully Deleted!', 'Success!');
+          this.deleteLoader = NaN;
+          this.getAllVendors();
+        }).catch((error) => {
+            console.log(error);
+            this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+            this.deleteLoader = NaN;
+        });
       }
     });
   }

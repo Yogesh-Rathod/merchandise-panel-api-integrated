@@ -47,14 +47,14 @@ export class AddVendorComponent implements OnInit {
       $('[data-toggle="tooltip"]').tooltip();
     });
     this.createForm();
-    this.getAllVendors();
     this.getVendorInfoForEdit();
+    // this.getAllVendors();
   }
 
   createForm() {
     this.addVendorForm = this.fb.group({
       'id': [''],
-      'first_name': [
+      'firstName': [
         '',
         Validators.compose([
           Validators.required,
@@ -62,7 +62,7 @@ export class AddVendorComponent implements OnInit {
           Validators.maxLength(100)
         ])
       ],
-      'last_name': [
+      'lastName': [
         '',
         Validators.compose([
           Validators.required,
@@ -145,9 +145,12 @@ export class AddVendorComponent implements OnInit {
     });
   }
 
-  getAllVendors() {
-    this.vendors = this.vendorsService.getVendors();
-  }
+  // getAllVendors() {
+  //   this.vendorsService.getVendors('vendors').
+  //   then( (successData) => {
+  //     console.log("successData", successData);
+  //   }).catch(error => console.log(error));
+  // }
 
   validatenumber(e) {
     if (!RegEx.Numbers.test(`${e.key}`) && `${e.key}`.length === 1) {
@@ -158,41 +161,58 @@ export class AddVendorComponent implements OnInit {
   addVendor(addVendorForm) {
     this.showLoader = true;
     if (addVendorForm.id) {
-      const index = _.findIndex(this.vendors, { id: addVendorForm['id'] });
-      this.vendors.splice(index, 1, addVendorForm);
-      this.vendorsService.editVendor(this.vendors);
+      // addVendorForm['id'] = Math.floor(Math.random() * 90000) + 10000;
+      this.vendorsService.addVendor(`updateVendor/${addVendorForm.id}`, addVendorForm).
+      then( (success) => {
+        this.toastr.success('Sucessfully Done!', 'Sucess!');
+        this.showLoader = false;
+        this._location.back();
+      }).catch((error) => {
+        console.log(error);
+        this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+        this.showLoader = false;
+      });
+
+      // const index = _.findIndex(this.vendors, { id: addVendorForm['id'] });
+      // this.vendors.splice(index, 1, addVendorForm);
+      // this.vendorsService.editVendor(this.vendors);
     } else {
-      addVendorForm['id'] = Math.floor(Math.random() * 90000) + 10000;
-      this.vendorsService.addVendor(addVendorForm);
+      // addVendorForm['id'] = Math.floor(Math.random() * 90000) + 10000;
+      this.vendorsService.addVendor('vendor', addVendorForm).
+      then( (success) => {
+        this.toastr.success('Sucessfully Done!', 'Sucess!');
+        this.showLoader = false;
+        this._location.back();
+      }).catch((error) => {
+        console.log(error);
+        this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+        this.showLoader = false;
+      });
     }
-    this.toastr.success('Sucessfully Done!', 'Sucess!');
-    this.showLoader = false;
-    this._location.back();
   }
 
   getVendorInfoForEdit() {
     if (this.vendorId) {
-      const vendors = this.vendorsService.getVendors();
-      _.forEach(vendors, (vendor) => {
-        if (vendor.id === parseInt(this.vendorId)) {
-          this.vendorInfo = vendor;
-          this.addVendorForm.controls['id'].setValue(vendor.id);
-          this.addVendorForm.controls['first_name'].setValue(vendor.first_name);
-          this.addVendorForm.controls['last_name'].setValue(vendor.last_name);
-          this.addVendorForm.controls['suffix'].setValue(vendor.suffix);
-          this.addVendorForm.controls['company'].setValue(vendor.company);
-          this.addVendorForm.controls['email'].setValue(vendor.email);
-          this.addVendorForm.controls['phone'].setValue(vendor.phoneNumber);
-          this.addVendorForm.controls['website'].setValue(vendor.website);
-          this.addVendorForm.controls['listingFee'].setValue(vendor.listingFee);
-          this.addVendorForm.controls['address'].setValue(vendor.address);
-          this.addVendorForm.controls['city'].setValue(vendor.city);
-          this.addVendorForm.controls['state'].setValue(vendor.state);
-          this.addVendorForm.controls['country'].setValue(vendor.country);
-          this.addVendorForm.controls['zip'].setValue(vendor.zip);
-          this.addVendorForm.controls['status'].setValue(vendor.status);
-        }
-      });
+      this.vendorsService.getVendors(`vendor/${this.vendorId}`).
+      then( (successData) => {
+        console.log("successData", successData);
+        this.vendorInfo = successData.data;
+        this.addVendorForm.controls['id'].setValue(this.vendorInfo[0]._id);
+        this.addVendorForm.controls['firstName'].setValue(this.vendorInfo[0].firstName);
+        this.addVendorForm.controls['lastName'].setValue(this.vendorInfo[0].lastName);
+        this.addVendorForm.controls['suffix'].setValue(this.vendorInfo[0].suffix);
+        this.addVendorForm.controls['company'].setValue(this.vendorInfo[0].company);
+        this.addVendorForm.controls['email'].setValue(this.vendorInfo[0].email);
+        this.addVendorForm.controls['phone'].setValue(this.vendorInfo[0].phone[0]);
+        this.addVendorForm.controls['website'].setValue(this.vendorInfo[0].website);
+        this.addVendorForm.controls['listingFee'].setValue(this.vendorInfo[0].listingFee);
+        this.addVendorForm.controls['address'].setValue(this.vendorInfo[0].address);
+        this.addVendorForm.controls['city'].setValue(this.vendorInfo[0].city);
+        this.addVendorForm.controls['state'].setValue(this.vendorInfo[0].state);
+        this.addVendorForm.controls['country'].setValue(this.vendorInfo[0].country);
+        this.addVendorForm.controls['zip'].setValue(this.vendorInfo[0].zip);
+        this.addVendorForm.controls['status'].setValue(this.vendorInfo[0].status);
+      }).catch(error => console.log(error));
     }
   }
 

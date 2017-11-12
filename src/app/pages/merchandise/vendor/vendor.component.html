@@ -82,7 +82,7 @@
 								<input [ngModel]="item.isChecked" type="checkbox" (change)="checkBoxSelected($event, item)">
 							</td>
 							<td class="text-left">
-								{{ item.first_name }} {{ item.last_name }}
+								{{ item.firstName }} {{ item.lastName }}
 							</td>
 							<td>{{ item.email }}</td>
 							<td class="text-center"	>
@@ -90,7 +90,7 @@
 								<i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
 							</td>
 							<td class="text-center">
-								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item.id]" title="Edit">
+								<button class="btn btn-secondary" [routerLink]="['./edit-vendor/', item._id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
 								<button class="btn btn-secondary" [routerLink]="['/merchandise/products/vendorproducts', item.id]" title="View Products">
