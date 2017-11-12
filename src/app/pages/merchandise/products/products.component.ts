@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.categories = this.merchandiseService.getCategories();
+    // this.categories = this.merchandiseService.getCategories();
   }
 
   getAllProducts() {

@@ -22,9 +22,9 @@ export class CategoriesComponent implements OnInit {
   deleteLoader: Number;
 
   constructor(
-      private modalService: NgbModal,
-      public toastr: ToastsManager,
-      private fb: FormBuilder,
+    private modalService: NgbModal,
+    public toastr: ToastsManager,
+    private fb: FormBuilder,
     private merchandiseService: MerchandiseService) {
   }
 
@@ -37,13 +37,32 @@ export class CategoriesComponent implements OnInit {
   }
 
   getAllCategories() {
-    this.categories = this.merchandiseService.getCategories();
-    // console.log("this.categories", this.categories);
+    this.merchandiseService.getCategories('categories').
+      then((successData) => {
+          console.log("successData getAllCategories", successData);
+        this.categories = successData.data;
+      }).catch((error) => {
+        console.log("error ", error);
+      });
   }
 
   searchCategory(searchTerm) {
-    // console.log("searchTerm", searchTerm);
-    this.searchTerm = searchTerm;
+    if (searchTerm) {
+      this.merchandiseService.getCategories(`categories?name=${searchTerm}`).
+      then((successData) => {
+        this.categories = successData.data;
+      }).catch((error) => {
+        console.log("error ", error);
+      });
+    } else {
+      this.merchandiseService.getCategories('categories').
+      then((successData) => {
+        this.categories = successData.data;
+      }).catch((error) => {
+        console.log("error ", error);
+      });
+    }
+
   }
 
   deleteCategory(item, index) {
@@ -53,10 +72,15 @@ export class CategoriesComponent implements OnInit {
     activeModal.result.then((status) => {
       if (status) {
         this.deleteLoader = index;
-        _.remove(this.categories, item);
-        this.merchandiseService.editCategories(this.categories);
-        this.deleteLoader = NaN;
-        this.toastr.success('Successfully Deleted!', 'Success!');
+        // _.remove(this.categories, item);
+        this.merchandiseService.getCategories(`deleteCategory/${item._id}`).
+          then((successData) => {
+            this.toastr.success('Successfully Deleted!', 'Success!');
+            this.deleteLoader = NaN;
+            this.getAllCategories();
+          }).catch((error) => {
+            console.log("error ", error);
+          });
       }
     });
   }

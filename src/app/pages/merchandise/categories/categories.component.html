@@ -21,7 +21,7 @@
 
 					<div class="form-group row">
 						<label for="name" class="col-3 col-xl-2 text-right">
-							Category Name 
+							Category Name
 							<span class="mandatory">*</span>
 							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Search by Category Name."></i>
 						</label>
@@ -60,12 +60,12 @@
 								</span> {{ item.name }} -->
 							</td>
 							<td class="text-center">
-								<i *ngIf=" item.published " class="fa fa-check" aria-hidden="true"></i>
-								<i *ngIf=" !item.published " class="fa fa-times" aria-hidden="true"></i>
+								<i *ngIf=" item.status " class="fa fa-check" aria-hidden="true"></i>
+								<i *ngIf=" !item.status " class="fa fa-times" aria-hidden="true"></i>
 							</td>
-							<td class="text-center">{{ item.display_order }}</td>
+							<td class="text-center">{{ item.displayOrder }}</td>
 							<td class="text-center">
-								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item.id]" title="Edit">
+								<button class="btn btn-secondary" [routerLink]="['./edit-category/', item._id]" title="Edit">
 									<i class="fa fa-pencil" aria-hidden="true"></i>
 								</button>
 								<button class="btn btn-danger" (click)="deleteCategory(item, i)" title="Delete" [disabled]="deleteLoader == i">

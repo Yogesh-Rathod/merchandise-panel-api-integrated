@@ -5,15 +5,15 @@ import { ModuleWithProviders } from '@angular/core';
 import { NotFoundComponent } from '../not-found/not-found.component';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    canActivate: [AuthGuard],
-    loadChildren: 'lrshared_modules/pages/login/login.module#LoginModule'
-  },
+//   {
+//     path: 'login',
+//     canActivate: [AuthGuard],
+//     loadChildren: 'lrshared_modules/pages/login/login.module#LoginModule'
+//   },
   {
     path: '',
     component: Pages,
-    canActivateChild: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     children: [
       {
         path: '',
@@ -24,10 +24,10 @@ export const routes: Routes = [
         path: 'merchandise',
         loadChildren: './merchandise/merchandise.module#MerchandiseModule'
       },
-      {
-        path: 'user-management',
-        loadChildren: 'lrshared_modules/pages/user-management/user-management.module#UserManagementModule'
-      },
+      // {
+      //   path: 'user-management',
+      //   loadChildren: 'lrshared_modules/pages/user-management/user-management.module#UserManagementModule'
+      // },
       {
         path: 'orders',
         loadChildren: './merchandise/orders/orders.module#OrdersModule'
@@ -39,10 +39,10 @@ export const routes: Routes = [
     ]
   },
   // To Be Done At The End
-  // {
-  //   path: 'PageNotFound',
-  //   component: NotFoundComponent
-  // }
+  {
+    path: 'PageNotFound',
+    component: NotFoundComponent
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

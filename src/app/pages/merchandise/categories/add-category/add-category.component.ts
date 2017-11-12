@@ -24,7 +24,7 @@ export class AddCategoryComponent implements OnInit {
   showLoader = false;
   deleteLoader = false;
   categoriesMaxLevel = Config.categoriesMaxLevel;
-  categories: any;
+  categories: any[];
   categoryId: any;
   categoryInfo: any;
 
@@ -42,13 +42,16 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.getAllCategories();
     this.getCategoryInfoForEdit();
+    this.getAllCategories();
   }
 
   getAllCategories() {
-    this.categories = this.merchandiseService.getCategories();
-    console.log("this.categories", this.categories);
+    this.merchandiseService.getCategories('categories').
+    then((successData) => {
+      this.categories = successData.data;
+      console.log("this.categories", this.categories);
+    }).catch(error => console.log(error));
   }
 
   createForm() {
@@ -72,26 +75,55 @@ export class AddCategoryComponent implements OnInit {
     const categoryInfo = {
       name: addCategoryFormValues.name,
       display_name: addCategoryFormValues.display_name,
-      parent_name: addCategoryFormValues.parentCat ? addCategoryFormValues.parentCat.breadCrumb : null,
-      level: addCategoryFormValues.parentCat ? addCategoryFormValues.parentCat.level + 1 : null ,
-      published: addCategoryFormValues.published,
-      display_order: addCategoryFormValues.order,
+      parent: addCategoryFormValues.parentCat ? addCategoryFormValues.parentCat.breadCrumb : null,
+      status: addCategoryFormValues.published,
+      displayOrder: addCategoryFormValues.order,
       description: addCategoryFormValues.description,
       breadCrumb: addCategoryFormValues.parentCat ? `${addCategoryFormValues.parentCat.breadCrumb} >> ${addCategoryFormValues.name}` : addCategoryFormValues.name
     };
     if (addCategoryFormValues.id) {
       categoryInfo['id'] = addCategoryFormValues.id;
-      const index = _.findIndex(this.categories, { id: categoryInfo['id'] } );
-      this.categories.splice(index, 1, categoryInfo );
-      this.merchandiseService.editCategories(this.categories);
+      var dataToSend = {};
+      for (let key in categoryInfo) {
+        if (categoryInfo.hasOwnProperty(key)) {
+          if (categoryInfo[key]) {
+            dataToSend[key] = categoryInfo[key];
+          }
+        }
+
+      }
+      this.merchandiseService.addCategory(`updateCategory/${categoryInfo['id']}`, dataToSend).
+      then((successData) => {
+        this.showLoader = false;
+        this.toastr.success('Sucessfully Done!', 'Sucess!');
+        this.router.navigate(['../']);
+      }).catch((error) => {
+        console.log("error ", error);
+        this.showLoader = false;
+        this.toastr.error('Oops!!! Something is wrong!', 'Error!');
+      });
+
     } else {
-      categoryInfo['id'] = Math.floor(Math.random() * 89999 + 10000);
-      this.merchandiseService.addCategory(categoryInfo);
+      var dataToSend = {};
+      for (let key in categoryInfo) {
+        if (categoryInfo.hasOwnProperty(key)) {
+          if (categoryInfo[key]) {
+            dataToSend[key] = categoryInfo[key];
+          }
+        }
+
+      }
+      this.merchandiseService.addCategory('category', dataToSend).
+      then((successData) => {
+        this.showLoader = false;
+        this.toastr.success('Sucessfully Done!', 'Sucess!');
+        this.router.navigate(['../']);
+      }).catch((error) => {
+        console.log("error ", error);
+        this.showLoader = false;
+        this.toastr.error('Oops!!! Something is wrong!', 'Error!');
+      });
     }
-    this.showLoader = false;
-    this.toastr.success('Sucessfully Done!', 'Sucess!');
-    this.router.navigate(['../']);
-    this.categories = this.merchandiseService.getCategories();
   }
 
   imageUpload(event) {
@@ -101,24 +133,17 @@ export class AddCategoryComponent implements OnInit {
 
   getCategoryInfoForEdit() {
     if ( this.categoryId ) {
-      const categories = this.merchandiseService.getCategories();
-      _.forEach(categories, (category) => {
-        if (category.id === parseInt(this.categoryId) ) {
-          this.categoryInfo = category;
- console.log("this.categoryInfo ", this.categoryInfo);
-          this.addCategoryForm.controls['id'].setValue(category.id);
-          this.addCategoryForm.controls['name'].setValue(category.name);
-          this.addCategoryForm.controls['display_name'].setValue(category.display_name);
-          this.addCategoryForm.controls['description'].setValue(category.description);
-          this.addCategoryForm.controls['order'].setValue(category.display_order);
-          this.addCategoryForm.controls['published'].setValue(category.published);
-        }
-      });
-      _.forEach(categories, (category) => {
-        if (this.categoryInfo.parent_name === category.breadCrumb) {
-          this.addCategoryForm.controls['parentCat'].setValue(category);
-        }
-      });
+      this.merchandiseService.getCategories('category/'+this.categoryId).
+      then((successData) => {
+        this.categoryInfo = successData.data;
+        console.log("this.successData", successData);
+        this.addCategoryForm.controls['id'].setValue(this.categoryInfo[0]._id);
+        this.addCategoryForm.controls['name'].setValue(this.categoryInfo[0].name);
+        this.addCategoryForm.controls['display_name'].setValue(this.categoryInfo[0].display_name);
+        this.addCategoryForm.controls['description'].setValue(this.categoryInfo[0].description);
+        this.addCategoryForm.controls['order'].setValue(this.categoryInfo[0].displayOrder);
+        this.addCategoryForm.controls['published'].setValue(this.categoryInfo[0].status);
+      }).catch(error => console.log(error));
     }
   }
 

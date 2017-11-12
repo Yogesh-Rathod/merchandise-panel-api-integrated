@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams }
+  from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class MerchandiseService {
+  headers: Headers;
+  options: RequestOptions;
+  baseUrl = 'https://merchandise-panel-back-end.herokuapp.com/api/'
+
   // All Operations Related To Categories
   private categories: any[] = [
     {
@@ -116,20 +123,45 @@ export class MerchandiseService {
     }
   ];
 
-  constructor() {}
-
-  getCategories() {
-    return this.categories;
+  constructor(private http: Http) {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'q=0.8;application/json;q=0.9'
+    });
+    this.options = new RequestOptions({ headers: this.headers });
   }
 
-  addCategory(categoryInfo) {
-    this.categories.push(categoryInfo);
-    return this.categories;
+
+  getCategories(url: string): Promise<any> {
+    return this.http
+      .get(`${this.baseUrl}${url}`, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
+  addCategory(url, categoryInfo) {
+    console.log("categoryInfo ", categoryInfo);
+    return this.http
+      .post(`${this.baseUrl}${url}`, categoryInfo, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
   }
 
   editCategories(categories) {
     this.categories = categories;
     return this.categories;
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 
 }
