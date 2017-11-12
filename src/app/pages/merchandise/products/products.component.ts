@@ -85,7 +85,7 @@ export class ProductsComponent implements OnInit {
     this.products = this.productsService.getProducts();
   }
   getAllVendors() {
-    this.vendors = this.vendorsService.getVendors();
+    // this.vendors = this.vendorsService.getVendors();
   }
 
   atLeastOneFieldRequires(someObject) {
@@ -113,14 +113,14 @@ export class ProductsComponent implements OnInit {
   }
 
   getVendorInfo(vendorId) {
-    const vendors = this.vendorsService.getVendors();
-    _.forEach(vendors, (vendor) => {
-      if (parseInt(vendor.id) === parseInt(vendorId)) {
-        this.vendorInfo = vendor;
-        console.log("this.vendorInfo", this.vendorInfo );
-        this.searchProductForm.controls['vendor'].setValue(vendor);
-      }
-    });
+    // const vendors = this.vendorsService.getVendors();
+    // _.forEach(vendors, (vendor) => {
+    //   if (parseInt(vendor.id) === parseInt(vendorId)) {
+    //     this.vendorInfo = vendor;
+    //     console.log("this.vendorInfo", this.vendorInfo );
+    //     this.searchProductForm.controls['vendor'].setValue(vendor);
+    //   }
+    // });
   }
 
   selectAll(e) {

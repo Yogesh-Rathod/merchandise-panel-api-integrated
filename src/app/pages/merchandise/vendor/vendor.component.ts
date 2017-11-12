@@ -21,6 +21,7 @@ export class VendorComponent implements OnInit {
   deleteLoader: Number;
   showSelectedDelete = false;
   selectAllCheckbox = false;
+  checkedItemsArray = [];
 
   constructor(
     private modalService: NgbModal,
@@ -39,6 +40,7 @@ export class VendorComponent implements OnInit {
       this.selectAllCheckbox = true;
       _.forEach(this.vendorsList, (item) => {
         item.isChecked = true;
+        this.checkedItemsArray.push(item._id);
       });
       this.showSelectedDelete = true;
     } else {
@@ -51,26 +53,19 @@ export class VendorComponent implements OnInit {
   }
 
   checkBoxSelected(e, item) {
-    this.selectAllCheckbox = false;
     if (e.target.checked) {
-      item.isChecked = true;
-    } else {
-      item.isChecked = false;
-    }
-
-    let isCheckedArray = [];
-
-    _.forEach(this.vendorsList, (item) => {
-      if (item.isChecked) {
-        this.showSelectedDelete = true;
-        isCheckedArray.push(item);
+      if (!(this.checkedItemsArray.indexOf(item._id) > -1)) {
+        this.checkedItemsArray.push(item._id);
       }
-    });
-
-    if (isCheckedArray.length === 0) {
-      this.showSelectedDelete = false;
+    } else {
+      var index = this.checkedItemsArray.indexOf(item._id);
+      if (index >= 0) {
+        this.checkedItemsArray.splice( index, 1 );
+      }
     }
-
+    if (this.checkedItemsArray.length > 0) {
+      this.showSelectedDelete = true;
+    }
   }
 
   getAllVendors() {
@@ -119,12 +114,19 @@ export class VendorComponent implements OnInit {
     const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
     activeModal.componentInstance.modalText = 'vendors';
 
+    const ids = {
+      ids : this.checkedItemsArray
+    };
     activeModal.result.then((status) => {
       if (status) {
-        this.vendorsList = [];
-        this.toastr.success('Successfully Deleted!', 'Success!');
-        this.selectAllCheckbox = false;
-        this.showSelectedDelete = false;
+        this.vendorsService.addVendor('deleteMultipleVendors', ids).
+        then( (success) => {
+          this.toastr.success('Successfully Deleted!', 'Success!');
+          this.selectAllCheckbox = false;
+          this.showSelectedDelete = false;
+          this.getAllVendors();
+        }).catch(error => console.log(error));
+        // this.vendorsList = [];
       }
     });
   }
