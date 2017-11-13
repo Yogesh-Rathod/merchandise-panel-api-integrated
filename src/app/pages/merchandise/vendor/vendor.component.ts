@@ -153,6 +153,8 @@ export class VendorComponent implements OnInit {
             this.toastr.error('Oops!!! Something went wrong.', 'Error!');
             this.deleteLoader = NaN;
         });
+      } else {
+        this.deleteLoader = NaN;
       }
     });
   }
