@@ -93,21 +93,17 @@ export class VendorComponent implements OnInit {
   }
 
   deactivateAll() {
-    if (this.selectAllCheckbox) {
-      _.forEach(this.vendorsList, (item) => {
-        item.status = false;
-        item.isChecked = false;
-      });
-    } else {
-      _.forEach(this.vendorsList, (item) => {
-        if (item.isChecked) {
-          item.status = false;
-          item.isChecked = false;
-        }
-      });
-    }
-    this.selectAllCheckbox = false;
-    this.showSelectedDelete = false;
+    console.log("this.checkedItemsArray ", this.checkedItemsArray);
+      const ids = {
+        ids: this.checkedItemsArray
+      };
+      this.vendorsService.addVendor('deactivateMultipleVendors', ids).
+        then((success) => {
+          this.toastr.success('Successfully Deactivated!', 'Success!');
+          this.selectAllCheckbox = false;
+          this.showSelectedDelete = false;
+          this.getAllVendors();
+        }).catch(error => console.log(error));
   }
 
   deleteAll() {
@@ -144,7 +140,6 @@ export class VendorComponent implements OnInit {
     const activeModal = this.modalService.open(VendorDeletePopupComponent, { size: 'sm' });
     activeModal.componentInstance.modalText = 'vendor';
 
-    console.log("item", item);
     activeModal.result.then( (status) => {
       if (status) {
         this.vendorsService.getVendors(`deleteVendor/${item._id}`).
