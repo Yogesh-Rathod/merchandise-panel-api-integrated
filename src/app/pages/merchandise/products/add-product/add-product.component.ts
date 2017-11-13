@@ -30,7 +30,7 @@ export class AddProductComponent implements OnInit {
   showLoader = false;
   deleteLoader = false;
   categories = [];
-  vendors = ['vendor 1', 'vendor 2'];
+  vendors: any;
   categoriesDropdownSettings = {
     singleSelection: false,
     text: "Select Categories",
@@ -70,8 +70,9 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.getProductInfoForEdit(this.productId);
+    this.getAllVendors();
     this.getAllCategories();
-    this.getProductInfoForEdit();
     this.bigLoader = false;
   }
 
@@ -79,74 +80,74 @@ export class AddProductComponent implements OnInit {
     this.addProductForm = this.fb.group({
       'id': [''],
       'name': [
-        '', 
+        '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(1), 
+          Validators.minLength(1),
           Validators.maxLength(100)
         ])
       ],
       'shortDescription': [
-        '', 
+        '',
         Validators.compose([
           Validators.required,
-          Validators.minLength(1), 
+          Validators.minLength(1),
           Validators.maxLength(1000)
         ])
       ],
       'fullDescription': [
-        '', 
+        '',
         Validators.compose([
-          Validators.minLength(1), 
+          Validators.minLength(1),
           Validators.maxLength(5000)
         ])
       ],
       'sku': [
-        '', 
+        '',
         Validators.required
       ],
       'status': [
-        '', 
+        '',
         Validators.required
       ],
       'currency': [''],
       'netPrice': [
-        '', 
+        '',
         Validators.required
       ],
       'netShipping': [
-        '', 
+        '',
         Validators.required
       ],
       'MrpPrice': [
-        '', 
+        '',
         Validators.required
       ],
       'oldPrice': [''],
       'retailPrice': [
-        '', 
+        '',
         Validators.required
       ],
       'retailShipping': [
-        '', 
+        '',
         Validators.required
       ],
       'rpi': [
-        '', 
+        '',
         Validators.required
       ],
       'applicableDate': [''],
       'stockQuantity': [
-        '', 
+        '',
         Validators.required
       ],
       'categories': [
-        [], 
-        Validators.required
+        [],
+        // Validators.required
       ],
       'vendor': [
         '',
-        Validators.required
+        // Validators.required
       ],
       'pictureName': [''],
       'pictureAlt': [''],
@@ -157,44 +158,50 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  getAllVendors() {
+    this.vendorsService.getVendors('vendors').
+      then((successData) => {
+        console.log("getAllVendors successData", successData);
+        this.vendors = successData.data;
+      }).catch(error => console.log(error));
+  }
+
   validatenumber(e) {
     if (!RegEx.Numbers.test(`${e.key}`) && `${e.key}`.length === 1) {
       e.preventDefault();
     }
   }
 
-  getProductInfoForEdit() {
+  getProductInfoForEdit(productId) {
     if (this.productId) {
-      this.products = this.productsService.getProducts();
-      _.forEach(this.products, (product) => {
-        if (product.id === parseInt(this.productId)) {
-          this.productInfo = product;
-          console.log("this.productInfo ", this.productInfo);
-          this.addProductForm.controls['id'].setValue(product.id);
-          this.addProductForm.controls['name'].setValue(product.name);
-          this.addProductForm.controls['shortDescription'].setValue(product.shortDescription);
-          this.addProductForm.controls['fullDescription'].setValue(product.fullDescription);
-          this.addProductForm.controls['sku'].setValue(product.sku);
-          this.addProductForm.controls['status'].setValue(product.status); 
-          this.addProductForm.controls['currency'].setValue(product.currency);
-          this.addProductForm.controls['netPrice'].setValue(product.netPrice);
-          this.addProductForm.controls['netShipping'].setValue(product.netShipping);
-          this.addProductForm.controls['MrpPrice'].setValue(product.MrpPrice);
-          this.addProductForm.controls['oldPrice'].setValue(product.MrpPrice);
-          this.addProductForm.controls['retailPrice'].setValue(product.retailPrice);
-          this.addProductForm.controls['retailShipping'].setValue(product.retailShipping);
-          this.addProductForm.controls['rpi'].setValue(product.rpi);
-          this.addProductForm.controls['stockQuantity'].setValue(product.stockQuantity); 
-          this.addProductForm.controls['vendor'].setValue(product.vendor);
-          // this.addProductForm.controls['pictureName'].setValue(product.picture[0].url);
-          this.addProductForm.controls['pictureAlt'].setValue(product.picture[0].alt);
-          this.addProductForm.controls['pictureTitle'].setValue(product.picture[0].title);
-          this.addProductForm.controls['pictureDisplayorder'].setValue(product.picture[0].displayOrder);
-          // this.addProductForm.controls['categories'].setValue([product.categories]);
-          this.addProductForm.controls['type'].setValue(product.type);
-          this.addProductForm.controls['brand'].setValue(product.brand);
-        }
-      });
+      this.productsService.getProducts(`product/${productId}`).
+      then( (successData) => {
+ console.log("successData ", successData);
+        this.productInfo = successData.data;
+        this.addProductForm.controls['id'].setValue(this.productInfo[0]._id);
+        this.addProductForm.controls['name'].setValue(this.productInfo[0].name);
+          this.addProductForm.controls['shortDescription'].setValue(this.productInfo[0].shortDescription);
+          this.addProductForm.controls['fullDescription'].setValue(this.productInfo[0].fullDescription);
+          this.addProductForm.controls['sku'].setValue(this.productInfo[0].sku);
+          this.addProductForm.controls['status'].setValue(this.productInfo[0].status);
+          this.addProductForm.controls['currency'].setValue(this.productInfo[0].currency);
+          this.addProductForm.controls['netPrice'].setValue(this.productInfo[0].netPrice);
+          this.addProductForm.controls['netShipping'].setValue(this.productInfo[0].netShipping);
+          this.addProductForm.controls['MrpPrice'].setValue(this.productInfo[0].MrpPrice);
+          this.addProductForm.controls['oldPrice'].setValue(this.productInfo[0].MrpPrice);
+          this.addProductForm.controls['retailPrice'].setValue(this.productInfo[0].retailPrice);
+          this.addProductForm.controls['retailShipping'].setValue(this.productInfo[0].retailShipping);
+          this.addProductForm.controls['rpi'].setValue(this.productInfo[0].rpi);
+          this.addProductForm.controls['stockQuantity'].setValue(this.productInfo[0].stockQuantity);
+          this.addProductForm.controls['vendor'].setValue(this.productInfo[0].vendor);
+          // this.addProductForm.controls['pictureName'].setValue(this.productInfo[0].picture[0].url);
+          // this.addProductForm.controls['pictureAlt'].setValue(this.productInfo[0].picture[0].alt);
+          // this.addProductForm.controls['pictureTitle'].setValue(this.productInfo[0].picture[0].title);
+          // this.addProductForm.controls['pictureDisplayorder'].setValue(this.productInfo[0].picture[0].displayOrder);
+          // this.addProductForm.controls['categories'].setValue([this.productInfo[0].categories]);
+          this.addProductForm.controls['type'].setValue(this.productInfo[0].type);
+          this.addProductForm.controls['brand'].setValue(this.productInfo[0].brand);
+      }).catch(error => console.log(error));
     }
   }
 
@@ -202,7 +209,6 @@ export class AddProductComponent implements OnInit {
     this.showLoader = true;
     console.log("addProductForm ", addProductForm);
     let productInfo = {
-      id: Math.floor(Math.random() * 90000) + 10000,
       picture: [
         {
           url: this.productImageName ? this.productImageName : undefined,
@@ -226,36 +232,42 @@ export class AddProductComponent implements OnInit {
     };
 
     if (addProductForm.id) {
-      productInfo['id'] = addProductForm.id;
-      const index = _.findIndex(this.products, { id: productInfo['id'] });
-      this.products.splice(index, 1, productInfo);
-      this.productsService.editProduct(this.products);
+      this.productsService.addProduct(`updateProduct/${this.productId}`, productInfo).
+        then((success) => {
+          this.toastr.success('Sucessfully Done!', 'Sucess!');
+          this.showLoader = false;
+          this.goBack();
+        }).catch((error) => {
+          this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+          this.showLoader = false;
+        });
     } else {
-      this.productsService.addProduct(productInfo);
+      this.productsService.addProduct('product', productInfo).
+        then((success) => {
+          console.log("Save data success ", success);
+          this.toastr.success('Sucessfully Done!', 'Sucess!');
+          this.showLoader = false;
+          this.goBack();
+        }).catch((error) => {
+          this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+          this.showLoader = false;
+        });
     }
-
-    this.toastr.success('Sucessfully Done!', 'Sucess!');
-    this.showLoader = false;
-    this.goBack();
   }
 
   getAllCategories() {
-    // this.categories = this.merchandiseService.getCategories();
-    let categoriesArray = [];
-    _.forEach(this.categories, (category) => {
-      if (category.parent_name) {
-        categoriesArray.push({
-          id: `${category.parent_name} >> ${category.name}`,
-          itemName: `${category.parent_name} >> ${category.name}`
+    this.merchandiseService.getCategories('categories').
+      then((successData) => {
+        console.log("getAllCategories successData ", successData);
+        _.forEach(successData.data , (eachcategory) => {
+          this.categories.push({
+            id: eachcategory._id,
+            itemName: eachcategory.breadCrumb
+          });
         });
-      } else {
-        categoriesArray.push({
-          id: category.name,
-          itemName: category.name
-        });
-      }
-    });
-    this.categories = categoriesArray;
+      }).catch((error) => {
+        console.log("error ", error);
+      });
   }
 
   deleteProduct() {

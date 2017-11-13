@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams }
+  from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ProductsService {
+  headers: Headers;
+  options: RequestOptions;
+  baseUrl = 'https://merchandise-panel-back-end.herokuapp.com/api/'
 
   // Vendor Products
   private products = [
@@ -82,18 +88,43 @@ export class ProductsService {
     }
   ];
 
-  getProducts() {
-    return this.products;
+  constructor(private http: Http) {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'q=0.8;application/json;q=0.9'
+    });
+    this.options = new RequestOptions({ headers: this.headers });
   }
 
-  addProduct(product) {
-    this.products.push(product);
-    return this.products;
+  getProducts(url: string): Promise<any> {
+    return this.http
+      .get(`${this.baseUrl}${url}`, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
+  addProduct(url, productInfo) {
+    return this.http
+      .post(`${this.baseUrl}${url}`, productInfo, this.options)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
   }
 
   editProduct(products) {
     this.products = products;
     return this.products;
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 
 

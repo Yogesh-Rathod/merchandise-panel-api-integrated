@@ -133,6 +133,10 @@ export class VendorComponent implements OnInit {
 
   bulkUpload() {
     const activeModal = this.modalService.open(VendorsBulkUploadComponent, { size: 'sm' });
+
+    activeModal.result.then(() => {
+      this.getAllVendors();
+    });
   }
 
   deleteVendor(item, index) {

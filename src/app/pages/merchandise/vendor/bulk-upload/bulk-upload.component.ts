@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-const uploadApiUrl = 'http://localhost:3000/upload'; 
+const uploadApiUrl = 'https://merchandise-panel-back-end.herokuapp.com/api/bulkVendorUpload';
 
 @Component({
   selector: 'app-bulk-upload',
@@ -18,7 +18,7 @@ export class VendorsBulkUploadComponent implements OnInit {
   public uploader: FileUploader = new FileUploader(
     {
       url: uploadApiUrl,
-      itemAlias: 'image'
+      itemAlias: 'vendorUpload'
     }
   );
 

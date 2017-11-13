@@ -68,7 +68,7 @@ export class ProductsComponent implements OnInit {
   searchForm() {
     this.searchProductForm = this.fb.group({
       name: [''],
-      store: [''],
+      id: [''],
       category: [''],
       productType: [''],
       manufacturer: [''],
@@ -78,14 +78,29 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllCategories() {
-    // this.categories = this.merchandiseService.getCategories();
+    this.merchandiseService.getCategories('categories').
+      then((successData) => {
+        console.log("getAllCategories successData ", successData);
+        this.categories = successData.data;
+      }).catch((error) => {
+        console.log("error ", error);
+      });
   }
 
   getAllProducts() {
-    this.products = this.productsService.getProducts();
+    this.productsService.getProducts('products').
+    then( (successData) => {
+      console.log("successData ", successData);
+      this.products = successData.data;
+    }).catch(error => console.log(error) );
   }
+
   getAllVendors() {
-    // this.vendors = this.vendorsService.getVendors();
+    this.vendorsService.getVendors('vendors').
+      then((successData) => {
+        console.log("getAllVendors successData", successData);
+        this.vendors = successData.data;
+      }).catch(error => console.log(error));
   }
 
   atLeastOneFieldRequires(someObject) {
@@ -104,8 +119,30 @@ export class ProductsComponent implements OnInit {
   }
 
   searchProduct(searchProductForm) {
-    console.log('searchProductForm', searchProductForm);
     this.atLeastOneFieldRequires(searchProductForm);
+    if (!this.atLeastOnePresent) {
+      let searchQuery = '';
+      for (let key in searchProductForm) {
+        if (searchProductForm.hasOwnProperty(key)) {
+          if (searchProductForm[key]) {
+            searchQuery += `&${key}=${searchProductForm[key]}`;
+          }
+        }
+      }
+      if (searchProductForm) {
+        this.productsService.getProducts(`products?${searchQuery}`).
+          then((successData) => {
+            console.log("searchProduct successData IF", successData);
+            this.products = successData.data;
+          }).catch(error => console.log(error));
+      } else {
+        this.productsService.getProducts('products').
+          then((successData) => {
+            console.log("searchProduct successData ELSE", successData);
+            this.products = successData.data;
+          }).catch(error => console.log(error));
+      }
+    }
   }
 
   bulkUpload() {
@@ -267,10 +304,16 @@ export class ProductsComponent implements OnInit {
     activeModal.result.then((status) => {
       if (status) {
         this.deleteLoader = index;
-        _.remove(this.products, item);
-        this.productsService.editProduct(this.products);
-        this.deleteLoader = NaN;
-        this.toastr.success('Successfully Deleted!', 'Success!');
+        this.productsService.getProducts(`deleteProduct/${item._id}`).
+          then((success) => {
+            this.toastr.success('Successfully Deleted!', 'Success!');
+            this.deleteLoader = NaN;
+            this.getAllProducts();
+          }).catch((error) => {
+            console.log(error);
+            this.toastr.error('Oops!!! Something went wrong.', 'Error!');
+            this.deleteLoader = NaN;
+          });
       }
     });
 

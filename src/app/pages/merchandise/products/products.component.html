@@ -43,7 +43,7 @@
 							Product Id
 							<i class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="A product Id."></i>
 						</label>
-						<input type="text" class="form-control" id="id" placeholder="Product Id" formControlName="name">
+						<input type="text" class="form-control" id="id" placeholder="Product Id" formControlName="id">
 					</div>
 
 					<div class="form-group col-3">
@@ -68,8 +68,8 @@
 						</label>
 						<select id="Vendor" class="form-control col-12" formControlName="vendor">
 							<option value="all">All</option>
-							<option *ngFor="let item of vendors" [ngValue]="item">
-								{{ item.first_name }} {{ item.last_name }}
+							<option *ngFor="let item of vendors" [ngValue]="item._id">
+								{{ item.firstName }} {{ item.lastName }}
 							</option>
 						</select>
 					</div>
@@ -201,7 +201,7 @@
 									</span>
 								</td>
 								<td class="action">
-									<button class="btn btn-secondary" [routerLink]="['/merchandise/products/edit-product/', item.id]" title="Edit">
+									<button class="btn btn-secondary" [routerLink]="['/merchandise/products/edit-product/', item._id]" title="Edit">
 										<i class="fa fa-pencil" aria-hidden="true"></i>
 									</button>
 									<button class="btn btn-danger" (click)="deleteProduct(item, i)" title="Delete" [disabled]="deleteLoader == i">

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class MerchandiseService {
   headers: Headers;
   options: RequestOptions;
-  baseUrl = 'https://merchandise-panel-back-end.herokuapp.com/api/'
+  baseUrl = 'https://merchandise-panel-back-end.herokuapp.com/api/';
 
   // All Operations Related To Categories
   private categories: any[] = [
@@ -141,7 +141,6 @@ export class MerchandiseService {
   }
 
   addCategory(url, categoryInfo) {
-    console.log("categoryInfo ", categoryInfo);
     return this.http
       .post(`${this.baseUrl}${url}`, categoryInfo, this.options)
       .toPromise()
